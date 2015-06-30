@@ -5,3 +5,8 @@
   <%=x.email%><%=link_to "Add Friend", friendships_path(friend_id: x.id), method: :post%> <br>
   <%end%>
 <%end%>
+
+<%if user_signed_in?%>
+
+<%=link_to "My Friends", friendships_path%>
+<%end%>

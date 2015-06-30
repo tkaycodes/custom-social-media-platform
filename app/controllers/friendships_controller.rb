@@ -56,13 +56,15 @@ class FriendshipsController < ApplicationController
 
   # DELETE /friendships/1
   # DELETE /friendships/1.json
-  # def destroy
-  #   @friendship.destroy
+  def destroy
+    @friendship = Friendship.find(params[:id])
+    @friendship.destroy
+    redirect_to root_path, notice: "Removed Friendship"
   #   respond_to do |format|
   #     format.html { redirect_to friendships_url, notice: 'Friendship was successfully destroyed.' }
   #     format.json { head :no_content }
   #   end
-  # end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
