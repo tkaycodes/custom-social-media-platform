@@ -1,47 +1,40 @@
 class FriendshipsController < ApplicationController
-  # before_action :set_friendship, only: [:show, :edit, :update, :destroy]
-
-  # GET /friendships
-  # GET /friendships.json
+ 
   def index
     @friendships = current_user.friendships
   end
 
-  # GET /friendships/1
-  # GET /friendships/1.json
+
   def show
   end
 
-  # GET /friendships/new
   def new
     @friendship = Friendship.new
   end
 
-  # GET /friendships/1/edit
   def edit
   end
 
-  # POST /friendships
-  # POST /friendships.json
   def create
-    @friendship = current_user.friendships.new(:friend_id=>params[:friend_id])
-
-    # respond_to do |format|
+    @friendship = current_user.friendships.new(:friend_id=>params[:friend_id], :state=>'pending');
       if @friendship.save
-        logger.warn "friendship saved"
-        # redirect_to root_path
+        logger.warn "friendship saved and the status is now #{@friendship.state}"
       redirect_to friendships_path, notice: 'Friendship was successfully created.'
-    #   format.json { render :show, status: :created, location: @friendship }
       else
-        redirect_to root_path
-    #     format.html { render :new }
-    #     format.json { render json: @friendship.errors, status: :unprocessable_entity }
+        redirect_to root_path, notice: 'User is already your friend!'
       end
-     # end
+    # inverse relationship
+    # @friend = @friendship.friend
+    # @user = @friendship.user
+    # @inverse = @friend.friendships.new(:friend_id=>@user.id, :state=>'requested');
+    # if @inverse.save 
+    #   logger.warn "inverse saved"
+    # else
+    #   logger.warn "error making the inverse relationship"
+    # end
   end
 
-  # PATCH/PUT /friendships/1
-  # PATCH/PUT /friendships/1.json
+ 
   def update
     respond_to do |format|
       if @friendship.update(friendship_params)
@@ -54,26 +47,19 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  # DELETE /friendships/1
-  # DELETE /friendships/1.json
+  
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    redirect_to root_path, notice: "Removed Friendship"
-  #   respond_to do |format|
-  #     format.html { redirect_to friendships_url, notice: 'Friendship was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
+    redirect_to friendships_path, notice: "Removed Friendship"
+
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    # def set_friendship
-    #   @friendship = Friendship.find(params[:id])
-    # end
+  def create_inverse_friendship
+    logger.warn "IM GONA GET CREATED"
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    # def friendship_params
-    #   params.require(:friendships).permit(:user_id, :friend_id, :create, :destroy)
-    # end
+
+
 end
