@@ -1,8 +1,10 @@
+<h2><%=link_to "My profile", user_profile_path(current_user.id)%></h2>
+
 <h1> All users </h1>
 
 <%if user_signed_in?%>
   <%@usersminusself.each do |x|%>
-  <%=x.email%><%=link_to "Add Friend", friendships_path(friend_id: x.id), method: :post%> <br>
+  <%=x.email%><%=link_to "Add Friend", friendships_path(friend_id: x.id), method: :post%><%=link_to "User Profile", user_profile_path(x)%> <br>
   <%end%>
 <%end%>
 

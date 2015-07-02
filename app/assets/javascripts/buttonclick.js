@@ -18,12 +18,17 @@ $(document).ready(function(){
     });
   });
 
-
-
-
-  // $('#decline_request').click(function(){
-  //   console.log('bye');
-  //   console.log();
-  // });
+  $('#decline_request').click(function(){
+    console.log(currentid);
+    $.ajax({
+      url: '/friendships',
+      dataType: 'json',
+      method: 'put',
+      data: {id: currentid, state: "declined"},
+      success: function(result){
+        console.log(result);
+      }
+    });
+  });
 
 });

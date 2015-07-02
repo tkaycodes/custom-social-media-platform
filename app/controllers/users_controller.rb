@@ -8,6 +8,10 @@ class UsersController < ApplicationController
       format.html{}
       format.json{render :json=>@users}
     end
+  end
 
+  def show
+    @user = User.find(params[:id])
+    @posts = @user.posts
   end
 end

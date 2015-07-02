@@ -1,8 +1,8 @@
-<h1>Friends List:</h1>
-<%@friendships.each do |x|%>
-<%=x.friend.email%><%=link_to "Remove Friend", friendship_path(x.id), method: :delete%><br>
-<%end%>
-<%=link_to "Back Home", root_path%>
+<!-- <h1>Friends List:</h1>
+<%#@friendships.each do |x|%>
+<%#=x.friend.email%><%#=link_to "Remove Friend", friendship_path(x.id), method: :delete%><br>
+<%#end%>
+ -->
 
 <h1>Ppl who have added me: </h1>
 <%@requested_friendships.each do |x|%>
@@ -21,10 +21,16 @@
   <%end%>
 <%end%>
 
+<h1> Requests Ive declined: </h1>
+<%@declined_friendships.each do |x|%>
+<%=x.friend.email%>
+<%end%>
 
 
 
 <h1> My friends : </h1>
 <%@accepted_friendships.each do |x|%>
-<%=x.friend.email%>
+<%=x.friend.email%><%=link_to "Remove Friend", friendship_path(x), method: :DELETE%><br>
 <%end%>
+
+<%=link_to "Back Home", root_path%>

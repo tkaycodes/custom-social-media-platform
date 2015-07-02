@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
 
   resources :friendships
-  resources :friend_requests
-  get 'friends/index'
-
-  get 'friends/destroy'
-
   devise_for :users
   root 'users#index'
   get '/users' => 'users#index'
+  get '/user/:id' => 'users#show', as: :user_profile
   put '/friendships' =>'friendships#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

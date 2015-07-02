@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   before_action :set_values, only: [:index]
-  before_action :set_inverse_relationship, only: [:index]
+  before_action :set_inverse_state, only: [:index]
 
  
   def index
@@ -83,29 +83,37 @@ class FriendshipsController < ApplicationController
   private
  
   def set_values
-    logger.warn "howdy"
+    logger.warn "setting values"
     @friendships = current_user.friendships;
     # logger.warn "#{@friendships}"
     @accepted_friendships=current_user.friendships.where(state:'accepted');
+    @declined_friendships=current_user.friendships.where(state:'declined');
     @requested_friendships=current_user.friendships.where(state:'requested');
     @sent_friendships=current_user.friendships.where(state:'pending');
   end
 
-  def set_inverse_relationship
+  def set_inverse_state
     logger.warn "CHECK 2"
     # logger.warn "#{@sent_friendships.inspect}"
     @sent_friendships.each do |x|
-      logger.warn "#{x.opposite.first.inspect}"
-      if x.opposite.first.state == "accepted"
-        logger.warn "BOOYAAAA"
-        x.state = "accepted"
-        x.save!
-        logger.warn "#{x.inspect}"
-      else
-        logger.warn "HAH"
+      # logger.warn "#{x.opposite.first.inspect}"
+      logger.warn "#{x.opposite.inspect}"
+      logger.warn "break"
+      x.opposite.each do |indy|
+        logger.warn "#{indy.inspect}"
+          if indy.state == "accepted"
+             logger.warn "BOOYAAAA"
+              x.state = "accepted"
+              x.save!
+              logger.warn "#{x.inspect}"
+          else
+            logger.warn "HAH"
+          end
       end
     end
   end
+
+  
     # @requested_friendships.each do |x|
     #   if x.opposite.first.state == "Accepted"
     #       logger.warn "State is Accepted"
