@@ -4,4 +4,27 @@
 <%end%>
 <%=link_to "Back Home", root_path%>
 
-<!-- <h1>Ppl who have added me: </h1> -->
+<h1>Ppl who have added me: </h1>
+<%@requested_friendships.each do |x|%>
+<div id="friendshipid"><%=x.id%></div>
+<%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button>
+<%end%>
+
+
+<h1> Requests Ive sent: </h1>
+<%@sent_friendships.each do |x|%>
+<%if x.opposite.first.state == "Accepted"%>
+    <%#x.update_attribtes(:state=>"Accepted")%>
+    <%#x.save%>
+  <%else%>
+    <%=x.friend.email%><br>
+  <%end%>
+<%end%>
+
+
+
+
+<h1> My friends : </h1>
+<%@accepted_friendships.each do |x|%>
+<%=x.friend.email%>
+<%end%>

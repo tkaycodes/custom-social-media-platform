@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'users#index'
   get '/users' => 'users#index'
+  put '/friendships' =>'friendships#update'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

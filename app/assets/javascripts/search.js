@@ -15,9 +15,10 @@ $(document).ready(function(){
   var mapped = objects.map(function(x){
     return x.email;
   });
- // var availableTags = ["hi", "bye", "hippo"];
+  // var availableTags = ["hi", "bye", "hippo"];
    $('#usersearchbox').autocomplete({
     source: mapped,
+    // source: availableTags,
     select: function(event, ui){
       event.preventDefault();
     }

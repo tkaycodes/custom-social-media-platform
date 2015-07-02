@@ -24,14 +24,6 @@ ActiveRecord::Schema.define(version: 20150630195827) do
     t.string   "state"
   end
 
-  create_table "inverse_friendships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "friend_id"
-    t.string   "integer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
