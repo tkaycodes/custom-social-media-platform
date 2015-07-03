@@ -14,9 +14,9 @@ class FriendshipsController < ApplicationController
   def show
   end
 
-  def new
-    @friendship = Friendship.new
-  end
+  # def new
+  #   @friendship = Friendship.new
+  # end
 
   def edit
   end

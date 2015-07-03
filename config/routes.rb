@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   resources :friendships
+  resources :posts
+  resources :statuses, controller: 'posts', type: 'Status'
+  resources :images, controller: 'posts', type: 'Image'
+  # get '/posts/images/new' =>'posts#new'
+  # get '/posts/statuses/new' =>'post#new'
   devise_for :users
   root 'users#index'
   get '/users' => 'users#index'

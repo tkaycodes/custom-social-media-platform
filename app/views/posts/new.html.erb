@@ -1,0 +1,15 @@
+<%if @post.type=="Status"%>
+  <%=form_for @post do |x|%>
+  <%=x.label 'Post Status'%>
+  <%=x.text_field :body%>
+  <%=x.hidden_field :type%>
+  <%=x.submit%>
+  <%end%>
+<%elsif @post.type=="Image"%>
+  <%=form_for @post, :html=>{:multipart=>true} do |x|%>
+  <%=x.label 'Post Image'%>
+  <%=x.file_field :body%>
+  <%=x.hidden_field :type%>
+  <%=x.submit%>
+  <%end%>
+<%end%>

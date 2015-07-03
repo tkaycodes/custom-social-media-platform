@@ -3,5 +3,12 @@
 
 <h1> User posts:</h1>
 <%@posts.each do |x|%>
-<%=x.body%>
+  <%if x.type=="Image"%>
+    <%= image_tag x.body.url %>
+    <%#=image_tag x.body%><br>
+    <%else%>
+    <%=x.body%><br>
+  <%end%>
 <%end%>
+
+<%=link_to "back home", root_path%>
