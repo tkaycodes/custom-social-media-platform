@@ -1,0 +1,6 @@
+<%=form_for @message do |x|%>
+<%=x.label :message%>
+<%=x.text_area :message%>
+<%=x.hidden_field :recipient_id%>
+<%=x.submit "Send"%>
+<%end%>

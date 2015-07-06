@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :statuses, controller: 'posts', type: 'Status'
   resources :images, controller: 'posts', type: 'Image'
+  resources :messages
   # get '/posts/images/new' =>'posts#new'
   # get '/posts/statuses/new' =>'post#new'
   devise_for :users

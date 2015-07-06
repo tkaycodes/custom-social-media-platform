@@ -11,22 +11,28 @@ $(document).ready(function(){
       //   });
       // }
     });
+  console.log(ajaxcall);
   var objects = ajaxcall.responseJSON;
   var mapped = objects.map(function(x){
-    return x.email;
+    // var userinfo = {};
+    // return x.email;
+     return {label: x.email, value: x.id};
   });
-  // var availableTags = ["hi", "bye", "hippo"];
+  console.log(mapped);
+ // var availableTags = ["hi", "bye", "hippo"];
    $('#usersearchbox').autocomplete({
     source: mapped,
-    // source: availableTags,
+     // source: availableTags,
     select: function(event, ui){
       event.preventDefault();
+      // console.log(User.all);
+      console.log(ui);
     }
   });
 
-   $('#usersearchbox').on("autocompleteselect", function(event, ui){
-    console.log("the" + ui.item + " was selected");
-   });
+   // $('#usersearchbox').on("autocompleteselect", function(event, ui){
+   //  console.log("the" + ui.item + " was selected");
+   // });
 
 
 

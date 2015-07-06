@@ -1,0 +1,14 @@
+<h1>Messages:</h1>
+
+<%if @messages.empty?%>
+  no messages yet!
+<%else%>
+  <%@messages.each do |x|%>
+  <%=x.message%><br>
+  Sent by:<%=x.sender.email%> at: <%=x.created_at%><hr>
+  <%end%>
+<%end%>
+  
+ 
+
+

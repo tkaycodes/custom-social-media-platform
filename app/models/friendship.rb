@@ -13,14 +13,13 @@ class Friendship < ActiveRecord::Base
     return friend.friendships
   end
 
-  def set_state
-    self.state = "Accepted"
-    self.save
-  end
+ 
 
   private
+
+
   def create_inverse_friendship
-    @inverse = friend.friendships.create(friend: user, state: 'requested')
+    @inverse = friend.friendships.create(friend_id: user.id, state: 'requested')
     if @inverse
       logger.warn "inverse relation created!"
     else

@@ -2,7 +2,7 @@
 
 <%if user_signed_in?%>
   <%@usersminusself.each do |x|%>
-  <%=x.email%><%=link_to "Add Friend", friendships_path(friend_id: x.id), method: :post%><%=link_to "User Profile", user_profile_path(x)%> <br>
+  <%=x.email%><%=link_to "Add Friend", friendships_path(friend_id: x.id), method: :post%>||<%=link_to "User Profile", user_profile_path(x)%><%=link_to "Send Message", new_message_path(recipient_id: x.id)%><br>
   <%end%>
 <%end%>
 
@@ -10,3 +10,4 @@
 
 <%=link_to "My Friends", friendships_path%>
 <%end%>
+
