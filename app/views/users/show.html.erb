@@ -5,10 +5,13 @@
 <%@posts.each do |x|%>
   <%if x.type=="Image"%>
     <%=link_to image_tag(x.body.url), post_path(x)%><br>
-    Posted:<%=x.created_at%><hr>
+    Posted:<%=x.created_at%><br>
+    Comment Count:<%=x.comments.all.count%><hr>
     <%else%>
     <%=link_to x.body, post_path(x)%><br>
-    Posted:<%=x.created_at%><br><hr>
+    Posted:<%=x.created_at%><br>
+    Comment Count:<%=x.comments.all.count%><hr>
+<hr>
   <%end%>
 <%end%>
 

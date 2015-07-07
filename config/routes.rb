@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :friendships
-  resources :posts
+  resources :posts 
+  resources :comments
+  resources :friendships  
   resources :statuses, controller: 'posts', type: 'Status'
   resources :images, controller: 'posts', type: 'Image'
   resources :messages
