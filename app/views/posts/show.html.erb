@@ -1,0 +1,11 @@
+<%if @post.is_status?%>
+  <h5><%=@post.user.email%>:</h5>
+  <%=@post.body%><br>
+  Posted:<%=@post.created_at%><br><hr>
+<%else%>
+  <h5><%=@post.user.email%>:</h5>
+  <%=image_tag @post.body%><br>
+  Posted:<%=@post.created_at%><br><hr>
+<%end%>
+
+

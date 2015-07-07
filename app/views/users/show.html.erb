@@ -4,10 +4,10 @@
 <h1> User posts:</h1>
 <%@posts.each do |x|%>
   <%if x.type=="Image"%>
-    <%= image_tag x.body.url %><br>
+    <%=link_to image_tag(x.body.url), post_path(x)%><br>
     Posted:<%=x.created_at%><hr>
     <%else%>
-    <%=x.body%><br>
+    <%=link_to x.body, post_path(x)%><br>
     Posted:<%=x.created_at%><br><hr>
   <%end%>
 <%end%>

@@ -8,6 +8,10 @@ class Post < ActiveRecord::Base
   scope :images, -> { where(type: 'Image')}
   scope :statuses, -> { where(type: 'Status')}
 
+  def is_status?
+    type == "Status"
+  end
+  
 end
 
 
