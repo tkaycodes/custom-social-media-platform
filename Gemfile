@@ -11,6 +11,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'hirb'
 gem 'faker'
 gem "paperclip", "~> 4.3"
+gem 'less', '~> 2.6.0'
+gem 'therubyracer'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

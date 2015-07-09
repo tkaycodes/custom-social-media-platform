@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get '/users' => 'users#index'
   get '/user/:id' => 'users#show', as: :user_profile
   put '/friendships' =>'friendships#update'
+
+
+  get '/admin'=> 'users#admin'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

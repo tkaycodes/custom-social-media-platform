@@ -10,8 +10,8 @@
 
 <h6>Comments:</h6>
 <%@comments.each do |x|%>
-<%@user = x.user%>
-<%=x.comment%> -<%=@user.email%> <br>
+<%=x.comment%> -<%=x.user.email%><br>
+Posted: <%=x.created_at%><hr>
 <%end%>
 
 <%=form_for @comment do |x| %>
