@@ -4,10 +4,17 @@
   <%@usersminusself.each do |x|%>
   <%=x.email%><%=link_to "Add Friend", friendships_path(friend_id: x.id), method: :post%>||<%=link_to "User Profile", user_profile_path(x)%><%=link_to "Send Message", new_message_path(recipient_id: x.id)%><br>
   <%end%>
-<%end%>
-
-<%if user_signed_in?%>
-
 <%=link_to "My Friends", friendships_path%>
+
+
+<h1>Home Feed:</h1>
+<%current_user.friends.each do |x|%>
+<%x.posts.each do |y|%>
+    <%=y.body%><br>
+    <%=y.user.email%><br>
+    <%=y.created_at%><hr>
+  <%end%>
 <%end%>
 
+
+<%end%>

@@ -1,18 +1,32 @@
 <h1> Profile Page </h1>
-<%=@user.email%>
+<%=@user.email%><br>
+<%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post%><br>
+<%=link_to "Send Message", new_message_path(recipient_id: @user.id)%><br>
+Friend Count:<%=@user.friends.count%><hr>
+<%#= form_for @user, :html => { :multipart => true } do |form| %>
+  <%#= form.file_field :profile_picture %>
+<%# end %>
+
 
 <h1> User posts:</h1>
+
 <%@posts.each do |x|%>
-  <%if x.type=="Image"%>
-    <%=link_to image_tag(x.body.url), post_path(x)%><br>
-    Posted:<%=x.created_at%><br>
-    Comment Count:<%=x.comments.all.count%><hr>
-    <%else%>
-    <%=link_to x.body, post_path(x)%><br>
-    Posted:<%=x.created_at%><br>
-    Comment Count:<%=x.comments.all.count%><hr>
-<hr>
-  <%end%>
+    <div class="col-lg-4">
+      <div class="panel panel-success">
+        <div class="panel-heading"> Posted:<%=x.created_at%></div>
+        <div class="panel-body">
+          <%if x.type=="Image"%>
+            <%=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x)%>
+          <%else%>
+            <%=link_to x.body, post_path(x)%>
+          <%end%>
+        </div>
+        <div class="panel-footer">Comment Count:<%=x.comments.all.count%>
+        </div>
+      </div>
+    </div>
 <%end%>
 
 <%=link_to "back home", root_path%>
+
+

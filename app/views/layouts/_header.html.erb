@@ -57,7 +57,23 @@
                         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
+
+                        <%current_user.recieved_messages.all.each do |x|%>
+
                         <li>
+                            <a href="#">
+                                <div>
+                                    <strong><%=x.sender.email%></strong>
+                                    <span class="pull-right text-muted">
+                                        <em><%=x.created_at%></em>
+                                    </span>
+                                </div>
+                                <div><%=x.message%></div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <%end%>
+                       <!--  <li>
                             <a href="#">
                                 <div>
                                     <strong>John Smith</strong>
@@ -80,19 +96,7 @@
                                 <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
                             </a>
                         </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <strong>John Smith</strong>
-                                    <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
-                                    </span>
-                                </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
+                        <li class="divider"></li> -->
                         <li>
                             <%=link_to messages_path, :class=>"text-center" do %>
                             <!-- <a class="text-center" href="#"> -->
@@ -120,6 +124,8 @@
                           <%end%>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+<!-- <i class="fa fa-plus fa-fw newposticon" data-toggle="modal" data-target="#myModal"></i> -->
+
                         </li>
                         <li class="divider"></li>
                         <li><%=link_to destroy_user_session_path, method: :delete do %>
