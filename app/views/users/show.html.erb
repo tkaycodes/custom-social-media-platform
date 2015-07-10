@@ -3,10 +3,6 @@
 <%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post%><br>
 <%=link_to "Send Message", new_message_path(recipient_id: @user.id)%><br>
 Friend Count:<%=@user.friends.count%><hr>
-<%#= form_for @user, :html => { :multipart => true } do |form| %>
-  <%#= form.file_field :profile_picture %>
-<%# end %>
-
 
 <h1> User posts:</h1>
 

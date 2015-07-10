@@ -7,7 +7,7 @@
 <h1>Ppl who have added me: </h1>
 <%@requested_friendships.each do |x|%>
 <div id="friendshipid"><%=x.id%></div>
-<%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button>
+<%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button><br>
 <%end%>
 
 

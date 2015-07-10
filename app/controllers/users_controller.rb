@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     @posts = @user.posts
   end
 
+  def edit
+    render text: 'hi'
+  end
+
   def admin
   end
   
