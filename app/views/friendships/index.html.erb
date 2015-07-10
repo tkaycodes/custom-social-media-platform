@@ -4,33 +4,141 @@
 <%#end%>
  -->
 
-<h1>Ppl who have added me: </h1>
-<%@requested_friendships.each do |x|%>
-<div id="friendshipid"><%=x.id%></div>
-<%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button><br>
-<%end%>
 
-
-<h1> Requests Ive sent: </h1>
-<%@sent_friendships.each do |x|%>
-<%if x.opposite.first.state == "Accepted"%>
+<!-- <h1> Requests Ive sent: </h1>
+<%#@sent_friendships.each do |x|%>
+<%#if x.opposite.first.state == "Accepted"%>
     <%#x.update_attribtes(:state=>"Accepted")%>
     <%#x.save%>
-  <%else%>
-    <%=x.friend.email%><br>
-  <%end%>
-<%end%>
+  <%#else%>
+    <%#=x.friend.email%><br>
+  <%#end%>
+<%#end%>
 
 <h1> Requests Ive declined: </h1>
-<%@declined_friendships.each do |x|%>
-<%=x.friend.email%>
-<%end%>
+<%#@declined_friendships.each do |x|%>
+<%#=x.friend.email%>
+<%#end%>
+ -->
+
+
+<!-- <h1> My friends : </h1> -->
 
 
 
-<h1> My friends : </h1>
-<%@accepted_friendships.each do |x|%>
-<%=x.friend.email%><%=link_to "Remove Friend", friendship_path(x), method: :DELETE%><br>
-<%end%>
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            My Friends
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#friendslist" data-toggle="tab">Friend List</a>
+                                </li>
+                                <li><a href="#profile" data-toggle="tab">Friend Requests<%if current_user.friendships.where(state:'requested').count > 0%>
+                            <i class="fa fa-exclamation"></i>
+                            <%end%></a>
+                                </li>
+                                <li><a href="#otherinfo" data-toggle="tab">Other Info</a>
+                                </li>
+                                <!-- <li><a href="#messages" data-toggle="tab">Messages</a> -->
+                                <!-- </li> -->
+                                <!-- <li><a href="#settings" data-toggle="tab">Settings</a> -->
+                                <!-- </li> -->
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="friendslist">
+                                    <h4>Friend List</h4>
+                                    <%@accepted_friendships.each do |x|%>
+                                    <%=x.friend.email%><%=link_to "Remove Friend", friendship_path(x), method: :DELETE%><br>
+                                    <%end%>
+                                </div>
+                                <div class="tab-pane fade" id="profile">
+                                    <h4>Friend Requests</h4>
+                                    <%@requested_friendships.each do |x|%>
+                                    <div id="friendshipid"><%=x.id%></div>
+                                    <%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button><br>
+                                    <%end%>
+                                </div>
+                                <div class="tab-pane fade" id="otherinfo">
+                                    
+<div class="panel-group" id="accordion">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%#=x.id%>">My Pending Requests<%#=x.sender.email%></a>
+                                        </p>
+                                    </div>
+                                    <div id="collapse_<%#=x.id%>" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                          
+                                      <%if @sent_friendships.count>0%> 
+                                        <%@sent_friendships.each do |x|%>
+                                          <%=x.friend.email%><br>
+                                          <%end%>
+                                        <%else%>
+                                        None Pending
+                                      <%end%>
+
+
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#declined_<%#=x.id%>">Requests Ive Declined<%#=x.sender.email%></a>
+                                        </p>
+                                    </div>
+                                    <div id="declined_<%#=x.id%>" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                          <%if @declined_friendships.count>0%> 
+
+                                      <%@declined_friendships.each do |x|%>
+                                      <%=x.friend.email%><br>
+                                      <%end%>
+                                      <%else%>
+                                      None Declined
+                                      <%end%>
+
+                                        </div>
+                                    </div>
+                                </div> 
+
+
+
+
+
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-6 -->
+                
+                <!-- /.col-lg-6 -->
+            </div>
 
 <%=link_to "Back Home", root_path%>
