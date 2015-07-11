@@ -12,9 +12,11 @@ Friend Count:<%=@user.friends.count%><hr>
         <div class="panel-heading"> Posted:<%=x.created_at%></div>
         <div class="panel-body">
           <%if x.type=="Image"%>
-            <%=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x)%>
+            <%=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>
+            <%#=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x)%>
           <%else%>
-            <%=link_to x.body, post_path(x)%>
+            <h2><%=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%></h2>
+            <%#=link_to x.body, post_path(x)%>
           <%end%>
         </div>
         <div class="panel-footer"> <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%>
@@ -22,6 +24,9 @@ Friend Count:<%=@user.friends.count%><hr>
       </div>
     </div>
 <%end%>
+
+<div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
 
 <%=link_to "back home", root_path%>
 

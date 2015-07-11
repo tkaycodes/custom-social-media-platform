@@ -34,7 +34,7 @@
                                       <%if y.type=="Image"%>
                                         <%=link_to image_tag(y.body.url), post_path(y)%><br>
                                         <%else%>
-                                        <%=link_to y.body, post_path(y)%><hr>
+                                        <h2><%=link_to y.body, post_path(y)%></h2><hr>
                                         <i class="fa fa-comment fa-fw"></i><%=y.comments.count%>
                                       <%end%>
                                     </div>

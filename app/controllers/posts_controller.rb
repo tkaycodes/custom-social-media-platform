@@ -21,6 +21,10 @@ class PostsController < ApplicationController
     @comments = @post.comments.all
     @comment = @post.comments.new(user_id: current_user.id)
     @comment.user=current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
