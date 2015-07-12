@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    render text: 'hi'
+    @user = User.find(params[:id])
   end
 
   def admin

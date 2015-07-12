@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root 'users#index'
   get '/users' => 'users#index'
   get '/user/:id' => 'users#show', as: :user_profile
-  get '/user/:id' => 'users#edit', as: :edit_user_profile
+  get '/user/:id/edit' => 'users#edit', as: :edit_user_profile
   put '/friendships' =>'friendships#update'
 
 
