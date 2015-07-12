@@ -1,20 +1,30 @@
-<h1><%=@user.email%></h1><br>
-<%if @user.profile_picture%>
-<%=image_tag(@user.profile_picture.url(:thumb), :width=>200, :height=>200, :radius=>:max) %>
+<div class="row">
+  <div class="col-md-4">
+    <%if @user.profile_picture%>
+      <%=image_tag(@user.profile_picture.url(:thumb), :width=>200, :height=>200, :style=>"margin-top:20px") %>
+    <%end%>
+  </div>
+  <div class="col-md-8">
+    <h3><%=@user.email%></h3>
+    <h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post%></h5><br>
+    <h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id)%></h5><br>
+    Friend Count:<%=@user.friends.count%>
+  </div>
+</div>
+<br><hr>
 
-<%end%>
-<h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post%></h5><br>
-<h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id)%></h5><br>
-Friend Count:<%=@user.friends.count%><hr>
-
+<!-- @issue.created_at.strftime("%d %b. %Y")
+# Hour:Min
+@issue.created_at.strftime("%H:%M") -->
 
 <%@posts.each do |x|%>
     <div class="col-lg-4">
-      <div class="panel panel-success">
-        <div class="panel-heading"> Posted:<%=x.created_at%></div>
-        <div class="panel-body">
+      <div class="panel panel-info">
+        <div class="panel-heading"><%=x.created_at.strftime("%b %d %Y")%>
+          <span id="time"><%=x.created_at.strftime("%l:%M%P")%></span></div>
+        <div class="panel-body" style="height:300px">
           <%if x.type=="Image"%>
-            <%=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>
+            <%=link_to image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%"), post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>
             <%#=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x)%>
           <%else%>
             <h2>"<%=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>"</h2>

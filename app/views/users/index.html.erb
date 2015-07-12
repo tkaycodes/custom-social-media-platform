@@ -24,7 +24,8 @@
                                     </div>
                                     <div class="panel-body">
                                       <%if y.type=="Image"%>
-                                        <%=link_to image_tag(y.body.url), post_path(y)%><br>
+                                        <%=link_to image_tag(y.body.url, :style=>'max-width:100%;'), post_path(y)%><br><hr>
+                                        <i class="fa fa-comment fa-fw"></i><%=y.comments.count%>
                                         <%else%>
                                         <h2><%=link_to y.body, post_path(y)%></h2><hr>
                                         <i class="fa fa-comment fa-fw"></i><%=y.comments.count%>

@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     if @post.save 
       redirect_to user_profile_path(current_user), notice: "saved"
     else
-      redirect_to root_profile_path(current_user), notice: "couldnt save"
+      redirect_to user_profile_path(current_user), notice: "couldnt save"
     end
   end
 
