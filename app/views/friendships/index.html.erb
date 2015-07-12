@@ -28,7 +28,7 @@
                                 <div class="tab-pane fade in active" id="friendslist">
                                     <h4>Friend List</h4>
                                     <%@accepted_friendships.each do |x|%>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" style="margin-bottom:20px;">
                                         <%id=x.friend.id%>
                                         <%=link_to image_tag(x.friend.profile_picture.url, :width=>150, :height=>150), '/user/'+id.to_s%>
                                         <%=x.friend.email%>
