@@ -1,31 +1,3 @@
-<!-- <h1>Friends List:</h1>
-<%#@friendships.each do |x|%>
-<%#=x.friend.email%><%#=link_to "Remove Friend", friendship_path(x.id), method: :delete%><br>
-<%#end%>
- -->
-
-
-<!-- <h1> Requests Ive sent: </h1>
-<%#@sent_friendships.each do |x|%>
-<%#if x.opposite.first.state == "Accepted"%>
-    <%#x.update_attribtes(:state=>"Accepted")%>
-    <%#x.save%>
-  <%#else%>
-    <%#=x.friend.email%><br>
-  <%#end%>
-<%#end%>
-
-<h1> Requests Ive declined: </h1>
-<%#@declined_friendships.each do |x|%>
-<%#=x.friend.email%>
-<%#end%>
- -->
-
-
-<!-- <h1> My friends : </h1> -->
-
-
-
 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -64,8 +36,12 @@
                                 <div class="tab-pane fade" id="profile">
                                     <h4>Friend Requests</h4>
                                     <%@requested_friendships.each do |x|%>
-                                    <div id="friendshipid"><%=x.id%></div>
-                                    <%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button><br>
+                                    <span id="<%=x.id%>">
+                                    <span id="friendshipid"><%=x.id%></span>
+                                    <!-- <span id='friendship_<%#=x.id%>'> -->
+                                    <%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button></span>
+                                    <span id="friendemail"><%=x.friend.email%></span>
+<br>
                                     <%end%>
                                 </div>
                                 <div class="tab-pane fade" id="otherinfo">

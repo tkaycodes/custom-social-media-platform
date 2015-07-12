@@ -2,6 +2,8 @@ $(document).ready(function(){
 
   var currentid= $('#friendshipid').html();
   console.log(currentid);
+  var currentemail= $('#friendemail').html();
+  console.log(currentemail);
 
   $('#accept_request').click(function(){
     console.log(currentid);
@@ -16,6 +18,8 @@ $(document).ready(function(){
         console.log(result);
       }
     });
+  $('#'+currentid).hide();
+  $('#friendslist').append("<a href='/user/'"+currentid+">Profile</a> "+ currentemail+ "<a rel='nofollow' data-method='DELETE' href='/friendships/'"+currentid+">Remove Friend</a>");
   });
 
   $('#decline_request').click(function(){
@@ -29,6 +33,7 @@ $(document).ready(function(){
         console.log(result);
       }
     });
+    $('#'+currentid).hide();
   });
 
 });
