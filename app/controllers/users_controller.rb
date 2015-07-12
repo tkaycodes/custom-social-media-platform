@@ -20,7 +20,22 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update
+    @user=User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to root_path, notice: "user updated"
+    else
+      redirect_to root_path, notice: "couldnt update user"
+    end
+  end
+
   def admin
+  end
+
+  private 
+
+  def user_params
+    params.require(:user).permit(:profile_picture)
   end
   
 end

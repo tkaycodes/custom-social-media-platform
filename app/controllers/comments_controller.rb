@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
       # logger.warn"CHECK THIS OUT #{@comment.inspect}"
       # logger.warn"#{@comment.user.inspect}"
       # logger.warn"CHECK THIS OUT #{@comment.user.email}"
-      redirect_to root_path, notice: "saved"
+      redirect_to :back, notice: "comment saved"
     else
-      redirect_to root_path, notice: "not saved"
+      redirect_to :back, notice: "comment couldnt be saved"
     end
   end
 

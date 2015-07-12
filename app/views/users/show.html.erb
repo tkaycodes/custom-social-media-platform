@@ -1,10 +1,12 @@
-<h1> Profile Page </h1>
-<%=@user.email%><br>
-<%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post%><br>
-<%=link_to "Send Message", new_message_path(recipient_id: @user.id)%><br>
+<h1><%=@user.email%></h1><br>
+<%if @user.profile_picture%>
+<%=image_tag(@user.profile_picture.url(:thumb), :width=>200, :height=>200, :radius=>:max) %>
+
+<%end%>
+<h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post%></h5><br>
+<h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id)%></h5><br>
 Friend Count:<%=@user.friends.count%><hr>
 
-<h1> User posts:</h1>
 
 <%@posts.each do |x|%>
     <div class="col-lg-4">
@@ -15,7 +17,7 @@ Friend Count:<%=@user.friends.count%><hr>
             <%=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>
             <%#=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x)%>
           <%else%>
-            <h2><%=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%></h2>
+            <h2>"<%=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>"</h2>
             <%#=link_to x.body, post_path(x)%>
           <%end%>
         </div>

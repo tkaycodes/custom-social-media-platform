@@ -2,19 +2,18 @@
     <div class="modal-content">
  <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Post</h3>
+    <h3 id="myModalLabel"><%=@post.user.email%></h3>
   </div>
   <div class="modal-body">
     <div class="row"> 
       <div class="col-md-8">
         <%if @post.is_status?%>
-          <h5><%=@post.user.email%>:</h5>
-          <%=@post.body%><br>
-          Posted:<%=@post.created_at%><br><hr>
+          <%#=@post.user.email%>
+          <h2><%=@post.body%><br></h2>
         <%else%>
-          <h5><%=@post.user.email%>:</h5>
+          <!-- <h5><%#=@post.user.email%>:</h5> -->
           <%=image_tag @post.body, :style=> "max-width: 100%"%><br>
-          Posted:<%=@post.created_at%><br><hr>
+          <!-- Posted:<%#=@post.created_at%><br><hr> -->
         <%end%>
       </div>
       <div class="col-md-4">
@@ -38,6 +37,8 @@
   <div class="modal-footer">
     <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
     <!-- <button class="btn btn-primary">Save changes</button> -->
+  <h5>Posted:<%=@post.created_at%></h5>
+
   </div>
 </div>
 </div>
