@@ -7,13 +7,13 @@
   <div class="col-md-8">
     <h3><%=@user.email%></h3>
     <%if @friendship.empty?%>
-    <h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post%></h5><br>
+    <h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post unless @user.id==current_user.id%></h5><br>
     <%elsif @friendship.first.state == "accepted"%>
       <%=link_to "Remove Friend", friendship_path(@friendship.first.id), method: :DELETE%><br>
-    <%elsif @friendship.first.state == "pending" || @friendship.first.state == "declined" %>
-      <h5><a onClick = "alert('to do')"> Cancel Request </a></h5><br>
+    <%#elsif @friendship.first.state == "pending" || @friendship.first.state == "declined" %>
+      <!-- <h5><a onClick = "alert('to do')"> Cancel Request </a></h5><br> -->
     <%end%>
-    <h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id)%></h5><br>
+    <h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id) unless @user.id==current_user.id%></h5><br>
     Friend Count:<%=@user.friends.count%>
   </div>
 </div>
@@ -46,7 +46,7 @@
 <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 </div>
 
-<%if @posts.empty?%>
+<%if @posts.empty? && !(@user.id==current_user.id)%>
 <div class="alert alert-success alert-dismissable">
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>You need to be this users friend to see their posts.
 </div><%end%>

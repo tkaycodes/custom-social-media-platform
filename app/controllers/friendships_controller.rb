@@ -4,6 +4,7 @@ class FriendshipsController < ApplicationController
 
  
   def index
+    logger.warn "HERE ARE THE #{@requested_friendships.inspect}"
     respond_to do |format|
       format.html{}
       format.json {render json:@friendships}
@@ -27,7 +28,7 @@ class FriendshipsController < ApplicationController
       if @friendship.save
         logger.warn "friendship saved and the status is now #{@friendship.state}"
         # logger.warn "the inverse relationship id is #{@inverseid}"
-      redirect_to user_profile_path(params[:id]), notice: 'Friend Request sent.'
+      redirect_to :back, notice: 'Friend Request sent.'
       else
         redirect_to root_path, notice: 'User is already your friend!'
       end

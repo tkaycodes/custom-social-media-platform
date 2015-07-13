@@ -10,7 +10,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#friendslist" data-toggle="tab">Friend List</a>
                                 </li>
-                                <li><a href="#profile" data-toggle="tab">Friend Requests<%if current_user.friendships.where(state:'requested').count > 0%>
+                                <li><a href="#profile" data-toggle="tab">Friend Requests<%if @requested_friendships.count > 0%>
                             <i class="fa fa-exclamation"></i>
                             <%end%></a>
                                 </li>
