@@ -24,13 +24,17 @@
         Posted: <%=x.created_at%><hr>
         <%end%>
 
-        <%=form_for @comment do |x| %>
-        <%=x.hidden_field :post_id%>
-        <%=x.hidden_field :user_id%>
-        <%#=x.label :comment%>
-        <%=x.text_area :comment%><br>
-        <%=x.submit "Post"%>
-        <%end%>
+
+        <%=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
+        <!-- <div class="form-group"> -->
+          <%=x.hidden_field :post_id%>
+          <%=x.hidden_field :user_id%>
+          <%#=x.label :comment%>
+          <%=x.text_area :comment, class: "form-control"%><br>
+          <!-- <input type="text" class="form-control" placeholder="Text input"> -->
+          <%=x.submit "Post"%>
+          <%end%>
+        <!-- </div> -->
       </div>
     </div>
   </div>

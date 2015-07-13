@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     if @post.save 
       redirect_to user_profile_path(current_user), notice: "saved"
     else
-      redirect_to user_profile_path(current_user), notice: "couldnt save"
+      render 'new', notice: "couldnt save"
     end
   end
 
