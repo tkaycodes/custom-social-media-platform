@@ -16,10 +16,14 @@ $(document).ready(function(){
       data: {id: currentid, state: "accepted"},
       success: function(result){
         console.log(result);
-      }
+          $('#'+currentid).hide();
+          // $('#friendslist').append("<a href='/user/"+result.friend_id+"'"+">Profile</a>"+ currentemail+"<a rel='nofollow' data-method='DELETE' href='/friendships/"+currentid+"'"+">Remove Friend</a>");
+          $('#friendslist').append("<a href='/user/"+result.friend_id+"'"+"><img width='150' height='150' src='/assets/defaultpic-798db6c38393a747c11c1c37e5e5cbe6dbbb042cb5c26acc714b70653659417d.jpg'alt='Defaultpic 798db6c38393a747c11c1c37e5e5cbe6dbbb042cb5c26acc714b70653659417d'></a>"+currentemail+"<a rel='nofollow' data-method='DELETE' href='/friendships/"+currentid+"'"+">Remove Friend</a>"
+                                      
+                                  );
+       }
     });
-  $('#'+currentid).hide();
-  $('#friendslist').append("<a href='/user/'"+currentid+">Profile</a> "+ currentemail+ "<a rel='nofollow' data-method='DELETE' href='/friendships/'"+currentid+">Remove Friend</a>");
+
   });
 
   $('#decline_request').click(function(){
