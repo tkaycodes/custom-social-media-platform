@@ -27,7 +27,7 @@ class FriendshipsController < ApplicationController
       if @friendship.save
         logger.warn "friendship saved and the status is now #{@friendship.state}"
         # logger.warn "the inverse relationship id is #{@inverseid}"
-      redirect_to friendships_path, notice: 'Friendship was successfully created.'
+      redirect_to user_profile_path(params[:id]), notice: 'Friend Request sent.'
       else
         redirect_to root_path, notice: 'User is already your friend!'
       end
@@ -75,9 +75,11 @@ class FriendshipsController < ApplicationController
   
   def destroy
     @friendship = Friendship.find(params[:id])
-    @friendship.destroy
-    redirect_to friendships_path, notice: "Removed Friendship"
-
+    if @friendship.destroy
+      redirect_to friendships_path, notice: "Removed Friendship"
+    else
+      redirect_to root_path, notice: "couldnt remove"
+    end
   end
 
   private
