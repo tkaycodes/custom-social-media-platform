@@ -32,9 +32,10 @@
                                         </div>
                                         <div class="col-md-10">
                                       <%if y.type=="Image"%>
-                                        <%=link_to image_tag(y.body.url, :style=>'max-width:100%;'), post_path(y)%><br><hr>
+                                        <%=link_to image_tag(y.body.url, :style=>'max-width:100%;'), post_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%><br><hr>
                                         <%else%>
-                                        <h2><%=link_to y.body, post_path(y)%></h2><hr>
+                                        <h2><%=link_to y.body, post_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%></h2><hr>
+                                        <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>
                                       <%end%>
                                     </div>
                                     </div>
@@ -94,5 +95,5 @@
                 </div>
   </div>
   
-<!--   <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-</div> -->
+  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>

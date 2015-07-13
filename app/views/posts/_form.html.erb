@@ -18,7 +18,7 @@
       </div>
       <div class="col-md-4">
 
-        <h6>Comments:</h6>
+        <h4>Comments:</h4>
         <%@comments.each do |x|%>
         <%=x.comment%> -<%=x.user.email%><br>
         Posted: <%=x.created_at%><hr>
@@ -27,9 +27,9 @@
         <%=form_for @comment do |x| %>
         <%=x.hidden_field :post_id%>
         <%=x.hidden_field :user_id%>
-        <%=x.label :comment%>
+        <%#=x.label :comment%>
         <%=x.text_area :comment%><br>
-        <%=x.submit%>
+        <%=x.submit "Post"%>
         <%end%>
       </div>
     </div>
