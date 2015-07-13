@@ -27,6 +27,9 @@ $(document).ready(function(){
       event.preventDefault();
       // console.log(User.all);
       console.log(ui);
+      url = "/user/"+ ui.item.value;
+      window.location = url;
+
     }
   });
 

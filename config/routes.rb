@@ -12,7 +12,16 @@ Rails.application.routes.draw do
   root 'users#index'
   get '/users' => 'users#index'
   get '/user/:id' => 'users#show', as: :user_profile
+
+  get '/user/:id/edit' => 'users#edit', as: :edit_user_profile
+  patch '/user/:id/edit' => 'users#update'
+
   put '/friendships' =>'friendships#update'
+
+
+  get '/admin'=> 'users#admin'
+  get '/panels'=> 'users#panels'
+  get '/notifications'=> 'users#notifications'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

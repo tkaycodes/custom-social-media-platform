@@ -1,7 +1,7 @@
 <%if @post.type=="Status"%>
   <%=form_for @post do |x|%>
-  <%=x.label 'Post Status'%>
-  <%=x.text_field :body%>
+  <%#=x.label 'Post Status'%>
+  <%=x.text_field :body, placeholder: 'Post Status'%>
   <%=x.hidden_field :type%>
   <%=x.submit%>
   <%end%>

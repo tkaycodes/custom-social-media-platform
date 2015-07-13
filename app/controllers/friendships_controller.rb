@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
   before_action :set_values, only: [:index]
-  before_action :set_inverse_state, only: [:index]
+  before_action :set_inverse_state_if_accepted, only: [:index]
 
  
   def index
@@ -92,23 +92,18 @@ class FriendshipsController < ApplicationController
     @sent_friendships=current_user.friendships.where(state:'pending');
   end
 
-  def set_inverse_state
-    logger.warn "CHECK 2"
-    # logger.warn "#{@sent_friendships.inspect}"
+  def set_inverse_state_if_accepted
+  #   logger.warn "CHECK 2"
+  # logger.warn "#{@sent_friendships.inspect}"
     @sent_friendships.each do |x|
-      # logger.warn "#{x.opposite.first.inspect}"
-      logger.warn "#{x.opposite.inspect}"
-      logger.warn "break"
-      x.opposite.each do |indy|
-        logger.warn "#{indy.inspect}"
-          if indy.state == "accepted"
-             logger.warn "BOOYAAAA"
-              x.state = "accepted"
-              x.save!
-              logger.warn "#{x.inspect}"
-          else
-            logger.warn "HAH"
-          end
+      logger.warn "THE STATE OF SENT FRIENDSHIP IS #{x.state} 
+                   and its opposite is: #{x.opposite.first.state}"
+      if x.opposite.first.state == "accepted"
+        logger.warn "friend accepted your request"
+        x.state = "accepted"
+        x.save!
+      else
+        logger.warn "still pending"
       end
     end
   end

@@ -9,8 +9,7 @@ class Friendship < ActiveRecord::Base
   def opposite
     # user = self.user_id;
     # friend=self.friend_id;
-    # return Friendship.where(user_id:friend,friend_id:user);
-    return friend.friendships
+    return Friendship.where(user_id:friend,friend_id:user);
   end
 
  

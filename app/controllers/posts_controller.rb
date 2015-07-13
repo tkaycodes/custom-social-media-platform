@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     if @post.save 
       redirect_to user_profile_path(current_user), notice: "saved"
     else
-      redirect_to root_profile_path(current_user), notice: "couldnt save"
+      redirect_to user_profile_path(current_user), notice: "couldnt save"
     end
   end
 
@@ -20,6 +20,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @comments = @post.comments.all
     @comment = @post.comments.new(user_id: current_user.id)
+    @comment.user=current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
