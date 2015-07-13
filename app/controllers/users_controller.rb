@@ -12,8 +12,15 @@ class UsersController < ApplicationController
   end
 
   def show
+    # (current_user.id)
+    # Friendship.find(user: current_user, friend: @user)
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc)
+    @friendship = Friendship.where(user_id: current_user.id, friend_id: @user.id)
+    
+    @posts = [];
+    if !@friendship.empty? && @friendship.first.state == "accepted"
+      @posts = @user.posts.order(created_at: :desc)
+    end
   end
 
   def edit
