@@ -12,11 +12,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    # (current_user.id)
-    # Friendship.find(user: current_user, friend: @user)
     @user = User.find(params[:id])
     @friendship = Friendship.where(user_id: current_user.id, friend_id: @user.id)  
-    if !@friendship.empty? && @friendship.first.state == "accepted"
+    if (!@friendship.empty? && @friendship.first.state == "accepted") || current_user.id==@user.id 
       @posts = @user.posts.order(created_at: :desc)
     else
       @posts = [];
