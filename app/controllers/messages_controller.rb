@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = current_user.recieved_messages.all
+    @sentmessages = current_user.sent_messages.all
   end
 
   def new
