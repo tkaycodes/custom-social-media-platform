@@ -1,29 +1,29 @@
 <%if @post.type=="Status"%>
   <%=form_for @post, :html=>{class: 'form-group'} do |x|%>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@post.errors.count, "error") %> prohibited
-        this status from being saved:
-      </h2>
-      <ul>
-        <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%#=x.label 'Post Status'%>
-  <%=x.text_field :body, placeholder: 'Post Status', class: "form-control"%><br>
-  <%=x.hidden_field :type%>
-  <%=x.submit "Post Status"%>
+    <%if @post.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@post.errors.count, "error") %> prohibited
+            this status from being saved:
+          </h2>
+          <ul>
+            <%@post.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <%end%>
+          </ul>
+        </div>
+    <%end%>
+    <%#=x.label 'Post Status'%>
+    <%=x.text_field :body, placeholder: 'Post Status', class: "form-control"%><br>
+    <%=x.hidden_field :type%>
+    <%=x.submit "Post Status"%>
   <%end%>
 <%elsif @post.type=="Image"%>
   <%=form_for @post, :html=>{:multipart=>true} do |x|%>
-  <%=x.label 'Post Image'%>
-  <%=x.file_field :body%>
-  <%=x.hidden_field :type%>
-  <%=x.submit%>
+    <%=x.label 'Post Image'%>
+    <%=x.file_field :body%>
+    <%=x.hidden_field :type%>
+    <%=x.submit%>
   <%end%>
 <%end%>
 

@@ -1,50 +1,50 @@
 <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
- <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h5 id="myModalLabel"><%=image_tag(@post.user.profile_picture, size: "50")%><%=@post.user.email%></h3>
-  </div>
-  <div class="modal-body">
-    <div class="row"> 
-      <div class="col-md-8">
-        <%if @post.is_status?%>
-          <%#=@post.user.email%>
-          <h2><%=@post.body%><br></h2>
-        <%else%>
-          <!-- <h5><%#=@post.user.email%>:</h5> -->
-          <%=image_tag @post.body, :style=> "max-width: 100%"%><br>
-          <!-- Posted:<%#=@post.created_at%><br><hr> -->
-        <%end%>
-      </div>
-      <div class="col-md-4">
+  <div class="modal-content">
 
-        <h4>Comments:</h4>
-        <div id="commentlist">
-        <%@comments.each do |x|%>
-          <%=x.comment%> -<%=x.user.email%><br>
-          Posted: <%=x.created_at%><hr>
-        <%end%>
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h5 id="myModalLabel"><%=image_tag(@post.user.profile_picture, size: "50")%><%=@post.user.email%></h3>
+          </div>
+
+        <div class="modal-body">
+          <div class="row"> 
+            <div class="col-md-8">
+              <%if @post.is_status?%>
+                <%#=@post.user.email%>
+                <h2><%=@post.body%><br></h2>
+              <%else%>
+                <!-- <h5><%#=@post.user.email%>:</h5> -->
+                <%=image_tag @post.body, :style=> "max-width: 100%"%><br>
+                <!-- Posted:<%#=@post.created_at%><br><hr> -->
+              <%end%>
+            </div>
+          <div class="col-md-4">
+            <h4>Comments:</h4>
+            <div id="commentlist">
+              <%@comments.each do |x|%>
+                <%=x.comment%> -<%=x.user.email%><br>
+                Posted: <%=x.created_at%><hr>
+              <%end%>
+            </div>
+
+            <%#=form_for @comment, :html => {:class => "form-horizontal center"}, remote: true, :format=>:js do |x|%>
+             <%=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
+            <!-- <div class="form-group"> -->
+              <%=x.hidden_field :post_id%>
+              <%=x.hidden_field :user_id%>
+              <%#=x.label :comment%>
+              <%=x.text_area :comment, class: "form-control"%><br>
+              <!-- <input type="text" class="form-control" placeholder="Text input"> -->
+              <%=x.submit "Post", id: "commentsubmit"%>
+              <%end%>
+            <!-- </div> -->
+          </div>
         </div>
-
-        <%#=form_for @comment, :html => {:class => "form-horizontal center"}, remote: true, :format=>:js do |x|%>
-         <%=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
-        <!-- <div class="form-group"> -->
-          <%=x.hidden_field :post_id%>
-          <%=x.hidden_field :user_id%>
-          <%#=x.label :comment%>
-          <%=x.text_area :comment, class: "form-control"%><br>
-          <!-- <input type="text" class="form-control" placeholder="Text input"> -->
-          <%=x.submit "Post", id: "commentsubmit"%>
-          <%end%>
-        <!-- </div> -->
       </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
-    <!-- <button class="btn btn-primary">Save changes</button> -->
-  <h5>Posted:<%=@post.created_at%></h5>
+
+      <div class="modal-footer">
+        <h5>Posted:<%=@post.created_at%></h5>
+      </div>
 
   </div>
-</div>
 </div>
