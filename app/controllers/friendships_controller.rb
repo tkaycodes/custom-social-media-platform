@@ -11,13 +11,8 @@ class FriendshipsController < ApplicationController
     end
   end
 
-
   def show
   end
-
-  # def new
-  #   @friendship = Friendship.new
-  # end
 
   def edit
   end
@@ -60,20 +55,6 @@ class FriendshipsController < ApplicationController
     end
   end
     
-    # respond_to do |format|
-
-    #   if @friendship.update(friendship_params)
-    #     format.html { redirect_to @friendship, notice: 'Friendship was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @friendship }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @friendship.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
-  # end
-
-  
   def destroy
     @friendship = Friendship.find(params[:id])
     if @friendship.destroy
@@ -96,11 +77,8 @@ class FriendshipsController < ApplicationController
   end
 
   def set_inverse_state_if_accepted
-  #   logger.warn "CHECK 2"
-  # logger.warn "#{@sent_friendships.inspect}"
     @sent_friendships.each do |x|
-      logger.warn "THE STATE OF SENT FRIENDSHIP IS #{x.state} 
-                   and its opposite is: #{x.opposite.first.state}"
+      logger.warn "THE STATE OF SENT FRIENDSHIP IS #{x.state} and its opposite is: #{x.opposite.first.state}"
       if x.opposite.first.state == "accepted"
         logger.warn "friend accepted your request"
         x.state = "accepted"
@@ -110,19 +88,5 @@ class FriendshipsController < ApplicationController
       end
     end
   end
-
-  
-    # @requested_friendships.each do |x|
-    #   if x.opposite.first.state == "Accepted"
-    #       logger.warn "State is Accepted"
-    #     # x.state = "Accepted"
-    #     # x.save
-    #   else
-    #       logger.warn "NOTHIN BRAH"
-    #   end
-    # end
-  # end
-
-
 
 end

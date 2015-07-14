@@ -2,10 +2,6 @@ class MessagesController < ApplicationController
 
   def index
     @messages = current_user.recieved_messages.all
-    # logger.warn "#{@messages.inspect}"
-    # if @messages.empty?
-    #   logger.warn "EMPTY"
-    # end
   end
 
   def new
