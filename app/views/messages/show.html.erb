@@ -1,0 +1,10 @@
+<h3><%=@message.message%></h3>-<%=@message.sender.email%><br><%=@message.created_at%><hr>
+<%@message.replies.all.each do |x|%>
+<%=x.name%>-<%=x.user.email%><br>
+<%end%>
+
+<%=form_for @reply, url: message_replies_path(message_id:@message.id), method: :post do |x|%>
+<%=x.hidden_field :user_id%>
+<%=x.text_field :name%>
+<%=x.submit%>
+<%end%>

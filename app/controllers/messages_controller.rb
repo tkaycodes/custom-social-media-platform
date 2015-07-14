@@ -10,6 +10,11 @@ class MessagesController < ApplicationController
     logger.warn "#{@message.inspect}"
   end
 
+  def show
+    @message = Message.find(params[:id])
+    @reply = @message.replies.new(:user_id=>current_user.id)
+  end
+
   def create
     @message = current_user.sent_messages.new(params.require(:message).permit(:message, :recipient_id))
     if @message.save

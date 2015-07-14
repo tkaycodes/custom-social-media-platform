@@ -9,6 +9,11 @@ class FriendshipsController < ApplicationController
       format.html{}
       format.json {render json:@friendships}
     end
+    # @friend=User.find(@requested_friendships.first.friend_id)
+    logger.warn "THIS IS THE USER I WANT TO ADD->#{@requested_friendships}"
+
+    # @friend = User.find(ajaxcall);
+    # logger.warn "THIS IS THE USER I WANT TO ADD->#{@friend.inspect}"
   end
 
   def show

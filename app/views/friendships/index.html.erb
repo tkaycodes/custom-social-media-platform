@@ -39,6 +39,7 @@
                         <h4>Friend Requests</h4>
                         <%@requested_friendships.each do |x|%>
                             <span id="<%=x.id%>">
+                            <!-- <span id="<%#=x.friend_id%>"</span> -->
                             <span id="friendshipid"><%=x.id%></span>
                             <!-- <span id='friendship_<%#=x.id%>'> -->
                             <%=x.friend.email%><button id='accept_request'>Accept Request</button><button id='decline_request'>Decline Request</button></span>

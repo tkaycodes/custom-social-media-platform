@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :friendships  
   resources :statuses, controller: 'posts', type: 'Status'
   resources :images, controller: 'posts', type: 'Image'
-  resources :messages
+  resources :messages do 
+    resources :replies
+  end
   # get '/posts/images/new' =>'posts#new'
   # get '/posts/statuses/new' =>'post#new'
   devise_for :users
