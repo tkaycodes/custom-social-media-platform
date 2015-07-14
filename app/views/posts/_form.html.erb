@@ -1,4 +1,4 @@
- <div class="modal-dialog modal-lg" role="document">
+<div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
  <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -19,20 +19,22 @@
       <div class="col-md-4">
 
         <h4>Comments:</h4>
+        <div id="commentlist">
         <%@comments.each do |x|%>
-        <%=x.comment%> -<%=x.user.email%><br>
-        Posted: <%=x.created_at%><hr>
+          <%=x.comment%> -<%=x.user.email%><br>
+          Posted: <%=x.created_at%><hr>
         <%end%>
+        </div>
 
-
-        <%=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
+        <%#=form_for @comment, :html => {:class => "form-horizontal center"}, remote: true, :format=>:js do |x|%>
+         <%=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
         <!-- <div class="form-group"> -->
           <%=x.hidden_field :post_id%>
           <%=x.hidden_field :user_id%>
           <%#=x.label :comment%>
           <%=x.text_area :comment, class: "form-control"%><br>
           <!-- <input type="text" class="form-control" placeholder="Text input"> -->
-          <%=x.submit "Post"%>
+          <%=x.submit "Post", id: "commentsubmit"%>
           <%end%>
         <!-- </div> -->
       </div>

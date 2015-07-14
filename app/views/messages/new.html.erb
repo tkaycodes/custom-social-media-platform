@@ -1,6 +1,6 @@
-<%=form_for @message do |x|%>
-<%=x.label :message%>
-<%=x.text_area :message%>
+<%=form_for @message, :html=>{class: "form-group"} do |x|%>
+<%#=x.label :message%>
+<%=x.text_area :message, placeholder: 'Message', class: "form-control"%>
 <%=x.hidden_field :recipient_id%>
 <%=x.submit "Send"%>
 <%end%>
