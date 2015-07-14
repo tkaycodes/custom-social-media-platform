@@ -1,46 +1,46 @@
  <div class="row">
-                <div class="col-lg-12">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Message Inbox
+            </div>
+            <!-- .panel-heading -->
+            
+
+              <%if @messages.empty?%>
+              No messages yet!
+              <%else%>
+                <%@messages.each do |x|%>
+
+                <div class="panel-body">
+                <div class="panel-group" id="accordion">
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Message Inbox
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=x.id%>">Sent by:<%=x.sender.email%></a>
+                            </h4>
                         </div>
-                        <!-- .panel-heading -->
-                        
-
-                          <%if @messages.empty?%>
-                          No messages yet!
-                          <%else%>
-                            <%@messages.each do |x|%>
-
+                        <div id="collapse_<%=x.id%>" class="panel-collapse collapse in">
                             <div class="panel-body">
-                            <div class="panel-group" id="accordion">
-
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=x.id%>">Sent by:<%=x.sender.email%></a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse_<%=x.id%>" class="panel-collapse collapse in">
-                                        <div class="panel-body">
-                                            <%=x.message%><hr>
-                                            Sent at: <%=x.created_at%>
-                                        </div>
-                                    </div>
-                                </div>                       
-                          </div>
-
+                                <%=x.message%><hr>
+                                Sent at: <%=x.created_at%>
+                            </div>
                         </div>
-                        <%end%>
+                    </div>                       
+              </div>
 
-                        <%end%>
-
-                        <!-- .panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
             </div>
+            <%end%>
+
+            <%end%>
+
+            <!-- .panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
  
 
 
