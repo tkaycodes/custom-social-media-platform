@@ -13,7 +13,14 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
-    @reply = @message.replies.new(:user_id=>current_user.id)
+    logger.warn " here is the output: #{@ans}"
+    if (@message.sender_id).to_s==(current_user.id).to_s
+      @istartedit=@message
+      @reply=@istartedit.replies.new(:user_id=>current_user.id)
+    else
+      @hestartedit=@message
+      @reply=@hestartedit.replies.new(:user_id=>current_user.id)
+    end
   end
 
   def create

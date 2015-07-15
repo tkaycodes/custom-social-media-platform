@@ -14,3 +14,14 @@ class RepliesController < ApplicationController
     params.require(:reply).permit(:name, :user_id)
   end
 end
+
+
+ # @message = Message.find(params[:id])
+ #    logger.warn " here is the output: #{@ans}"
+ #    if (@message.sender_id).to_s==(current_user.id).to_s
+ #      @istartedit=@message
+ #      @reply=@istartedit.replies.new(:user_id=>current_user.id)
+ #    else
+ #      @hestartedit=@message
+ #      @reply=@hestartedit.replies.new(:user_id=>current_user.id)
+ #    end

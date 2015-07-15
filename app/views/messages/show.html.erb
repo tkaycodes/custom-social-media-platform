@@ -1,53 +1,39 @@
-<h3><%=@message.message%></h3>-<%=@message.sender.email%><br><%=@message.created_at%><br><hr>
-<%@message.replies.all.each do |x|%>
-  <h5><%=x.name%></h5>
-  -<%=x.user.email%><br>
-  <%=x.created_at%><br><br>
-<%end%>
+<!-- <h3><%#=@message.message%></h3>-<%#=@message.sender.email%><br><%#=@message.created_at%><br><hr> -->
 
-<%=form_for @reply, url: message_replies_path(message_id:@message.id), method: :post do |x|%>
-<%=x.hidden_field :user_id%>
-<%=x.text_field :name%>
-<%=x.submit%>
-<%end%>
+<%#@message.replies.all.each do |x|%>
+    <%#if x.user_id==current_user.id%>
+        <!-- <h5> i sent it</h5> -->
+        <!-- <h5><%#=x.name%></h5> -->
+        <!-- -<%#=x.user.email%><br> -->
+        <!-- <%#=x.created_at%><br><br> -->
+    <%#else%>
+        <!-- <h5>he sent it</h5> -->
+        <!-- <h5><%#=x.name%></h5> -->
+        <!-- -<%#=x.user.email%><br> -->
+        <!-- <%#=x.created_at%><br><br> -->
+    <%#end%>
+<%#end%>
 
-
+<%#=form_for @reply, url: message_replies_path(message_id:@message.id), method: :post do |x|%>
+<%#=x.hidden_field :user_id%>
+<%#=x.text_field :name%>
+<%#=x.submit%>
+<%#end%>
 
 
 <!-- /.panel -->
                     <div class="chat-panel panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-comments fa-fw"></i>
-                            Chat
+                            Conversation
                             <div class="btn-group pull-right">
                                 <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-chevron-down"></i>
                                 </button>
                                 <ul class="dropdown-menu slidedown">
                                     <li>
-                                        <a href="#">
+                                        <a href="/messages">
                                             <i class="fa fa-refresh fa-fw"></i> Refresh
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-check-circle fa-fw"></i> Available
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-times fa-fw"></i> Busy
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-clock-o fa-fw"></i> Away
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-sign-out fa-fw"></i> Sign Out
                                         </a>
                                     </li>
                                 </ul>
@@ -56,80 +42,99 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <ul class="chat">
+                              <%if @hestartedit%>
                                 <li class="left clearfix">
                                     <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                        <!-- <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /> -->
+                                        <%=image_tag(@message.sender.profile_picture, size:"75")%>
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
+                                            <strong class="primary-font"><%=@message.sender.email%></strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+                                                <i class="fa fa-clock-o fa-fw"></i> <%@message.created_at%>
                                             </small>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            <%=@message.message%>
                                         </p>
                                     </div>
                                 </li>
+                                <%elsif @istartedit%>
                                 <li class="right clearfix">
                                     <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+                                      <%=image_tag(@message.sender.profile_picture, size:"75")%>
+                                        <!-- <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /> -->
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                                <i class="fa fa-clock-o fa-fw"></i> <%=@message.created_at%></small>
+                                            <strong class="pull-right primary-font">
+                                              <%=@message.sender.email%>
+                                            </strong>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            <%=@message.message%>
                                         </p>
                                     </div>
                                 </li>
-                                <li class="left clearfix">
+                                <%end%>
+                                
+                                <%@message.replies.all.each do |x|%>
+                                    <%if x.user_id==current_user.id%>
+                                    <li class="right clearfix">
+                                    <span class="chat-img pull-right">
+                                      <%=image_tag(x.user.profile_picture, size:"75")%>
+                                        <!-- <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /> -->
+                                    </span>
+                                    <div class="chat-body clearfix">
+                                        <div class="header">
+                                            <small class=" text-muted">
+                                                <i class="fa fa-clock-o fa-fw"></i> <%=x.created_at%></small>
+                                            <strong class="pull-right primary-font">
+                                              <%=x.user.email%>
+                                            </strong>
+                                        </div>
+                                        <p>
+                                            <%=x.name%>
+                                        </p>
+                                    </div>
+                                </li>
+                                    <%else%>
+                                    <li class="left clearfix">
                                     <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                                        <!-- <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /> -->
+                                        <%=image_tag(x.user.profile_picture, size:"75")%>
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
+                                            <strong class="primary-font"><%=x.user.email%></strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
+                                                <i class="fa fa-clock-o fa-fw"></i> <%=x.created_at%>
+                                            </small>
                                         </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                                            <%=x.name%>
                                         </p>
                                     </div>
                                 </li>
-                                <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
+                        <%end%>
+                    <%end%>
+                          </ul>
                         </div>
                         <!-- /.panel-body -->
                         <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
+                            <div class="form-inline">
+                                <%=form_for @reply, url: message_replies_path(message_id:@message.id), :html=>{class: "form-group"}, method: :post do |x|%>
+                                <%=x.hidden_field :user_id%>
+
+                                <%=x.text_field :name, class: "form-control", id: "btn-input", placeholder: "Type your message here..."%>
+                                <%=x.submit "Send", class: "btn btn-warning btn-sm", id: "btn-chat"%>
+
+                                <%end%>
                             </div>
+
+                               
                         </div>
-                        <!-- /.panel-footer -->
                     </div>
-                    <!-- /.panel .chat-panel -->
