@@ -25,16 +25,16 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=x.id%>">
-                                                Sent by:<%=x.sender.email%></a></h4>
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=x.id%>"><span id="messageemail">
+                                                Sent by:<%=x.sender.email%></span></a></h4>
+                                        </div>
+                                        <div id="collapse_<%=x.id%>" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <%=x.message%><hr>
+                                                Sent at: <%=x.created_at%><hr>
                                                 <p>
                                                 <%=link_to "reply",message_path(x)%>
                                                 </p>
-                                        </div>
-                                        <div id="collapse_<%=x.id%>" class="panel-collapse collapse in">
-                                            <div class="panel-body">
-                                                <%=x.message%><hr>
-                                                Sent at: <%=x.created_at%>
                                             </div>
                                         </div>
                                     </div>                       

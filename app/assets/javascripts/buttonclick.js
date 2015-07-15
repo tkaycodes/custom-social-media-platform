@@ -28,21 +28,7 @@ $(document).ready(function(){
        }
     });
 
-    // var ajaxcall2 = $.ajax({
-    //   url: '/friendships',
-    //   dataType: 'json',
-    //   method: 'get',
-    //   data: {id: currentid, state: "accepted"},
-    //   success: function(result){
-    //     console.log(result);
-    //     // return // var friend_id = console.log(result.friend_id);
-    //       $('#'+currentid).hide();
-    //       // $('#friendslist').append("<a href='/user/"+result.friend_id+"'"+">Profile</a>"+ currentemail+"<a rel='nofollow' data-method='DELETE' href='/friendships/"+currentid+"'"+">Remove Friend</a>");
-    //       $('#friendslist').append("<a href='/user/"+result.friend_id+"'"+">+"+"'"+friendid.profile_picture+"'+"+currentemail+"'"+"<a rel='nofollow' data-method='DELETE' href='/friendships/"+currentid+"'"+">Remove Friend</a>"
-                                      
-    //                               );
-    //    }
-    // });
+
 
   });
 
