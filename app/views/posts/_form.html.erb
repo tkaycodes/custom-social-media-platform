@@ -21,7 +21,9 @@
           <div class="col-md-4">
             <h4>Comments:</h4>
             <div id="commentlist">
-              <%=render 'comments/form'%>
+              <%@comments.each do |x|%>
+                <%=render partial: 'comments/form', locals: {data: x}%>
+              <%end%>
 
             </div>
 

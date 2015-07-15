@@ -13,7 +13,7 @@
       <%#elsif @friendship.first.state == "pending" || @friendship.first.state == "declined" %>
         <!-- <h5><a onClick = "alert('to do')"> Cancel Request </a></h5><br> -->
     <%end%>
-    <h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id) unless @user.id==current_user.id%></h5><br>
+    <h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id), id: "sendmessagebtn", class: 'btn' unless @user.id==current_user.id%></h5><br>
     Friend Count:<%=@user.friends.count%>
   </div>
 </div>
