@@ -21,14 +21,12 @@
           <div class="col-md-4">
             <h4>Comments:</h4>
             <div id="commentlist">
-              <%@comments.each do |x|%>
-                <%=x.comment%> -<%=x.user.email%><br>
-                Posted: <%=x.created_at%><hr>
-              <%end%>
+              <%=render 'comments/form'%>
+
             </div>
 
-            <%#=form_for @comment, :html => {:class => "form-horizontal center"}, remote: true, :format=>:js do |x|%>
-             <%=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
+            <%=form_for @comment, :html => {:class => "form-horizontal center"}, remote: true do |x|%>
+             <%#=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
             <!-- <div class="form-group"> -->
               <%=x.hidden_field :post_id%>
               <%=x.hidden_field :user_id%>

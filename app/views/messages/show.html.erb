@@ -52,7 +52,7 @@
                                         <div class="header">
                                             <strong class="primary-font"><%=@message.sender.email%></strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> <%@message.created_at%>
+                                                <i class="fa fa-clock-o fa-fw"></i> <%=time_ago_in_words(@message.created_at)%>
                                             </small>
                                         </div>
                                         <p>
@@ -91,7 +91,7 @@
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> <%=x.created_at%></small>
+                                                <i class="fa fa-clock-o fa-fw"></i> <%=time_ago_in_words(x.created_at)%></small>
                                             <strong class="pull-right primary-font">
                                               <%=x.user.email%>
                                             </strong>
@@ -111,7 +111,7 @@
                                         <div class="header">
                                             <strong class="primary-font"><%=x.user.email%></strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> <%=x.created_at%>
+                                                <i class="fa fa-clock-o fa-fw"></i> <%=time_ago_in_words(x.created_at)%>
                                             </small>
                                         </div>
                                         <p>
