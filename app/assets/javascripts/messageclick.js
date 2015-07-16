@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
-$('.messageemail').click(function(){
-  alert('hi');
-  var messageid= $('.messageid').html();
+
+$(".messageemail").click(function(){
+  var messageid = $(this).data('id');
+   alert(messageid);
+  console.log(messageid);
   $.ajax({
     method: 'PUT',
     url: '/messages/'+messageid,

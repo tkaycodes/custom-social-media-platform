@@ -26,8 +26,9 @@
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=x.id%>">
-                                                <span class="messageemail">
+                                                <span class="messageemail" data-id="<%= x.id %>">
                                                     Sent by:<%=x.sender.email%>
+                                                    <span class="messageid" style="visibility:hidden"><%=x.id%></span>
                                                 </span>
                                                 </a>
                                             </h4>
@@ -35,7 +36,7 @@
                                                     <i class="fa fa-exclamation"></i>
                                                     <span><%=x.inspect%></span>
                                                 <%end%>
-                                                <span class="messageid" style="visibility:hidden"><%=x.id%></span>
+                                                
                                         </div>
                                         <div id="collapse_<%=x.id%>" class="panel-collapse collapse">
                                             <div class="panel-body">
