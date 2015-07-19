@@ -8,8 +8,9 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
 gem 'hirb'
-gem 'faker'
+gem 'selectize-rails'
 gem "paperclip", "~> 4.3"
 gem 'less', '~> 2.6.0'
 gem 'therubyracer'

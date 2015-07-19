@@ -3,16 +3,19 @@ class PostsController < ApplicationController
   def new
     @post = current_user.posts.new
     @post.type = params[:type]
+    @tag=Tag.new
     logger.warn "HERE IS THE POST #{@post.inspect}"
     logger.warn "THE TYPE IS #{@post.type}"
   end
 
   def create
-    @post = current_user.posts.new(params.require(:post).permit(:body, :type))
+    @post = current_user.posts.new(params.require(:post).permit(:body, :type, {tag_ids:[]}))
     if @post.save 
       redirect_to user_profile_path(current_user), notice: "saved"
+      logger.warn "SAVED HERE IS THE INFO:#{@post.inspect}"
     else
-      render 'new', notice: "couldnt save"
+      redirect_to user_profile_path(current_user), notice: "coudlnt save"
+      logger.warn "THIS IS WHY WE CANT SAVE:#{@post.errors.inspect}"
     end
   end
 

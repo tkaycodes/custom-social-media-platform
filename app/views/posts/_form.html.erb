@@ -40,6 +40,13 @@
             <!-- </div> -->
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%@post.tags.each do |x|%>
+            #<%=link_to x.tag, tag_path(x)%>
+            <%end%>
+          </div>
+        </div>
       </div>
 
       <div class="modal-footer">
