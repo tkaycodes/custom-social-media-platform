@@ -1,0 +1,51 @@
+<%@posttags.each do |x|%>
+  <%=x.post.body%><br>
+ <%end%>
+ <hr>
+
+ <div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+             #<%=@tag.tag%>
+          </div>
+          <!-- .panel-heading -->
+          <div class="panel-body">
+                    <%@posttags.order(created_at: :desc).each do |x|%>
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <%#=y.user.email%>
+                        <%=x.post.created_at.strftime("%b %d %Y")%>
+                        <span id="time"><%=x.post.created_at.strftime("%l:%M%P")%></span>
+                      </div>
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-md-2">
+                            <%=image_tag(x.post.user.profile_picture.url, :width=>150, :height=>150)%><br>
+                            <%=x.post.user.email%>
+                            <%=@tag.tag%>
+                          </div>
+                          <div class="col-md-10">
+                            <%if x.post.type=="Image"%>
+                              <%=link_to image_tag(x.post.body.url, :style=>'max-width:100%;'), post_path(x.post), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%><br><hr>
+                              <%else%>
+                              <h2><%=link_to x.post.body, post_path(x.post), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%></h2><hr>
+                              <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>
+                            <%end%>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                      <i class="fa fa-comment fa-fw">
+                      </i>
+                      <%=x.post.comments.count%>
+                    </div>
+                  </div>
+                <%end%>
+            </div>
+          </div>
+      </div>
+  </div>
+  
+  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>

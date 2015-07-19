@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714211349) do
+ActiveRecord::Schema.define(version: 20150716192133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150714211349) do
     t.string   "recipient_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "status"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -57,6 +58,16 @@ ActiveRecord::Schema.define(version: 20150714211349) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
+  create_table "posttags", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posttags", ["post_id"], name: "index_posttags_on_post_id", using: :btree
+  add_index "posttags", ["tag_id"], name: "index_posttags_on_tag_id", using: :btree
+
   create_table "replies", force: :cascade do |t|
     t.string   "name"
     t.integer  "message_id"
@@ -67,6 +78,12 @@ ActiveRecord::Schema.define(version: 20150714211349) do
 
   add_index "replies", ["message_id"], name: "index_replies_on_message_id", using: :btree
   add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
@@ -96,6 +113,8 @@ ActiveRecord::Schema.define(version: 20150714211349) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "posttags", "posts"
+  add_foreign_key "posttags", "tags"
   add_foreign_key "replies", "messages"
   add_foreign_key "replies", "users"
 end

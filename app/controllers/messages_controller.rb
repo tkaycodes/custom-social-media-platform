@@ -35,5 +35,14 @@ class MessagesController < ApplicationController
     end
   end 
 
+  def update
+    @message=Message.find(params[:id])
+    @message.update(params.require(:message).permit(:status))
+    respond_to do |format|
+      format.json{render json: @message.to_json}
+    end
+    logger.warn "MESSAGE UPDATED TO->#{@message.inspect}"
+  end
+
 end
 

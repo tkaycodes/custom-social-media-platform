@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :messages do 
     resources :replies
   end
+  resources :tags
   # get '/posts/images/new' =>'posts#new'
   # get '/posts/statuses/new' =>'post#new'
   devise_for :users

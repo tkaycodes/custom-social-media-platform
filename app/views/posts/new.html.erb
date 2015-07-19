@@ -1,5 +1,5 @@
 <%if @post.type=="Status"%>
-  <%=form_for @post, :html=>{class: 'form-group'} do |x|%>
+  <%=simple_form_for @post, :html=>{class: 'form-group'} do |x|%>
     <%if @post.errors.any? %>
         <div id="error_explanation">
           <h2>
@@ -16,15 +16,44 @@
     <%#=x.label 'Post Status'%>
     <%=x.text_field :body, placeholder: 'Post Status', class: "form-control"%><br>
     <%=x.hidden_field :type%>
+    <%=x.association :tags, :label_method=> lambda {|x| x.tag }%>
     <%=x.submit "Post Status"%>
   <%end%>
 <%elsif @post.type=="Image"%>
-  <%=form_for @post, :html=>{:multipart=>true} do |x|%>
+  <%=simple_form_for @post, :html=>{:multipart=>true} do |x|%>
     <%=x.label 'Post Image'%>
     <%=x.file_field :body%>
     <%=x.hidden_field :type%>
+    <%=x.association :tags, :label_method=> lambda {|x| x.tag }%>
     <%=x.submit%>
   <%end%>
 <%end%>
+<script>
+$('#post_tag_ids').selectize({
+  delimeter: ',',
+  plugins: ['remove_button'],
+  persist: false,
+  create: function(input){
+    var ajax= $.ajax({
+      url: '/tags',
+      method: 'post',
+      data: {tag: {tag: input}},
+      async: false,
+      success: function(result){
+        console.log(result)
+      },
+      error: function(result){
+        console.log(result)
+      } 
+    });
+    // console.log(ajax.responseJSON.id)
+    return{
+      value: ajax.responseJSON.id,
+      text: input
+    }
+  }
+});
+</script>
+
 
 <!-- <input type="text" class="form-control" placeholder="Text input"> -->

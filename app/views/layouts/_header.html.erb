@@ -23,7 +23,15 @@
                 </li>
                 <li class="dropdown"> <!--messages dropdown-->
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-envelope fa-fw"></i>
+                    <i class="fa fa-envelope fa-fw">
+                    <%current_user.recieved_messages.all.each do |x|%>
+                        <%if x.status=="Unread"%>
+                            <i class="fa fa-exclamation"></i>                       
+                        <%end%>
+                    <%end%>
+
+
+                    </i>
                     <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">

@@ -3,8 +3,6 @@ class CommentsController < ApplicationController
   def create
     @comment=Comment.create(params.require(:comment).permit(:comment, :post_id, :user_id))
     @comment.user_id=current_user.id
-    @post = Post.find(params[:id])
-    @comments=@post.comments.all
     @user=User.find(1)
       respond_to do|format|
          format.html{
