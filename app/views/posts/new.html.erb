@@ -14,9 +14,9 @@
         </div>
     <%end%>
     <%#=x.label 'Post Status'%>
-    <%=x.text_field :body, placeholder: 'Post Status', class: "form-control"%><br>
+    <%=x.text_field :body, placeholder: 'Your Status', class: "form-control input-lg"%><br>
     <%=x.hidden_field :type%>
-    <%=x.association :tags, :label_method=> lambda {|x| x.tag }%>
+    <%=x.association :tags, :label_method=> lambda {|x| x.tag }, placeholder: "Enter any tags (optional)"%>
     <%=x.submit "Post Status"%>
   <%end%>
 <%elsif @post.type=="Image"%>

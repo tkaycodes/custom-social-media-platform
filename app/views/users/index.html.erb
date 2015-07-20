@@ -49,8 +49,9 @@
                       <%=y.comments.count%>
                       <span style="float:right">
                       <%y.tags.each do |x|%>
-            #<%=link_to x.tag, tag_path(x)%>
-            <%end%></span>
+                          #<%=link_to x.tag, tag_path(x)%>
+                      <%end%>
+                    </span>
                     </div>
                   </div>
                 <%end%>
@@ -58,47 +59,74 @@
               </div>
 
               <div class="tab-pane fade in active" id="statuses">
-                  <%current_user.friends.each do |x|%>
-                    <%x.statuses.each do |y|%>
-                      <div class="panel panel-info">
-                      <div class="panel-heading">
-                        <%=y.user.email%>
+                <%current_user.friends.each do |x|%>
+                <%x.statuses.order(created_at: :desc).each do |y|%>
+                  <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <%=y.created_at.strftime("%b %d %Y")%>
+                      <span id="time"><%=y.created_at.strftime("%l:%M%P")%></span>
+                    </div>
+                    <div class="panel-body">
+                      <div class="row">
+                        <div class="col-md-2">
+                          <%=image_tag(x.profile_picture.url, :width=>150, :height=>150)%><br>
+                          <%=y.user.email%>
+                        </div>
+                        <div class="col-md-10">
+                          <h2><%=link_to y.body, status_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%></h2><hr>
+                        </div>
                       </div>
-                      <div class="panel-body">
-                          <%=link_to y.body, status_path(y)%><hr>
-                          <i class="fa fa-comment fa-fw"></i><%=y.comments.count%>
-                      </div>
-                      <div class="panel-footer">
-                      <%=y.created_at%><hr>
-                      </div>
-                      </div>
-                    <%end%>
-                  <%end%>
-                </div>
-                <div class="tab-pane fade in active" id="images">
-                  <%current_user.friends.each do |x|%>
-                    <%x.images.each do |y|%>
-                      <div class="panel panel-info">
-                      <div class="panel-heading">
-                        <%=y.user.email%>
-                      </div>
-                      <div class="panel-body">
-                          <%=link_to image_tag(y.body.url), image_path(y)%><br>
-                          <i class="fa fa-comment fa-fw"></i><%=y.comments.count%>
-                      </div>
-                      <div class="panel-footer">
-                      <%=y.created_at%><hr>
-                      </div>
-                      </div>
-                    <%end%>
-                  <%end%>
-                </div>
-            </div> <!--end of tab content-->
+                    </div>
+                    <div class="panel-footer">
+                      <i class="fa fa-comment fa-fw"></i>
+                      <%=y.comments.count%>
+                      <span style="float:right">
+                        <%y.tags.each do |tag|%>
+                          #<%=link_to tag.tag, tag_path(tag)%>
+                        <%end%>
+                      </span>
+                    </div>
+                  </div>
+                <%end%>
+                <%end%>
+              </div>
 
-          </div>
-      </div>
-  </div>
-  </div>
+              <div class="tab-pane fade in active" id="images">
+                <%current_user.friends.each do |x|%>
+                <%x.images.order(created_at: :desc).each do |y|%>
+                  <div class="panel-heading">
+                    <%=y.created_at.strftime("%b %d %Y")%>
+                    <span id="time"><%=y.created_at.strftime("%l:%M%P")%></span>
+                  </div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <%=image_tag(x.profile_picture.url, :width=>150, :height=>150)%><br>
+                        <%=y.user.email%>
+                      </div>
+                      <div class="col-md-10">
+                        <%=link_to image_tag(y.body.url, :style=>'max-width:100%;'), image_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel-footer">
+                    <i class="fa fa-comment fa-fw"></i>
+                    <%=y.comments.count%>
+                      <span style="float:right">
+                        <%y.tags.each do |tag|%>
+                          #<%=link_to tag.tag, tag_path(tag)%>
+                        <%end%>
+                      </span>
+                  </div>
+                <%end%>
+                <%end%>
+              </div>
+                  
+            </div><!--end of tab content-->
+          </div><!--end of panel body--> 
+      </div> <!--end of panel-->
+  </div><!--end of col-->
+</div><!--end of row-->
   
   <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   </div>
