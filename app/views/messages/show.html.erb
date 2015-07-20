@@ -32,9 +32,10 @@
                                 </button>
                                 <ul class="dropdown-menu slidedown">
                                     <li>
-                                        <a href="/messages">
+                                        <%= link_to message_path(@message) do%>
                                             <i class="fa fa-refresh fa-fw"></i> Refresh
-                                        </a>
+                                        <%end%>
+                                           
                                     </li>
                                 </ul>
                             </div>
@@ -69,7 +70,8 @@
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> <%=@message.created_at%></small>
+                                                <i class="fa fa-clock-o fa-fw"></i> 
+                                                <%=time_ago_in_words(@message.created_at)%></small>
                                             <strong class="pull-right primary-font">
                                               <%=@message.sender.email%>
                                             </strong>

@@ -37,11 +37,11 @@
                     <ul class="dropdown-menu dropdown-messages">
                         <%current_user.recieved_messages.all.each do |x|%>
                             <li>
-                                <a href="#">
+                                <a href="/messages">
                                     <div>
                                         <strong><%=x.sender.email%></strong>
                                         <span class="pull-right text-muted">
-                                        <em><%=x.created_at%></em>
+                                        <em><%=time_ago_in_words(x.created_at)%></em>
                                         </span>
                                     </div>
                                     <div>

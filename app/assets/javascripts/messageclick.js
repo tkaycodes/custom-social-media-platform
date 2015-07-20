@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 $(".messageemail").click(function(){
   var messageid = $(this).data('id');
-   alert(messageid);
+   // alert(messageid);
   console.log(messageid);
   $.ajax({
     method: 'PUT',

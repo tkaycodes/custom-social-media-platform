@@ -26,12 +26,8 @@ class ApplicationController < ActionController::Base
     logger.warn "here is the sorted hash: #{@sorted}"
     @finalarray=@sorted.take(5)
     logger.warn "here is the final array: #{@finalarray}"
-    @finalarray.each do |x|
-      @tagstodisplay=Tag.find(x[0])
-      logger.warn("#{@tagstodisplay}") 
-    end
-
   end
+
 
 end
 
