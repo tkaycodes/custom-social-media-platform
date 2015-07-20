@@ -41,8 +41,8 @@
                             <span id="<%=x.id%>">
                             <span id="friendshipid"><%=x.id%></span>
                             <!-- <span id='friendship_<%#=x.id%>'> -->
-                            <%=x.friend.email%><button class='accept_request' data-id="<%=x.id%>">Accept Request</button><button class='decline_request' data-id="<%=x.id%>">Decline Request</button></span>
-                            <span id="friendemail"><%=x.friend.email%></span> <span id="userprofilepicture" style="visibility:hidden"><%=x.friend.profile_picture%></span><br>
+                            <%=x.friend.email%><button class='accept_request' data-id="<%=x.id%>" data-profilepic="<%=x.friend.profile_picture%>">Accept Request</button><button class='decline_request' data-id="<%=x.id%>">Decline Request</button></span>
+                            <span id="friendemail"><%=x.friend.email%></span>
                         <%end%>
                     </div>
                     <div class="tab-pane fade" id="otherinfo">
