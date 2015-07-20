@@ -38,6 +38,10 @@
           <%end%>
         </div>
         <div class="panel-footer"> <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%>
+          <span style="float:right">
+          <%x.tags.each do |tag|%>
+            #<%=link_to tag.tag, tag_path(tag)%>
+            <%end%></span>
         </div>
       </div>
     </div>

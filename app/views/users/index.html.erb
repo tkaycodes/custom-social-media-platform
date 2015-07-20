@@ -47,6 +47,10 @@
                       <i class="fa fa-comment fa-fw">
                       </i>
                       <%=y.comments.count%>
+                      <span style="float:right">
+                      <%y.tags.each do |x|%>
+            #<%=link_to x.tag, tag_path(x)%>
+            <%end%></span>
                     </div>
                   </div>
                 <%end%>
