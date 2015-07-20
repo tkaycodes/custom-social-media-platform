@@ -3,12 +3,13 @@ $(document).ready(function(){
   // var friendid  = @friend.id
   var profilepicture = $('#userprofilepicture').html();
   console.log(profilepicture);
-  var currentid= $('#friendshipid').html();
-  console.log(currentid);
+  // var currentid= $('#friendshipid').html();
+  // console.log(currentid);
   var currentemail= $('#friendemail').html();
   console.log(currentemail);
 
-  $('#accept_request').click(function(){
+  $('.accept_request').click(function(){
+    var currentid=$(this).data("id");
     console.log(currentid);
     // console.log('hi');
     console.log();
@@ -32,8 +33,8 @@ $(document).ready(function(){
 
   });
 
-  $('#decline_request').click(function(){
-    console.log(currentid);
+  $('.decline_request').click(function(){
+    var currentid=$(this).data("id");
     $.ajax({
       url: '/friendships',
       dataType: 'json',
