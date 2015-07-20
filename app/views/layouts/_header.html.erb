@@ -142,6 +142,22 @@
                             <%end%>
                     <%end%>
                 </li>
+                  <li class="divider">
+                      
+                  </li>
+
+                <li>
+                            <a href="#"><i class="fa fa-rss fa-fw"></i> Popular Tags</span></a>
+                            <ul class="nav nav-second-level">
+                                <%@finalarray.each do |x|%>
+                                <%@tagstodisplay=Tag.find(x[0])%>
+                                <li>
+                                    <%=link_to "#"+@tagstodisplay.tag, tag_path(@tagstodisplay)%>    
+                                </li>    
+                                <%end%>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
             </ul>
         </div>
     </div> <!--end of sidebar-->

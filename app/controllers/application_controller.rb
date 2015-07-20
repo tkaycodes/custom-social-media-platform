@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :remove_header, if: :devise_controller?
+  before_filter :assign_tag_trends
 
 
 
@@ -15,6 +16,21 @@ class ApplicationController < ActionController::Base
 
   def remove_header
     @remove_header = true;
+  end
+
+  def assign_tag_trends
+    @posttagz=Posttag.all
+    @hashz=@posttagz.group(:tag_id).count;
+    logger.warn "here is the main hash: #{@hashz}"
+    @sorted=@hashz.sort_by{|k,v| v}.reverse
+    logger.warn "here is the sorted hash: #{@sorted}"
+    @finalarray=@sorted.take(5)
+    logger.warn "here is the final array: #{@finalarray}"
+    @finalarray.each do |x|
+      @tagstodisplay=Tag.find(x[0])
+      logger.warn("#{@tagstodisplay}") 
+    end
+
   end
 
 end

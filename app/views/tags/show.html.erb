@@ -1,7 +1,7 @@
-<%@posttags.each do |x|%>
-  <%=x.post.body%><br>
- <%end%>
- <hr>
+<%#@posttags.each do |x|%>
+  <%#=x.post.body%>
+ <%#end%>
+ <!-- <hr> -->
 
  <div class="row">
   <div class="col-lg-12">
@@ -23,7 +23,7 @@
                           <div class="col-md-2">
                             <%=image_tag(x.post.user.profile_picture.url, :width=>150, :height=>150)%><br>
                             <%=x.post.user.email%>
-                            <%=@tag.tag%>
+                            #<%=@tag.tag%>
                           </div>
                           <div class="col-md-10">
                             <%if x.post.type=="Image"%>
