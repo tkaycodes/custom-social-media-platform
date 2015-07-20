@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-8">
             <%@post.tags.each do |x|%>
             #<%=link_to x.tag, tag_path(x)%>
             <%end%>
@@ -50,6 +50,15 @@
       </div>
 
       <div class="modal-footer">
+        <%if @liked.empty?%>
+            <%=link_to likes_path(:id=>@post.id), method: :post, style: 'float:left' do %>
+              <i class="fa fa-thumbs-o-up fa-2x">Like</i>
+            <%end%>
+        <%else%>
+            <%=link_to like_path(:id=>@liked.first.id), method: :DELETE, style: 'float:left' do%>
+              <i class="fa fa-thumbs-up fa-2x">Unlike</i>
+            <%end%>
+        <%end%>
         <h5>Posted:<%=@post.created_at%></h5>
       </div>
 

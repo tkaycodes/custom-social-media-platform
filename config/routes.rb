@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :replies
   end
   resources :tags
+  resources :likes
   # get '/posts/images/new' =>'posts#new'
   # get '/posts/statuses/new' =>'post#new'
   devise_for :users

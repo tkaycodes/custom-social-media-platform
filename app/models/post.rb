@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :posttags
   has_many :tags, through: :posttags 
+  has_many :likes
+  # has_many :users, through: :likes
 
 
   def self.types
