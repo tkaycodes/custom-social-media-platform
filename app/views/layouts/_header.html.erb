@@ -35,10 +35,14 @@
                     <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
-                        <%current_user.recieved_messages.all.each do |x|%>
+                        <%current_user.recieved_messages.all.order(created_at: :desc).each do |x|%>
                             <li>
-                                <a href="/messages">
-                                    <div>
+                        <div class="messageemail" data-id="<%=x.id%>">
+
+                                <%=link_to message_path(x) do %>
+                                <!-- <a href="/messages"> -->
+                                    <%if x.status=="Unread"%>
+                                    <i class="fa fa-exclamation"></i><%end%>
                                         <strong><%=x.sender.email%></strong>
                                         <span class="pull-right text-muted">
                                         <em><%=time_ago_in_words(x.created_at)%></em>
@@ -47,7 +51,8 @@
                                     <div>
                                         <%=x.message%>
                                     </div>
-                                </a>
+                                <!-- </a> -->
+                                <%end%>
                             </li>
                             <li class="divider">
                             </li>
