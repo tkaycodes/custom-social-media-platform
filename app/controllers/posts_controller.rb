@@ -2,6 +2,7 @@ class PostsController < ApplicationController
    # before_action :set_post, only: [:new, :create]
   def new
     @post = current_user.posts.new
+    @taggeduser=@post.taggedusers.new
     @post.type = params[:type]
     @tag=Tag.new
     logger.warn "HERE IS THE POST #{@post.inspect}"

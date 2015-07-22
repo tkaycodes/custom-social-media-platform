@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :likes
   # has_many :posts, through: :likes
 
-
+  has_many :taggedusers
   # def set_default_avatar
   #   self.profile_picture = 'defaultpic.jpg'
   # end

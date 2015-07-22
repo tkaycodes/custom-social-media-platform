@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   has_many :posttags
   has_many :tags, through: :posttags 
   has_many :likes
+  has_many :taggedusers
   # has_many :users, through: :likes
 
 

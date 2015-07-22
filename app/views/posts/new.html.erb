@@ -16,7 +16,8 @@
     <%#=x.label 'Post Status'%>
     <%=x.text_field :body, placeholder: 'Your Status', class: "form-control input-lg"%><br>
     <%=x.hidden_field :type%>
-    <%=x.association :tags, :label_method=> lambda {|x| x.tag }, placeholder: "Enter any tags (optional)"%>
+    <%=x.association :tags, :label_method=> lambda {|x| x.tag }, placeholder: "Enter any hashtags (optional)"%>
+    <%=x.association :taggedusers, :label_method=> lambda{|x|x.user.email}, placeholder: "type any user names to tag in this post (optional)"%>
     <%=x.submit "Post Status"%>
   <%end%>
 <%elsif @post.type=="Image"%>
