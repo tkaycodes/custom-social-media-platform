@@ -1,0 +1,19 @@
+<%if currentlike.empty?%>
+    this is empty
+    <%=currentlike.inspect%>
+    <%=link_to likes_path(:id=>post.id), method: :post, style: 'float:left',remote: true do %>
+        <i class="fa fa-thumbs-o-up fa-2x">Like</i>
+    <%end%>
+<%else%>
+    this is not empty
+    <%=currentlike.inspect%>
+    <%=currentlike[0].id%>
+
+    <%=link_to like_path(:id=>(currentlike[0]).id, :post_id=>post.id), method: :DELETE, style: 'float:left', remote:true do%>
+      <i class="fa fa-thumbs-up fa-2x">Unlike</i>
+    <%end%>
+
+<%end%>
+<h5>Posted:<%=post.created_at%></h5>
+
+

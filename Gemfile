@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'hirb'
+gem 'turbolinks'
 gem 'selectize-rails'
 gem "paperclip", "~> 4.3"
 gem 'less', '~> 2.6.0'

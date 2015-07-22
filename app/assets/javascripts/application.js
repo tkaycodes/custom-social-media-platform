@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require selectize
+//= require turbolinks
 //= require jquery.ui.all
 //= require bootstrap-sprockets
 //= require_tree .

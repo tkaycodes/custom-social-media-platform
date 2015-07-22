@@ -8,6 +8,7 @@
   Posted:<%=@post.created_at%><br><hr>
 <%end%>
 
+
 <h6>Comments:</h6>
 <%@comments.each do |x|%>
 <%=x.comment%> -<%=x.user.email%><br>
@@ -21,5 +22,7 @@ Posted: <%=x.created_at%><hr>
 <%=x.text_area :comment%><br>
 <%=x.submit%>
 <%end%>
+
+
 
 
