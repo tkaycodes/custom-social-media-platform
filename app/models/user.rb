@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :likes
-  # has_many :posts, through: :likes
+  has_many :liked_posts, through: :likes, source: :post
+  #necessary cause relation User.posts already exists, so need new name
 
 
   # def set_default_avatar

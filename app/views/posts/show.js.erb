@@ -26,30 +26,10 @@ $(document).ready(function(){
   if ($('#unlikebutton').length) {
     $('#unlikebutton').on("click", function(){
 
-    console.log('hi');
-      $.ajax({
-        url: 'likes',
-        method: 'post',
-        dataType: 'json',
-        data: {id: '<%=@liked[0].id%>'},
-        success: function(data)
-        {
-             console.log(data);
-        },
-        error: function(result){
-          console.log(result);
-        }
-        // error: function(result){
-        //     console.log(result);
-        // };
-      });
-    });
+   console.log('hi');
+
+  });
   }
   
-
-
-
-
-
 
 });
