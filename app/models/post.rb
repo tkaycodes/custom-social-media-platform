@@ -4,8 +4,13 @@ class Post < ActiveRecord::Base
   has_many :posttags
   has_many :tags, through: :posttags 
   has_many :likes
-  has_many :taggedusers
-  # has_many :users, through: :likes
+  has_many :liked_users, through: :likes, source: :user
+
+  # join table
+  has_many :taggedusers 
+
+  #taggedusers.user
+  has_many :user_tags, through: :taggedusers, source: :user
 
 
   def self.types

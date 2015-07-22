@@ -21,9 +21,11 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :likes
-  # has_many :posts, through: :likes
+  has_many :liked_posts, through: :likes, source: :post
 
   has_many :taggedusers
+  has_many :tagged_posts, through: :taggedusers, source: :post
+
   # def set_default_avatar
   #   self.profile_picture = 'defaultpic.jpg'
   # end
