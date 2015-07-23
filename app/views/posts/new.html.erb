@@ -14,10 +14,10 @@
         </div>
     <%end%>
     <%#=x.label 'Post Status'%>
-    <%=x.text_field :body, placeholder: 'Your Status', class: "form-control input-lg"%><br>
+    <%=x.text_field :body, placeholder: 'Your Status', class: "form-control input-lg"%><hr>
     <%=x.hidden_field :type%>
     <%=x.association :tags, :label_method=> lambda {|x| x.tag }, placeholder: "Enter any hashtags (optional)"%>
-    <%=x.association :taggedusers, :label_method=> lambda{|x|x.user.email}, placeholder: "type any user names to tag in this post (optional)"%>
+    <%=x.association :user_tags, :label_method=> lambda {|x| x.email },placeholder: "Tag your friends in this post (also optional)"%>
     <%=x.submit "Post Status"%>
   <%end%>
 <%elsif @post.type=="Image"%>
@@ -25,7 +25,8 @@
     <%=x.label 'Post Image'%>
     <%=x.file_field :body%>
     <%=x.hidden_field :type%>
-    <%=x.association :tags, :label_method=> lambda {|x| x.tag }%>
+    <%=x.association :tags, :label_method=> lambda {|x| x.tag },placeholder: "Enter any hashtags (optional)"%>
+    <%=x.association :user_tags, :label_method=> lambda {|x| x.email },placeholder: "Tag your friends in this post (also optional)"%>
     <%=x.submit%>
   <%end%>
 <%end%>
@@ -50,6 +51,21 @@ $('#post_tag_ids').selectize({
     // console.log(ajax.responseJSON.id)
     return{
       value: ajax.responseJSON.id,
+      text: input
+    }
+  }
+});
+</script>
+
+<script>
+$('#post_user_tag_ids').selectize({
+  delimeter: ',',
+  plugins: ['remove_button'],
+  persist: false,
+  create: function(input){
+    // console.log(ajax.responseJSON.id)
+    return{
+      value: input,
       text: input
     }
   }

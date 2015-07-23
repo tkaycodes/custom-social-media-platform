@@ -121,11 +121,17 @@
     <!-- </div>/.container-fluid -->
     <%# if user_signed_in?%>
 
+
+    <!-- sidebar -->
+
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
+                
+                <!-- user search sidebar -->
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
+                        <!-- calls search.js -->
                         <input type="text" id="usersearchbox" class="form-control" placeholder="User Search...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">
@@ -134,11 +140,15 @@
                         </span>
                     </div>
                 </li>
+                
+                <!-- news feed link -->
                 <li>
                   <%= link_to root_path do%>
                       <i class="fa fa-navicon fa-fw"></i> News Feed
                     <%end%>
                 </li>
+
+                <!-- Friendship link -->
                 <li>
                     <%= link_to friendships_path do%>
                         <i class="fa fa-users fa-fw"></i> Friends
@@ -147,22 +157,27 @@
                             <%end%>
                     <%end%>
                 </li>
+
                   <li class="divider">
                       
                   </li>
 
+                <!-- popular tags -->
                 <li>
-                            <a href="#"><i class="fa fa-rss fa-fw"></i> Popular Tags</span></a>
-                            <ul class="nav nav-second-level">
-                                <%@finalarray.each do |x|%>
-                                <%@tagstodisplay=Tag.find(x[0])%>
-                                <li>
-                                    <%=link_to "#"+@tagstodisplay.tag, tag_path(@tagstodisplay)%>    
-                                </li>    
-                                <%end%>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                    <a href="#">
+                        <i class="fa fa-rss fa-fw"></i> Popular Tags</span>
+                    </a>
+                    <!-- gets these instance variables from application controller -->
+                    <ul class="nav nav-second-level">
+                        <%@finalarray.each do |x|%>
+                        <%@tagstodisplay=Tag.find(x[0])%>
+                        <li>
+                            <%=link_to "#"+@tagstodisplay.tag, tag_path(@tagstodisplay)%>    
+                        </li>    
+                        <%end%>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
             </ul>
         </div>
     </div> <!--end of sidebar-->
