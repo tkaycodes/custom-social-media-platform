@@ -23,7 +23,10 @@ class User < ActiveRecord::Base
   has_many :likes
   has_many :liked_posts, through: :likes, source: :post
 
+  #join table
   has_many :taggedusers
+
+  #taggeduser.posts
   has_many :tagged_posts, through: :taggedusers, source: :post
 
   # def set_default_avatar

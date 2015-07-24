@@ -158,6 +158,14 @@
                     <%end%>
                 </li>
 
+                <!-- your tagged posts link -->
+
+                <li>
+                    <%=link_to taggedposts_path do %>
+                     <i class="fa fa-tags fa-fw"></i> Posts you're tagged in 
+                     <%end%>
+                </li>
+
                   <li class="divider">
                       
                   </li>
@@ -165,7 +173,7 @@
                 <!-- popular tags -->
                 <li>
                     <a href="#">
-                        <i class="fa fa-rss fa-fw"></i> Popular Tags</span>
+                        <i class="fa fa-rss fa-fw"></i> Popular Hashtags</span>
                     </a>
                     <!-- gets these instance variables from application controller -->
                     <ul class="nav nav-second-level">
