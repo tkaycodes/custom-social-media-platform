@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   put '/friendships' =>'friendships#update'
 
+  get '/taggedposts' => 'taggedusers#index'
+
 
   # get '/admin'=> 'users#admin'
   # get '/panels'=> 'users#panels'

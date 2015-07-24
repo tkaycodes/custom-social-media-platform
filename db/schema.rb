@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720062903) do
+ActiveRecord::Schema.define(version: 20150722020510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20150720062903) do
   add_index "replies", ["message_id"], name: "index_replies_on_message_id", using: :btree
   add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
 
+  create_table "taggedusers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggedusers", ["post_id"], name: "index_taggedusers_on_post_id", using: :btree
+  add_index "taggedusers", ["user_id"], name: "index_taggedusers_on_user_id", using: :btree
+
   create_table "tags", force: :cascade do |t|
     t.string   "tag"
     t.datetime "created_at", null: false
@@ -129,4 +139,6 @@ ActiveRecord::Schema.define(version: 20150720062903) do
   add_foreign_key "posttags", "tags"
   add_foreign_key "replies", "messages"
   add_foreign_key "replies", "users"
+  add_foreign_key "taggedusers", "posts"
+  add_foreign_key "taggedusers", "users"
 end
