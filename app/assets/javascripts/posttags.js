@@ -6,7 +6,7 @@ $(document).ready(function(){
       url: '/taggedpost/'+value+'/edit',
       method: 'put',
       dataType: 'json',
-      data: {status: "Read"},
+      data: {taggeduser: {status: "Read"}},
       success: function(data)
       {
         console.log(data);

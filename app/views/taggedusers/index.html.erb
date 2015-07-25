@@ -7,12 +7,15 @@
           </div>
           <!-- .panel-heading -->
           <div class="panel-body">
-                    <%@taggedposts.order(created_at: :desc).each do |x|%>
+                    <%@taggedusers.order(created_at: :desc).each do |x|%>
                     <div class="panel panel-info">
                       <div class="panel-heading">
+                        <%if x.status =="Unread"%>
+                            <i class="fa fa-exclamation"></i>
+                        <%end%></a>
                         <%#=y.user.email%>
-                        <%=x.created_at.strftime("%b %d %Y")%>
-                        <span id="time"><%=x.created_at.strftime("%l:%M%P")%></span>
+                        <%=x.post.created_at.strftime("%b %d %Y")%>
+                        <span id="time"><%=x.post.created_at.strftime("%l:%M%P")%></span>
                       </div>
                       <div class="panel-body">
                         <div class="row">
@@ -22,10 +25,10 @@
                             <%#=@tag.tag%>
                           </div>
                           <div class="col-md-10">
-                            <%if x.type=="Image"%>
-                              <%=link_to image_tag(x.body.url, :class=>'post_tagged_user', 'data-id': x.id ,:style=>'max-width:100%;'), post_path(x), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%><br><hr>
+                            <%if x.post.type=="Image"%>
+                              <%=link_to image_tag(x.post.body.url, :class=>'post_tagged_user', 'data-id': x.id ,:style=>'max-width:100%;'), post_path(x.post), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%><br><hr>
                               <%else%>
-                             <%=link_to x.body, post_path(x), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window', class: "post_tagged_user", 'data-id': x.id}%></h2><hr>
+                             <%=link_to x.post.body, post_path(x.post), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window', class: "post_tagged_user", 'data-id': x.id}%></h2><hr>
                             <%end%>
                           </div>
                         </div>
@@ -33,7 +36,7 @@
                     <div class="panel-footer">
                       <i class="fa fa-comment fa-fw">
                       </i>
-                      <%=x.comments.count%>
+                      <%=x.post.comments.count%>
                     </div>
                   </div>
                 <%end%>

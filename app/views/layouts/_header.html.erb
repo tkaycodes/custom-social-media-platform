@@ -160,6 +160,9 @@
 
                 <li>
                     <%=link_to taggedposts_path do %>
+                        <%if current_user.taggedusers.exists?(status: "Unread")%>
+                            <i class="fa fa-exclamation fa-fw"></i>
+                        <%end%>
                      <i class="fa fa-tags fa-fw"></i> Posts you're tagged in 
                      <%end%>
                 </li>
