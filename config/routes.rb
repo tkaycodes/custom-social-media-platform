@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   put '/friendships' =>'friendships#update'
 
   get '/taggedposts' => 'taggedusers#index'
+  put '/taggedpost/:id/edit' => 'taggedusers#update'
 
 
   # get '/admin'=> 'users#admin'

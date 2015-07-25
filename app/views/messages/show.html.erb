@@ -127,15 +127,12 @@
                         </div>
                         <!-- /.panel-body -->
                         <div class="panel-footer">
-                            <div class="form-inline">
                                 <%=form_for @reply, url: message_replies_path(message_id:@message.id), :html=>{class: "form-group"}, method: :post do |x|%>
                                 <%=x.hidden_field :user_id%>
-
                                 <%=x.text_field :name, class: "form-control", id: "btn-input", placeholder: "Type your message here..."%>
                                 <%=x.submit "Send", class: "btn btn-warning btn-sm", id: "btn-chat"%>
 
                                 <%end%>
-                            </div>
 
                                
                         </div>

@@ -19,7 +19,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="inbox">
-                        <%@messages.each do |x|%>
+                        <%@messages.order(created_at: 'DESC').each do |x|%>
                             <div class="panel-body">
                                 <div class="panel-group" id="accordion">
                                     <div class="panel panel-default">
@@ -57,7 +57,7 @@
                         <%if @sentmessages.empty?%>
                             No Sent Messages
                         <%else%>
-                        <%@sentmessages.each do |x|%>
+                        <%@sentmessages.order(created_at: 'DESC').each do |x|%>
                             <div class="panel-body">
                                 <div class="panel-group" id="accordion">
                                     <div class="panel panel-default">
