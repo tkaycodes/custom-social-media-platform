@@ -2,7 +2,7 @@ class TaggedusersController < ApplicationController
   def index
     #taggedusers is the join table
    @taggedusers=current_user.taggedusers
-   @unread = current_user.taggedusers.where(Status=="Unread");
+   @unread = current_user.taggedusers.where(status: "Unread");
   end
 
   def update

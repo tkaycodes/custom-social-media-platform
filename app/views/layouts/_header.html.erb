@@ -23,12 +23,8 @@
                 </li>
                 <li class="dropdown"> <!--messages dropdown-->
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        
                     <i class="fa fa-envelope fa-fw">
-                    <%current_user.recieved_messages.all.each do |x|%>
-                        <%if x.status=="Unread"%>
-                            <i class="fa fa-exclamation"></i>                       
-                        <%end%>
-                    <%end%>
                     </i>
                     <i class="fa fa-caret-down"></i>
                     </a>
@@ -149,23 +145,52 @@
                 <!-- Friendship link -->
                 <li>
                     <%= link_to friendships_path do%>
-                        <i class="fa fa-users fa-fw"></i> Friends
-                            <%if current_user.friendships.where(state:'requested').count > 0%>
-                                <i class="fa fa-exclamation"></i>
+                    <%if current_user.friendships.where(state:'requested').count > 0%>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-inverse fa-stack-1x"><%=current_user.friendships.where(state: "requested").count%></i>
+                                </span>
                             <%end%>
+                        <i class="fa fa-users fa-fw"></i> Friends
                     <%end%>
                 </li>
+
+                <!-- Messages link -->
+                <li>
+                
+                <%=link_to messages_path do %>
+                <%if current_user.recieved_messages.exists?(status: "Unread")%>
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-inverse fa-stack-1x"><%=current_user.recieved_messages.where(status: "Unread").count%></i>
+                    </span>
+                <%end%>
+                <i class="fa fa-envelope fa-fw"></i> Inbox
+
+                <%end%>
+                </li>
+
+               
+
 
                 <!-- your tagged posts link -->
 
                 <li>
                     <%=link_to taggedposts_path do %>
                         <%if current_user.taggedusers.exists?(status: "Unread")%>
-                            <i class="fa fa-exclamation fa-fw"></i>
+                            <!-- <i class="fa fa-exclamation fa-fw"></i> -->
+                             <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-inverse fa-stack-1x"><%=current_user.taggedusers.where(status: "Unread").count%></i>
+                            </span>
                         <%end%>
                      <i class="fa fa-tags fa-fw"></i> Posts you're tagged in 
                      <%end%>
                 </li>
+
+   
+
+
 
                   <li class="divider">
                       
