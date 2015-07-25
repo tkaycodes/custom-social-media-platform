@@ -18,10 +18,10 @@
 //= require_tree .
 
 
-var pollForChange = function(){
-  console.log('hi from application.js');
-};
+// var pollForChange = function(){
+//   console.log('hi from application.js');
+// };
 
 // pollForChange();
-pollInterval = setInterval(pollForChange, 5000);
+// pollInterval = setInterval(pollForChange, 5000);
 

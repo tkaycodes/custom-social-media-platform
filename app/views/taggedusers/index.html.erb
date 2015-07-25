@@ -3,6 +3,7 @@
       <div class="panel panel-primary">
           <div class="panel-heading">
              Posts you're tagged in
+             <%=@unread.count%>
           </div>
           <!-- .panel-heading -->
           <div class="panel-body">
@@ -22,10 +23,9 @@
                           </div>
                           <div class="col-md-10">
                             <%if x.type=="Image"%>
-                              <%=link_to image_tag(x.body.url, :style=>'max-width:100%;'), post_path(x), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%><br><hr>
+                              <%=link_to image_tag(x.body.url, :class=>'post_tagged_user', 'data-id': x.id ,:style=>'max-width:100%;'), post_path(x), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%><br><hr>
                               <%else%>
-                              <h2><%=link_to x.body, post_path(x), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%></h2><hr>
-                              <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>
+                             <%=link_to x.body, post_path(x), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window', class: "post_tagged_user", 'data-id': x.id}%></h2><hr>
                             <%end%>
                           </div>
                         </div>
