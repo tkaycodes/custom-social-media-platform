@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+             Posts you're tagged in<br>
+             Unread Posts: <%=@unread.count%>
+             <%#=@unread.inspect%>
+          </div>
+          <!-- .panel-heading -->
+          <div class="panel-body">
+                    <%@taggedusers.order(created_at: :desc).each do |x|%>
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <%if x.status =="Unread"%>
+                            <i class="fa fa-exclamation"></i>
+                        <%end%></a>
+                        <%#=y.user.email%>
+                        <%=x.post.created_at.strftime("%b %d %Y")%>
+                        <span id="time"><%=x.post.created_at.strftime("%l:%M%P")%></span>
+                      </div>
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-md-2">
+                            <%=image_tag(x.user.profile_picture.url, :width=>150, :height=>150)%><br>
+                            <%=x.user.email%>
+                            <%#=@tag.tag%>
+                          </div>
+                          <div class="col-md-10">
+                            <%if x.post.type=="Image"%>
+                              <%=link_to image_tag(x.post.body.url, :class=>'post_tagged_user', 'data-id': x.id ,:style=>'max-width:100%;'), post_path(x.post), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%><br><hr>
+                              <%else%>
+                             <%=link_to x.post.body, post_path(x.post), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window', class: "post_tagged_user", 'data-id': x.id}%></h2><hr>
+                            <%end%>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                      <i class="fa fa-comment fa-fw">
+                      </i>
+                      <%=x.post.comments.count%>
+                    </div>
+                  </div>
+                <%end%>
+            </div>
+          </div>
+      </div>
+  </div>
+  
+  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>

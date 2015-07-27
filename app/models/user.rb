@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
   has_many :liked_posts, through: :likes, source: :post
   #necessary cause relation User.posts already exists, so need new name
 
+  #join table
+  has_many :taggedusers
+
+  #taggeduser.posts
+  has_many :tagged_posts, through: :taggedusers, source: :post
 
   # def set_default_avatar
   #   self.profile_picture = 'defaultpic.jpg'

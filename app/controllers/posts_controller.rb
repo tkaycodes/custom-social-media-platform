@@ -2,6 +2,7 @@ class PostsController < ApplicationController
    # before_action :set_post, only: [:new, :create]
   def new
     @post = current_user.posts.new
+    @taggeduser=@post.taggedusers.new
     @post.type = params[:type]
     @tag=Tag.new
     logger.warn "HERE IS THE POST #{@post.inspect}"
@@ -9,10 +10,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(params.require(:post).permit(:body, :type, {tag_ids:[]}))
+    @post = current_user.posts.new(params.require(:post).permit(:body, :type, {tag_ids:[]}, {user_tag_ids: []}))
     if @post.save 
       redirect_to user_profile_path(current_user), notice: "saved"
       logger.warn "SAVED HERE IS THE INFO:#{@post.inspect}"
+      logger.warn "HERE ARE ALL THE TAGS FOR THE SAVED POST :#{@post.tags.inspect}"
+      logger.warn "HERE ARE ALL THE USERS TAGGED IN SAVED POST :#{@post.user_tags.inspect}"
+
+
     else
       redirect_to user_profile_path(current_user), notice: "coudlnt save"
       logger.warn "THIS IS WHY WE CANT SAVE:#{@post.errors.inspect}"
