@@ -33,7 +33,7 @@ class LikesController < ApplicationController
           redirect_to :back, notice: 'Unliked'
         }
         format.json{
-          render json: {status: 200, notice: 'unliked'}
+          render json: {status: 200, notice: 'unliked'}        
         }
       end
     else

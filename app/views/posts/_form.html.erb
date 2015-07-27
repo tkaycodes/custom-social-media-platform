@@ -51,17 +51,13 @@
 
       <div class="modal-footer">
         <%=@liked.inspect%>
-        <%if @liked.empty?%>
-            <%#=link_to likes_path(:id=>@post.id), method: :post, style: 'float:left', id: 'likebutton' do %>
-            <!-- <button id="likebutton">      fa      </button> -->
-  <i class="fa fa-thumbs-o-up btn" id="likebutton">Like</i>
-            <%#end%>
-        <%else%>
-            <%#=link_to like_path(:id=>@liked.first.id), method: :DELETE, style: 'float:left', id: 'unlikebutton' do%>
-            <!-- <button id="unlikebutton">    fdsa        </button> -->
-<i class="fa fa-thumbs-up btn" id="unlikebutton">Unlike</i>
-            <%#end%>
-        <%end%>
+      
+  <i class="fa fa-thumbs-o-up btn" id="likebutton" <%if !@liked.empty?%>
+style="display:none" <%end%>>Like</i>
+          
+<i class="fa fa-thumbs-up btn" id="unlikebutton" <%if @liked.empty?%>style="display:none"<%else%>data-likeid="<%=@firstone.id%>"<%end%>>Unlike</i>
+          
+       
         <h5>Posted:<%=@post.created_at%></h5>
       </div>
 

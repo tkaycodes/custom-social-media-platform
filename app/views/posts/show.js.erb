@@ -11,10 +11,15 @@ $(document).ready(function(){
       data: {id: '<%=@post.id%>'},
       success: function(data)
       {
+      console.log('sucess');
+      $('#likebutton').hide();
+      $('#unlikebutton').show();
+      $('#unlikebutton').data('likeid', data.id)
            console.log(data);
       },
       error: function(result){
         console.log(result);
+        console.log('error');
       }
       // error: function(result){
       //     console.log(result);
@@ -23,13 +28,28 @@ $(document).ready(function(){
     });
   });
 
-  if ($('#unlikebutton').length) {
     $('#unlikebutton').on("click", function(){
-
-   console.log('hi');
+    console.log($('#unlikebutton').data("likeid"))
+    var likeid = $('#unlikebutton').data("likeid");
+      $.ajax({
+        url: 'likes/'+likeid,
+        method: 'delete',
+        dataType: 'json',
+        success: function(data)
+        {
+        console.log('sucess');
+        $('#unlikebutton').hide();
+        $('#likebutton').show();
+             console.log(data);
+        },
+        error: function(result){
+          console.log(result);
+          console.log('error');
+        }
+    });
 
   });
-  }
   
+
 
 });
