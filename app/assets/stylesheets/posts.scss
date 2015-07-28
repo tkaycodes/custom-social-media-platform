@@ -30,6 +30,11 @@ float:right;
   padding-bottom: 10px;
   text-align: center;
 }
+.picture:hover {
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
 
 .status{
   border:1px solid #DDDDDD;
@@ -38,7 +43,19 @@ float:right;
   background-color: #F5F5F5;
   padding-left: 10px;
   padding-top: 10px;
+  font-family: Times New Roman;
+  color:black;
 }
+
+.statuslink{
+  text-decoration: none !important;
+}
+
+.status:hover {
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
 
 
 
