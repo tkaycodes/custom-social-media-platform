@@ -74,7 +74,18 @@
                                   </span>
                               <!-- actual hidden comments -->
                               <div class="commentsonindex dontshowme">
-                                <%y.comments.each do |x|%>
+                                <div class="row">
+                                  <div class="col-md-1">
+                                    <%=image_tag(current_user.profile_picture, width: '50px', height: '50px')%>
+                                  </div>
+                                  <div class="col-md-11 newcomment">
+                                    <%=simple_form_for @comment do |x|%>
+                                    <%=x.hidden_field :post_id, value: y.id%>
+                                    <%=x.text_field :comment, placeholder: "write a comment", class: "form-control"%>
+                                    <%end%>
+                                  </div>
+                                </div><hr>
+                                <%y.comments.order(created_at: "DESC").each do |x|%>
                                 <div class="row">
                                     <div class="col-md-1">
                                       <%=image_tag(x.user.profile_picture, width:'50px', height:'50px', 'padding-left':'10px')%>
@@ -182,10 +193,17 @@
   </div>
 
   <script>
-  $('.commentsandtags').click(function(){
+  $('.commentsandtags').click(function(event){
     // find all children nodes with element div class of commentsonindex
+    console.log(event.target)
+    // prevent slidetoggle if user clicks comment input box
+    if ($(event.target).is("input")){
+      return; 
+    }
+    else{
     var result =$(this).find("div.commentsonindex")
     result.slideToggle("fast");
+    }
   });
   </script>
 

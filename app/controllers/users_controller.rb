@@ -9,6 +9,7 @@ class UsersController < ApplicationController
       format.html{}
       format.json{render :json=>@users}
     end
+    @comment = Comment.new
   end
 
   def show
