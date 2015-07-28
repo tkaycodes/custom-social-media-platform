@@ -56,9 +56,26 @@ float:right;
   -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   }
+  
+
+// the div showing the icons for comment and like
+.commentsandtags{
+  background-color: #F5F5F5;
+  border:1px solid #DDDDDD;
+  cursor:pointer;
+}
+.commentsandtags:hover {
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
 
 
+// the actual comments - which are hidden by default 
+.commentsonindex{
+background-color: yellow;
+}
 
-// .tags{
-//   float:right;
-// }
+.dontshowme{
+  display:none;
+}

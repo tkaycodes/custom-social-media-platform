@@ -59,6 +59,8 @@
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-9">
+                              <!-- comment and like icons -->
+                              <div class="commentsandtags">
                                   <i class="fa fa-thumbs-up fa-fw">
                                   </i>
                                   <%=y.likes.count%>
@@ -70,13 +72,24 @@
                                       #<%=link_to x.tag, tag_path(x)%>
                                   <%end%>
                                   </span>
-                                </div>
+                              <!-- actual hidden comments -->
+                              <div class="commentsonindex dontshowme">
+                                  <%y.comments.each do |x|%>
+                                  <%=x.comment%><br>
+                                  <%end%>            
+                              </div>
+                              </div>
+
                             </div>
+                        </div>
                         </div>
                     </div>
                 <%end%>
               <%end%>
               </div>
+
+
+              <!-- statuses only -->
 
               <div class="tab-pane fade in active" id="statuses">
                 <%current_user.friends.each do |x|%>
@@ -114,6 +127,8 @@
                 <%end%>
               </div>
 
+
+              <!-- images only -->
               <div class="tab-pane fade in active" id="images">
                 <%current_user.friends.each do |x|%>
                 <%x.images.order(created_at: :desc).each do |y|%>
@@ -157,6 +172,13 @@
   <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   </div>
 
+  <script>
+  $('.commentsandtags').click(function(){
+    // find all children nodes with element div class of commentsonindex
+    var result =$(this).find("div.commentsonindex")
+    result.slideToggle("fast");
+  });
+  </script>
 
 
 
