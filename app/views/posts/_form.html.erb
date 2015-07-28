@@ -58,12 +58,22 @@
       </div>
 
       <div class="modal-footer">
-        <%=@liked.inspect%>
       
-  <i class="fa fa-thumbs-o-up btn" id="likebutton" <%if !@liked.empty?%>
-style="display:none" <%end%>>Like</i>
-          
-<i class="fa fa-thumbs-up btn" id="unlikebutton" <%if @liked.empty?%>style="display:none"<%else%>data-likeid="<%=@firstone.id%>"<%end%>>Unlike</i>
+      <!-- if @liked is empty - that means the current post has not been liked 
+      by the current user -->
+      <i class="fa fa-thumbs-o-up btn" id="likebutton" 
+        <%if !@liked.empty?%>
+          style="display:none" 
+        <%end%>>Like
+      </i>
+      <!-- in this case, show like button  -->
+      <!-- if liked is not empty - hide it -->
+
+
+      <!-- if @liked is empty - that means the current post has not been liked by the current user  -->
+      <!-- in this case, hide the unlike button -->
+      <!-- if liked is not empty - like exists, the unlike button will be shown, and give this unlike button a data-attribute with the like id -->
+      <i class="fa fa-thumbs-up btn" id="unlikebutton" <%if @liked.empty?%>style="display:none"<%else%>data-likeid="<%=@liked[0].id%>"<%end%>>Unlike</i>
           
        
         <h5>Posted:<%=@post.created_at%></h5>

@@ -30,7 +30,6 @@ class PostsController < ApplicationController
     @comment = @post.comments.new(user_id: current_user.id)
     @comment.user=current_user
     @liked=Like.where(user_id:current_user.id, post_id: @post.id)
-    @firstone=@liked.first
     respond_to do |format|
       format.html
       format.js

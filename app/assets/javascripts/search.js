@@ -21,7 +21,7 @@ $(document).ready(function(){
   console.log(mapped);
  // var availableTags = ["hi", "bye", "hippo"];
    $('#usersearchbox').autocomplete({
-    source: mapped,
+     source: mapped,
      // source: availableTags,
     select: function(event, ui){
       event.preventDefault();

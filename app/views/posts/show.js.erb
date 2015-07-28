@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $("#modal-window").html("<%= escape_javascript(render 'posts/form') %>");
 
-  
+  // <!-- no likes so like button is showing.. -->
   $('#likebutton').on("click", function(){
     console.log("liked");
     $.ajax({
@@ -12,9 +12,12 @@ $(document).ready(function(){
       success: function(data)
       {
       console.log('sucess');
+      // <!-- after ajax success hide it and show unlike button -->
       $('#likebutton').hide();
       $('#unlikebutton').show();
-      $('#unlikebutton').data('likeid', data.id)
+      // <!-- the unlike button will now have id of the like we just created -->
+      // <!-- we set the unlike button data attribute likeid to equal the return value of the ajax like create -->
+      $('#unlikebutton').data('likeid', data.id);
            console.log(data);
       },
       error: function(result){
@@ -28,8 +31,10 @@ $(document).ready(function(){
     });
   });
 
+    // <!-- liked .. so unlike button is showing -->
+    // <!-- always make a delete request to the id contained inside the data-attribute of the button itself -->
     $('#unlikebutton').on("click", function(){
-    console.log($('#unlikebutton').data("likeid"))
+    console.log($('#unlikebutton').data("likeid"));
     var likeid = $('#unlikebutton').data("likeid");
       $.ajax({
         url: 'likes/'+likeid,
