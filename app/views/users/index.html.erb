@@ -18,12 +18,12 @@
                   </li>
               </ul>
             <div class="tab-content">
+              <!-- all posts -->
               <div class="tab-pane fade in active" id="allposts">
                 <%current_user.friends.each do |x|%>
                   <%x.posts.order(created_at: :desc).each do |y|%>
                     <div class="panel panel-info">
-                      <div class="panel-heading indexpageheading">
-                        <%#=y.user.email%>
+                      <div class="panel-heading">
                         <%=y.created_at.strftime("%b %d %Y")%>
                         <span id="time"><%=y.created_at.strftime("%l:%M%P")%></span>
                       </div>
@@ -33,45 +33,46 @@
                             <%=image_tag(x.profile_picture.url, class: 'feedprofilepic')%><br>
                             <span><%=y.user.email%></span>
                           </div>
-                          <div class="col-md-9 userpost">
+                          <div class="col-md-9">
                             <%if y.type=="Image"%>
-                            <div class="picture">
-                              <%=link_to image_tag(y.body.url, :style=>'max-width:100%;max-height:100%;'), post_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>
-                            </div><br>
+                              <!-- link_to can accept block, this will make whole picture containing div a link -->
+                              <%=link_to post_path(y), {remote:true, 
+                                'data-toggle':"modal", 'data-target': "#modal-window"} do  %>
+                                    <div class="picture">
+                                      <%=image_tag(y.body.url, :style=>'max-width:100%;max_height:100;')%>
+                                    </div>
+                                  <%end%><br>
                               <%else%>
-                              <h2><div class="status"><%=link_to y.body, post_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%></div></h2>
-                              <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>
+                            <%=link_to post_path(y), {remote: true, 'data-toggle':"modal", 'data-target': "modal-window"} do%>
+                              <h2>
+                                <div class="status">
+                                  <%=y.body%>
+                                </div>
+                              </h2>
+                            <%end%>
                             <%end%>
                           </div>
                         </div>
-
-
-
-
+                        <!-- comments, likes, and tags -->
                         <div class="row"> 
-                        <div class="col-md-3">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-9">
+                                  <i class="fa fa-thumbs-up fa-fw">
+                                  </i>
+                                  <%=y.likes.count%>
+                                  <i class="fa fa-comment fa-fw">
+                                  </i>
+                                  <%=y.comments.count%>
+                                  <span class="tags">
+                                  <%y.tags.each do |x|%>
+                                      #<%=link_to x.tag, tag_path(x)%>
+                                  <%end%>
+                                  </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-9">
-                          <i class="fa fa-thumbs-up fa-fw">
-                          </i>
-                          <%=y.likes.count%>
-                          <i class="fa fa-comment fa-fw">
-                          </i>
-                          <%=y.comments.count%>
-                          <span class="tags">
-                          <%y.tags.each do |x|%>
-                              #<%=link_to x.tag, tag_path(x)%>
-                          <%end%>
-                          </span>
-                        </div>
-                      </div>
                     </div>
-
-
-                    </div>
-                    <!-- <div class="panel-footer"> -->
-                     
-                  <!-- </div> -->
                 <%end%>
               <%end%>
               </div>
