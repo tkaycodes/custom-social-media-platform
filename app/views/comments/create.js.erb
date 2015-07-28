@@ -1,3 +1,3 @@
-$('#commentlist').append("<%= escape_javascript(render partial: 'form', locals: {data: @comment}) %>")
-$('#comment_comment').val('');
+$('.commentlist').prepend("<%= escape_javascript(render partial: 'form', locals: {x: @comment}) %>")
+$('.commentinput').val('');
  

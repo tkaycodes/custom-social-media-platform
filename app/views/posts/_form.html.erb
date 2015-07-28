@@ -20,9 +20,9 @@
             </div>
           <div class="col-md-4">
             <h4>Comments:</h4>
-            <div id="commentlist">
+            <div class="commentlist">
               <%@comments.each do |x|%>
-                <%=render partial: 'comments/form', locals: {data: x}%>
+                <%=render partial: 'comments/form', locals: {x: x}%>
               <%end%>
 
             </div>
@@ -33,7 +33,7 @@
               <%=x.hidden_field :post_id%>
               <%=x.hidden_field :user_id%>
               <%#=x.label :comment%>
-              <%=x.text_area :comment, class: "form-control"%><br>
+              <%=x.text_area :comment, class: "form-control commentinput"%><br>
               <!-- <input type="text" class="form-control" placeholder="Text input"> -->
               <%=x.submit "Post", id: "commentsubmit"%>
               <%end%>

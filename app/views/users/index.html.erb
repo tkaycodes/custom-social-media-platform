@@ -79,24 +79,18 @@
                                     <%=image_tag(current_user.profile_picture, width: '50px', height: '50px')%>
                                   </div>
                                   <div class="col-md-11 newcomment">
-                                    <%=simple_form_for @comment do |x|%>
+                                    <%=simple_form_for @comment, {remote: true, controller: 'comments', action:'create'} do |x|%>
+                                    <%=x.hidden_field :user_id, value: current_user.id%>
                                     <%=x.hidden_field :post_id, value: y.id%>
-                                    <%=x.text_field :comment, placeholder: "write a comment", class: "form-control"%>
+                                    <%=x.text_field :comment, placeholder: "write a comment", class: "form-control commentinput"%>
                                     <%end%>
                                   </div>
                                 </div><hr>
+                                <div class="commentlist">
                                 <%y.comments.order(created_at: "DESC").each do |x|%>
-                                <div class="row">
-                                    <div class="col-md-1">
-                                      <%=image_tag(x.user.profile_picture, width:'50px', height:'50px', 'padding-left':'10px')%>
-                                      </div>
-                                    <div class="col-md-11" style="margin-top: -5px;">
-                                      <strong><%=x.user.email%></strong><br>
-                                      <%=x.comment%><br>
-                                      <span id="timeagoinwords"><%=time_ago_in_words(x.created_at)%> ago</span>
-                                    </div>
-                                </div><br>
+                                <%=render partial: 'comments/form', locals: {x:x}%>
                                 <%end%>
+                              </div>
                               </div>
                               </div>
 
