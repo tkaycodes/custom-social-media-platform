@@ -73,9 +73,13 @@ float:right;
 
 // the actual comments - which are hidden by default 
 .commentsonindex{
-background-color: yellow;
+  background-color: #F5F5F5;
 }
 
 .dontshowme{
   display:none;
+}
+
+#timeagoinwords{
+  font-size: 10px;
 }
