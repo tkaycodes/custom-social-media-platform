@@ -83,3 +83,26 @@ float:right;
 #timeagoinwords{
   font-size: 10px;
 }
+
+.likeonindex{
+  background-color: #F5F5F5;
+  border:1px solid #DDDDDD;
+  cursor: pointer;
+}
+.likeonindex:hover{
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
+
+  .unlikeonindex{
+  background-color: #F5F5F5;
+  border:1px solid #DDDDDD;
+  width:60px;
+  cursor: pointer;
+}
+.unlikeonindex:hover{
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
