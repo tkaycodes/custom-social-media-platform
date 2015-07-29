@@ -1,83 +1,54 @@
 <div class="modal-dialog modal-lg" role="document">
   <div class="modal-content">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h5 id="myModalLabel"><%=image_tag(@post.user.profile_picture, size: "50")%><%=@post.user.email%></h5>
+           <div class="modal-header customheader">
+            <button type="button" class="close custombutton" data-dismiss="modal" aria-hidden="true">×</button>
+            <!-- <h5 id="myModalLabel"><%#=image_tag(@post.user.profile_picture, size: "50")%><%#=@post.user.email%></h5> -->
           </div>
 
-        <div class="modal-body">
-          <div class="row"> 
-            <div class="col-md-8">
-              <%if @post.is_status?%>
-                <%#=@post.user.email%>
-                <h2><%=@post.body%><br></h2>
-              <%else%>
-                <!-- <h5><%#=@post.user.email%>:</h5> -->
-                <%=image_tag @post.body, :style=> "max-width: 100%"%><br>
-                <!-- Posted:<%#=@post.created_at%><br><hr> -->
-              <%end%>
+          <div class="modal-body">
+            <div class="row"> 
+                <div class="col-md-12">
+                  <%if @post.is_status?%>
+                    <%#=@post.user.email%>
+                    <h2><%=@post.body%><br></h2>
+                  <%else%>
+                    <!-- <h5><%#=@post.user.email%>:</h5> -->
+                    <%=image_tag @post.body, :style=> "max-width: 100%"%><br>
+                    <!-- Posted:<%#=@post.created_at%><br><hr> -->
+                  <%end%>
+                </div>
             </div>
-          <div class="col-md-4">
-            <h4>Comments:</h4>
-            <div class="commentlist">
-              <%@comments.each do |x|%>
-                <%=render partial: 'comments/form', locals: {x: x}%>
-              <%end%>
-
+            <div class="row">
+              <div class="col-md-4">
+                <%@post.tags.each do |x|%>
+                  #<%=link_to x.tag, tag_path(x)%>
+                <%end%>
+              </div>
+              <div class="col-md-4">
+                <%if !@post.user_tags.empty?%>Users tagged in this post:
+                  <%@post.user_tags.each do |x|%>
+                    @<%=link_to x.email, user_profile_path(x)%>
+                  <%end%>
+                <%end%>
+              </div>
             </div>
-
-            <%=form_for @comment, :html => {:class => "form-horizontal center"}, remote: true do |x|%>
-             <%#=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
-            <!-- <div class="form-group"> -->
-              <%=x.hidden_field :post_id%>
-              <%=x.hidden_field :user_id%>
-              <%#=x.label :comment%>
-              <%=x.text_area :comment, class: "form-control commentinput"%><br>
-              <!-- <input type="text" class="form-control" placeholder="Text input"> -->
-              <%=x.submit "Post", id: "commentsubmit"%>
-              <%end%>
-            <!-- </div> -->
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <%@post.tags.each do |x|%>
-            #<%=link_to x.tag, tag_path(x)%>
-            <%end%>
+
+          <div class="modal-footer">
+            <!-- if @liked is empty - that means the current post has not been liked 
+            by the current user -->
+            <i class="fa fa-thumbs-o-up btn" id="likebutton" 
+              <%if !@liked.empty?%> style="display:none" 
+              <%end%>>Like
+            </i>
+            <!-- in this case, show like button  -->
+            <!-- if liked is not empty - hide it -->
+            <!-- if @liked is empty - that means the current post has not been liked by the current user  -->
+            <!-- in this case, hide the unlike button -->
+            <!-- if liked is not empty - like exists, the unlike button will be shown, and give this unlike button a data-attribute with the like id -->
+            <i class="fa fa-thumbs-up btn" id="unlikebutton" <%if @liked.empty?%>style="display:none"<%else%>data-likeid="<%=@liked[0].id%>"<%end%>>Unlike</i>
+            <h5>Posted:<%=@post.created_at%></h5>
           </div>
-          <div class="col-md-4">
-            <%if !@post.user_tags.empty?%>
-              Users tagged in this post:
-              <%@post.user_tags.each do |x|%>
-                @<%=link_to x.email, user_profile_path(x)%>
-              <%end%>
-            <%end%>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-footer">
-      
-      <!-- if @liked is empty - that means the current post has not been liked 
-      by the current user -->
-      <i class="fa fa-thumbs-o-up btn" id="likebutton" 
-        <%if !@liked.empty?%>
-          style="display:none" 
-        <%end%>>Like
-      </i>
-      <!-- in this case, show like button  -->
-      <!-- if liked is not empty - hide it -->
-
-
-      <!-- if @liked is empty - that means the current post has not been liked by the current user  -->
-      <!-- in this case, hide the unlike button -->
-      <!-- if liked is not empty - like exists, the unlike button will be shown, and give this unlike button a data-attribute with the like id -->
-      <i class="fa fa-thumbs-up btn" id="unlikebutton" <%if @liked.empty?%>style="display:none"<%else%>data-likeid="<%=@liked[0].id%>"<%end%>>Unlike</i>
-          
-       
-        <h5>Posted:<%=@post.created_at%></h5>
-      </div>
 
   </div>
 </div>

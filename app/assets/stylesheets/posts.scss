@@ -88,6 +88,7 @@ float:right;
   background-color: #F5F5F5;
   border:1px solid #DDDDDD;
   cursor: pointer;
+  width:60px;
 }
 .likeonindex:hover{
   -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
@@ -106,3 +107,9 @@ float:right;
   -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
   }
+
+
+.commentinput{
+  margin-left: 10px;
+  width:97%
+}

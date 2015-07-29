@@ -75,12 +75,10 @@
                             <div class="col-md-8">
                               <!-- comment and like icons -->
                               <div class="commentsandtags">
-                                  <i class="fa fa-thumbs-up fa-fw"></i>
-                                  <%=y.likes.count%>
-                                  <i class="fa fa-comment fa-fw">
+                                  <i class="fa fa-thumbs-up fa-fw"><%=y.likes.count%></i>&nbsp;
+                                  <i class="fa fa-comment fa-fw"><%=y.comments.count%>
                                   </i>
-                                  <%=y.comments.count%>
-                                  <span class="tags">
+                                  <span class="tags" style="margin-left:20px">
                                   <%y.tags.each do |x|%>
                                       #<%=link_to x.tag, tag_path(x)%>
                                   <%end%>
@@ -204,7 +202,7 @@
     // find all children nodes with element div class of commentsonindex
     console.log(event.target)
     // prevent slidetoggle if user clicks comment input box
-    if ($(event.target).is("input")){
+    if (($(event.target).is("input"))  || ($(event.target).is("input"))     ){
       return; 
     }
     else{

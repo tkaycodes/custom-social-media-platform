@@ -29,6 +29,12 @@ $(document).ready(function(){
       console.log('sucess');
       $('.unlikeonindex').data('likeid', data.id);
            console.log(data);
+      var col1=likebutton.siblings('.unlikeonindex').parent();
+      var col8=col1.siblings('.col-md-8');
+      var thumb = col8.find('.fa-thumbs-up');
+      var oldval = thumb.html();
+      var newval =parseInt(oldval, 10)+1;
+      thumb.html(newval);
       },
       error: function(result){
         console.log(result);
@@ -53,6 +59,10 @@ $(document).ready(function(){
         console.log('sucesssfully unliked');
         unlikebutton.hide();
         unlikebutton.siblings(".likeonindex").show();
+        var thumb=(unlikebutton.siblings(".likeonindex").parent()).siblings('.col-md-8').find('.fa-thumbs-up');
+        var oldval=thumb.html();
+        var newval=parseInt(oldval,10)-1;
+        thumb.html(newval);
         },
         error: function(error){
           console.log(error);
