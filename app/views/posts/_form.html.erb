@@ -7,26 +7,22 @@
 
           <div class="modal-body postbodycustom">
             <div class="row"> 
-                <div class="col-md-12">
+                <div class="col-md-12" style="padding-left:0px;padding-right:0px">
                     <%if @post.is_status?%>
-                      <div class="postdiv">
-                        <div id="poststatuscustom">
-                          <%=@post.body%>
-                        </div>
+                      <div id="statuspost">
+                            <%=@post.body%>
                         <%if !@post.tags.empty?%>
                         <div class="col-md-12" id="imageoverlay" style="display:none">
                           <%@post.tags.each do |x|%>
                           <span style="color:white">#</span>
-                          <%=link_to x.tag, tag_path(x), style:"color:white"%>
+                          <%=link_to x.tag, tag_path(x), style:"color:white;margin-left:-3px;margin-right:3px;"%>
                           <%end%>
                         </div>
                         <%end%>
                     </div> 
                     <%else%>
-                      <div class="postdiv">
-                        <div id="imagediv">
+                      <div class="imagediv">
                           <%=image_tag @post.body, :style=> "max-width: 100%"%>
-                        </div>
                         <%if !@post.tags.empty?%>
                         <div class="col-md-12" id="imageoverlay" style="display:none">
                           <%@post.tags.each do |x|%>
@@ -77,3 +73,29 @@ $('.postbodycustom').hover(function(){
   $('#imageoverlay').toggle();
 })
 </script>
+
+
+
+
+
+
+<!-- comments -->
+ <!-- <div class="col-md-4"> -->
+            <!-- <h4>Comments:</h4> -->
+            <!-- <div class="commentlist"> -->
+              <%#@comments.each do |x|%>
+                <%#=render partial: 'comments/form', locals: {x: x}%>
+              <%#end%>
+
+  <!-- </div> -->
+
+            <%#=form_for @comment, :html => {:class => "form-horizontal center"}, remote: true do |x|%>
+             <%#=form_for @comment, :html => {:class => "form-horizontal center"} do |x|%>
+            <!-- <div class="form-group"> -->
+              <%#=x.hidden_field :post_id%>
+              <%#=x.hidden_field :user_id%>
+              <%#=x.label :comment%>
+              <!-- <%#=x.text_area :comment, class: "form-control commentinput"%><br> -->
+              <!-- <input type="text" class="form-control" placeholder="Text input"> -->
+              <%#=x.submit "Post", id: "commentsubmit"%>
+              <%#end%>
