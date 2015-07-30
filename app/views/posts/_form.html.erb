@@ -43,13 +43,13 @@
             </div>
 
           <div class="modal-footer">
-            <div>
-            <%if !@post.user_tags.empty?%>Users tagged in this post:
+            <div style="float:left">
+            <%if !@post.user_tags.empty?%>Tagged Users:
                           <%@post.user_tags.each do |x|%>
                             @<%=link_to x.email, user_profile_path(x)%>
                           <%end%>
                         <%end%>
-                      </div>
+                      </div><br>
             <!-- if @liked is empty - that means the current post has not been liked 
             by the current user -->
             <i class="fa fa-thumbs-o-up btn" id="likebutton" 
@@ -62,7 +62,7 @@
             <!-- in this case, hide the unlike button -->
             <!-- if liked is not empty - like exists, the unlike button will be shown, and give this unlike button a data-attribute with the like id -->
             <i class="fa fa-thumbs-up btn" id="unlikebutton" <%if @liked.empty?%>style="display:none"<%else%>data-likeid="<%=@liked[0].id%>"<%end%>>Unlike</i>
-            <h5>Posted:<%=@post.created_at.strftime("%b %d/%y %l:%M%P")%></h5>
+            <%=@post.created_at.strftime("%b %d/%y %l:%M%P")%></h5>
           </div>
 
   </div>
