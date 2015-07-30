@@ -7,3 +7,31 @@ border-bottom:none;
 .custombutton{
   padding-right:3px;
 }
+
+
+.postdiv{
+  width:100%;
+  background-color: #F5F5F5;
+  min-height: 200px;
+}
+
+.postbodycustom{
+  padding-top:0px;
+  padding-left:0px;
+  padding-right:0px;
+}
+
+#poststatuscustom{
+  font-family: Times New Roman;
+  font-size:40px;
+  padding: 10px 10px 10px 10px;
+}
+
+#imageoverlay{
+  background-color:rgba(0,0,0,0.5);
+  // position:absolute;
+  z-index:9999;
+  width:100%;
+  bottom:0;
+  min-height: 40px;
+}
