@@ -19,5 +19,40 @@ class CommentsController < ApplicationController
     end
   end
 
+  def update
+    @comment=Comment.find(params[:id])
+    logger.warn "update function called, here are the params: #{params.inspect}"
+      if @comment.update(params.require(:comment).permit(:comment, :post_id, :user_id))
+        logger.warn "comment udpated"
+          respond_to do |format|
+            format.html{redirect_to :back, notice: "udpated"}
+            format.js{}
+          end
+      else
+        logger.warn "error while updating comment"
+          respond_to do |format|
+            format.html{redirect_to :back, notice: "cant update "}
+            format.js{}
+          end
+      end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.delete
+      logger.warn "comment deleted"
+      respond_to do |format|
+        format.html{redirect_to :back, notice: "deleted"}
+        format.js{}
+      end
+    else
+      logger.warn "error while deleting comment"
+      respond_to do |format|
+        format.html{redirect_to :back, notice: "cant delete "}
+        format.js{}
+      end
+    end
+  end
+
 end
   

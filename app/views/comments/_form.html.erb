@@ -3,8 +3,13 @@
   <%=image_tag(x.user.profile_picture, width:'50px', height:'50px', 'padding-left':'10px')%>
   </div>
   <div class="col-md-11" style="margin-top: -5px;padding-left:30px">
-  <strong><%=x.user.email%></strong><br>
-  <%=x.comment%><br>
+    <strong><%=x.user.email%></strong>
+        <%if x.user_id==current_user.id%>
+          <%=link_to "delete", comment_path(x), method: :delete, id:'comment_'+x.id.to_s, remote: true%>
+          <%=link_to "edit", comment_path(x), method: :put, remote: true%>
+        <%end%>
+    <br>
+    <%=x.comment%><br>
   <span id="timeagoinwords"><%=time_ago_in_words(x.created_at)%> ago</span>
   </div>
 </div><br>
