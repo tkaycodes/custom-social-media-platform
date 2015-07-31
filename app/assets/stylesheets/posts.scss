@@ -45,6 +45,7 @@ float:right;
   padding-top: 10px;
   font-family: Times New Roman;
   color:black;
+  overflow:scroll;
 }
 
 .statuslink{
@@ -111,5 +112,18 @@ float:right;
 
 .commentinput{
   margin-left: 10px;
-  width:97%
+  width:97%;
+}
+
+
+
+#likebutton:hover{
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+#unlikebutton:hover{
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
