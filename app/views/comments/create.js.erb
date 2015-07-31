@@ -1,4 +1,11 @@
-$('.commentlist').prepend("<%= escape_javascript(render partial: 'form', locals: {x: @comment}) %>")
-$('.commentinput').val('');
+$('.commentlist[data-postid=<%=@comment.post_id%>]').prepend("<%= escape_javascript(render partial: 'form', locals: {x: @comment}) %>")
+$('.commentinput[data-postid=<%=@comment.post_id%>]').val('');
 
- 
+<!-- console.log($('.commentlist[data-postid=<%#=@comment.post_id%>]').parent()); -->
+
+<!-- add one to the current comment count -->
+var new_val = parseInt($('.commentlist[data-postid=<%=@comment.post_id%>]').parent().siblings('.fa-comment').html())+1;
+console.log(new_val);
+
+<!-- set the new comment count -->
+$('.commentlist[data-postid=<%=@comment.post_id%>]').parent().siblings('.fa-comment').html(new_val);

@@ -37,15 +37,18 @@
                   </div>
                 </div>
             </div>
+            <%if !@post.user_tags.empty?%>
+              <span id="usertagsinpost" class="dontshowme">
+                Tagged in this post:
+              <%@post.user_tags.each do |x|%>
+                @<%=link_to x.email, user_profile_path(x)%>
+              <%end%>
+            </span><br>
+            <%end%>
 
-          <div class="modal-footer">
-            <div style="float:left">
-            <%if !@post.user_tags.empty?%>Tagged Users:
-                          <%@post.user_tags.each do |x|%>
-                            @<%=link_to x.email, user_profile_path(x)%>
-                          <%end%>
-                        <%end%>
-                      </div><br>
+
+          <div class="modal-footer customfooter">
+           
             <!-- if @liked is empty - that means the current post has not been liked 
             by the current user -->
             <i class="fa fa-thumbs-o-up btn" id="likebutton" 
@@ -71,6 +74,7 @@
 $('.postbodycustom').hover(function(){
   console.log('fdlsa');
   $('#imageoverlay').toggle();
+  $('#usertagsinpost').toggle();
 })
 </script>
 
