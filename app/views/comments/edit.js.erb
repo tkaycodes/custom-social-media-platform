@@ -1,0 +1,2 @@
+var check = $('.usercomment[data-commentid=<%=@editcomment.id%>]');
+check.html("<%= escape_javascript(render 'comments/edit') %>");

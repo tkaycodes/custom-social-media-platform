@@ -19,10 +19,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    @editcomment=Comment.find(params[:id])
+    # render text: params.inspect
+    respond_to do |format|
+      format.html{}
+      format.js{}
+    end
+  end
+
   def update
     @comment=Comment.find(params[:id])
     logger.warn "update function called, here are the params: #{params.inspect}"
       if @comment.update(params.require(:comment).permit(:comment, :post_id, :user_id))
+        logger.warn "updated and here it is #{@comment.inspect}"
         logger.warn "comment udpated"
           respond_to do |format|
             format.html{redirect_to :back, notice: "udpated"}

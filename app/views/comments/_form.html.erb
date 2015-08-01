@@ -4,14 +4,18 @@
   </div>
   <div class="col-md-11" style="margin-top: -5px;padding-left:30px">
     <strong><%=x.user.email%></strong>
+        <!-- delete and edit comment link -->
         <%if x.user_id==current_user.id%>
           <%=link_to comment_path(x), method: :delete, id:'comment_'+x.id.to_s, remote: true do %>
            <i class = "fa fa-times"></i>
           <%end%>
-          <%#=link_to "edit", comment_path(x), method: :put, remote: true%>
-        <%end%>
+          <%=link_to edit_comment_path(x), remote: true do%>
+           <i class = "fa fa-pencil"></i>
+          <%end%>
+      <%end%>
     <br>
-    <%=x.comment%><br>
+    <!-- actual comment -->
+    <span class="usercomment" data-commentid=<%=x.id%>><%=x.comment%></span><br>
   <span id="timeagoinwords"><%=time_ago_in_words(x.created_at)%> ago</span>
   </div>
 </div><br>
