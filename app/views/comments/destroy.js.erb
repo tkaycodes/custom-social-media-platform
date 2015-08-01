@@ -1,1 +1,5 @@
-$('#comment_<%=(@comment.id)%>').parent().parent().remove();
+$('#comment_<%=(@comment.id)%>').parent().parent().hide();
+var commentsandtags = $('#comment_<%=(@comment.id)%>').parents('.commentsandtags');
+var new_val=parseInt($(commentsandtags.children('.fa-comment')).html())-1;
+$(commentsandtags.children('.fa-comment')).html(new_val);
+

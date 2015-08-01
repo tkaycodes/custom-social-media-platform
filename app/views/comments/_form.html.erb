@@ -5,8 +5,10 @@
   <div class="col-md-11" style="margin-top: -5px;padding-left:30px">
     <strong><%=x.user.email%></strong>
         <%if x.user_id==current_user.id%>
-          <%=link_to "delete", comment_path(x), method: :delete, id:'comment_'+x.id.to_s, remote: true%>
-          <%=link_to "edit", comment_path(x), method: :put, remote: true%>
+          <%=link_to comment_path(x), method: :delete, id:'comment_'+x.id.to_s, remote: true do %>
+           <i class = "fa fa-times"></i>
+          <%end%>
+          <%#=link_to "edit", comment_path(x), method: :put, remote: true%>
         <%end%>
     <br>
     <%=x.comment%><br>
