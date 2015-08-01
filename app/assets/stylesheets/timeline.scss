@@ -1,7 +1,19 @@
+.smalltext{
+    font-size: 10px;
+    padding-right: 5px;
+}
+
 .timeline {
     position: relative;
     padding: 20px 0 20px;
     list-style: none;
+}
+
+#headerindymessage{
+}
+
+.unread{
+    background-color: #EEEEEE;
 }
 
 .timeline:before {

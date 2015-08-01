@@ -24,29 +24,34 @@
                 <li class="dropdown"> <!--messages dropdown-->
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         
-                    <i class="fa fa-envelope fa-fw">
+                    <i class="fa fa-comments fa-fw">
                     </i>
                     <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages">
-                        <%current_user.recieved_messages.all.order(created_at: :desc).each do |x|%>
+                        <li style="padding-left:10px;">Your most recent messages:</li>
+                        <li class="divider"></li>
+                        <%current_user.recieved_messages.all.order(created_at: :desc).limit(4).each do |x|%>
                             <li>
-                        <div class="messageemail" data-id="<%=x.id%>">
+                                <%=link_to message_path(x), class:"messageemail", 'data-id':x.id, style:"padding: 3px 2px 3px 10px;" do %>
+                                    <!-- <div class="messageemail" data-id="<%#=x.id%>"> -->
+                                        <%if x.status=="Unread"%>
+                                        <script>
+                                            $('.messageemail[data-id=<%=x.id%>]').children('.smalltext').append('<i class="fa fa-circle"></i>');
+                                            $('.messageemail[data-id=<%=x.id%>]').addClass('unread');
 
-                                <%=link_to message_path(x) do %>
-                                <!-- <a href="/messages"> -->
-                                    <%if x.status=="Unread"%>
-                                    <i class="fa fa-exclamation"></i><%end%>
-                                        <strong><%=x.sender.email%></strong>
-                                        <span class="pull-right text-muted">
-                                        <em><%=time_ago_in_words(x.created_at)%></em>
+                                        </script>
+                                        <!-- <i class="fa fa-circle"></i> -->
+                                            <!-- <i class="fa fa-exclamation"></i> -->
+                                        <%end%>
+                                        <%=image_tag(x.sender.profile_picture, size:"30", class:"img-circle")%>
+                                        <span class="pull-right text-muted smalltext">
+                                            <em><%=time_ago_in_words(x.created_at)%> ago</em>
                                         </span>
-                                    </div>
-                                    <div>
+                                        <strong><%=x.sender.email%></strong><br>
                                         <%=x.message%>
-                                    </div>
-                                <!-- </a> -->
-                                <%end%>
+                                    <!-- </div> -->
+                                 <%end%>
                             </li>
                             <li class="divider">
                             </li>

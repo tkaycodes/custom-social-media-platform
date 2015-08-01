@@ -2,6 +2,17 @@
 @import "bootstrap";
 @import "jquery.ui.all";
 
+.messageemail{
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-messages{
+    width:400px !important;
+}
+.navbar-default{
+    margin-bottom: 5px;
+}
 #bannersubtext{
     font-size: 10px;
 }
