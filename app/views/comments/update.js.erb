@@ -1,3 +1,6 @@
 var check =$('#edit_comment_<%=@comment.id%>');
 var inputvalue = check.children('#comment_comment').val();
 $('#edit_comment_<%=@comment.id%>').html(inputvalue);
+
+var check2="edited: "+"<%=time_ago_in_words(@comment.updated_at)%>"+" ago"
+$('#edit_comment_<%=@comment.id%>').parent().siblings('.timeagoinwords').html(check2);
