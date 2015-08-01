@@ -2,7 +2,7 @@
   <div class="col-lg-12">
       <div class="panel panel-primary">
           <div class="panel-heading">
-             Your Home Feed
+             <strong>Your News Feed</strong>
           </div>
           <!-- .panel-heading -->
           <div class="panel-body">
@@ -30,8 +30,10 @@
                       <div class="panel-body">
                         <div class="row">
                           <div class="col-md-3">
+                            <%=link_to user_profile_path(x)do%>
                             <%=image_tag(x.profile_picture.url, class: 'feedprofilepic')%><br>
                             <span><%=y.user.email%></span>
+                            <%end%>
                           </div>
                           <div class="col-md-9">
                             <%if y.type=="Image"%>

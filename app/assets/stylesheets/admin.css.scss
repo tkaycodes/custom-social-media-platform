@@ -2,6 +2,10 @@
 @import "bootstrap";
 @import "jquery.ui.all";
 
+#bannersubtext{
+    font-size: 10px;
+}
+
 .navbar-default.sidebar{
     margin-top: 0px;
 }
@@ -9,7 +13,7 @@
 .navbar-brand{
     font-size: 30px;
     font-weight: bold;
-
+    color:#337AB7 !important;
 }
 
 #friendshipid{
