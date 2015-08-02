@@ -43,9 +43,9 @@
             <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>   
             <%#=link_to x.body, post_path(x)%>   
           <%end%>
-  <div id="date"><%=x.created_at.strftime("%b %d %Y")%> </div>  
-  <div id="time"><%=x.created_at.strftime("%l:%M%P")%></div>    
-<div id="likeonprofile">
+  <div id="date" class="dontshowme"><%=x.created_at.strftime("%b %d %Y")%> </div>  
+  <div id="time" class="dontshowme"><%=x.created_at.strftime("%l:%M%P")%></div>    
+<div id="likeonprofile" class="dontshowme">
   <%=link_to "", style:"color:white" do%>
   <i class="fa fa-thumbs-o-up fa-fw"></i>Like
   <%end%>
@@ -91,6 +91,15 @@
   $('.profilepagefooter').click(function(){
     $(this).children('.commentsonindex').slideToggle();
   })
+</script>
+
+<script>
+  $('.squarecorners').hover(function(){
+    // alert('hi');
+    $(this).children('#date').toggle();
+    $(this).children('#time').toggle();
+    $(this).children('#likeonprofile').toggle();
+  });
 </script>
    
 <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
