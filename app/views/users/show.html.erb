@@ -1,0 +1,105 @@
+<div class="row profilepageheader">    
+  <div class="col-md-4">   
+    <%if @user.profile_picture%>   
+      <%=image_tag(@user.profile_picture.url(:thumb), :width=>200, :height=>200, :style=>"margin-top:20px") %>   
+    <%end%>    
+  </div>   
+  <div class="col-md-8">   
+    <h3><%=@user.email%></h3>    
+    <%if @friendship.empty?%>    
+      <h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post unless @user.id==current_user.id%></h5><br>    
+      <%elsif @friendship.first.state == "accepted"%>    
+        <%=link_to "Remove Friend", friendship_path(@friendship.first.id), method: :DELETE%><br>   
+      <%#elsif @friendship.first.state == "pending" || @friendship.first.state == "declined" %>    
+        <!-- <h5><a onClick = "alert('to do')"> Cancel Request </a></h5><br> -->   
+    <%end%>    
+    <h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id) unless @user.id==current_user.id%></h5><br>    
+    Friend Count:<%=@user.friends.count%>    
+  </div>   
+</div>   
+<br><hr>   
+   
+<!-- @issue.created_at.strftime("%d %b. %Y")   
+-# Hour:Min   
+-@issue.created_at.strftime("%H:%M") -->    
+  
+<%@posts.each do |x|%>   
+    <div class="col-lg-4" style="padding-left:0px;padding-right:0px;">   
+      <div class="panel panel-info">   
+        <!-- <div class="panel-heading"><%#=x.created_at.strftime("%b %d %Y")%>     -->
+          <!-- <span id="time"><%#=x.created_at.strftime("%l:%M%P")%></span></div>    -->
+        <div class="panel-body squarecorners" style="height:300px">    
+          <%if x.type=="Image"%> 
+          <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'} do%>
+          <%=image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%;max-width:100%;")%>
+          <%end%> 
+         <%#=link_to image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%"), post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>    
+            <%#=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x)%>   
+          <%else%> 
+          <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' } do%>
+          <%=x.body%>
+
+          <%end%>  
+            <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>   
+            <%#=link_to x.body, post_path(x)%>   
+          <%end%>
+  <div id="date"><%=x.created_at.strftime("%b %d %Y")%> </div>  
+  <div id="time"><%=x.created_at.strftime("%l:%M%P")%></div>    
+<div id="likeonprofile">
+  <%=link_to "", style:"color:white" do%>
+  <i class="fa fa-thumbs-o-up fa-fw"></i>Like
+  <%end%>
+</div>
+
+
+        </div>   
+        <div class="panel-footer profilepagefooter"> 
+          <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%> 
+          <i class="fa fa-thumbs-up fa-fw"></i><%=x.likes.all.count%>  
+
+
+              <div class="commentsonindex dontshowme">
+                  <div class="row">
+                    <div class="col-md-1">
+                      <%=image_tag(current_user.profile_picture, width: '50px', height: '50px')%>
+                    </div>
+                    <div class="col-md-11 newcomment">
+                      <%=simple_form_for @comment, {remote: true, controller: 'comments', action:'create'} do |comment|%>
+                      <%=comment.hidden_field :user_id, value: current_user.id%>
+                      <%=comment.hidden_field :post_id, value: x.id%>
+                      <%=comment.text_field :comment, placeholder: "write a comment", class: "form-control commentinput", data: {postid: x.id}%>
+                      <%end%>
+                    </div>
+                  </div><hr>
+                  <div class="commentlist" data-postid="<%=x.id%>">
+                  <%x.comments.order(created_at: "DESC").each do |comment|%>
+                  <%=render partial: 'comments/form', locals: {x:comment}%>
+                  <%end%>
+                </div>
+              </div>
+
+
+        </div>   
+      </div>   
+    </div>   
+<%end%>    
+
+
+
+
+<script>
+  $('.profilepagefooter').click(function(){
+    $(this).children('.commentsonindex').slideToggle();
+  })
+</script>
+   
+<div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
+</div>   
+   
+<%if @posts.empty? && !(@user.id==current_user.id)%>   
+  <div class="alert alert-success alert-dismissable">    
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>No posts to show.    
+  </div>   
+<%end%>    
+<%=link_to "back home", root_path%>    
+   
