@@ -3,10 +3,20 @@ class RepliesController < ApplicationController
     @message = Message.find(params[:message_id])
     @reply = @message.replies.new(reply_params)
     if @reply.save
-      logger.warn "THIS IS THE REPLY THAT GOT SAVED #{@reply.inspect}"
-      redirect_to :back, notice: "replied"
+      respond_to do |format|
+        format.html{
+          logger.warn "THIS IS THE REPLY THAT GOT SAVED #{@reply.inspect}"
+          redirect_to :back, notice: "replied"
+        }
+        format.js{}
+      end
     else
-      redirect_to :back, notice: "couldnt reply right now"
+      respond_to do |format|
+        format.html{
+          redirect_to :back, notice: "couldnt reply right now"
+        }
+        format.js{}
+      end
     end
   end
 

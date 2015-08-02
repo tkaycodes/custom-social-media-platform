@@ -1,0 +1,5 @@
+$('#allmessagereplies').append('<%=j(render partial: 'messages/form', locals: {x:@reply})%>')
+$('#btn-input').val('');
+// returns y-scroll position, or can set it
+console.log($('.panel-body'));
+$('.panel-body').scrollTop($('.panel-body').prop('scrollHeight'));

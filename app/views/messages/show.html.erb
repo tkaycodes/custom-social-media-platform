@@ -23,7 +23,6 @@
                               <%if @hestartedit%>
                                 <li class="left clearfix">
                                     <span class="chat-img pull-left">
-                                        <!-- <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /> -->
                                         <%=image_tag(@message.sender.profile_picture, size:"50", class: "img-circle")%>
                                     </span>
                                     <div class="chat-body clearfix">
@@ -42,7 +41,6 @@
                                 <li class="right clearfix">
                                     <span class="chat-img pull-right">
                                       <%=image_tag(@message.sender.profile_picture, size:"50", class: "img-circle")%>
-                                        <!-- <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /> -->
                                     </span>
                                     <div class="chat-body clearfix">
                                         <div class="header">
@@ -59,58 +57,19 @@
                                     </div>
                                 </li>
                                 <%end%>
-                                
+                                <div id="allmessagereplies">
                                 <%@message.replies.all.each do |x|%>
-                                    <%if x.user_id==current_user.id%>
-                                    <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                      <%=image_tag(x.user.profile_picture, size:"50", class: "img-circle")%>
-                                        <!-- <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" /> -->
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> <%=time_ago_in_words(x.created_at)%></small>
-                                            <strong class="pull-right primary-font">
-                                              <%=x.user.email%>
-                                            </strong>
-                                        </div>
-                                        <p style="text-align:right">
-                                            <!-- there is a reply table with text column called name -->
-                                            <%=x.name%>
-                                        </p>
-                                    </div>
-                                </li>
-                                    <%else%>
-                                    <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <!-- <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" /> -->
-                                        <%=image_tag(x.user.profile_picture, size:"50", class: "img-circle")%>
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font"><%=x.user.email%></strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> <%=time_ago_in_words(x.created_at)%>
-                                            </small>
-                                        </div>
-                                        <p>
-                                            <%=x.name%>
-                                        </p>
-                                    </div>
-                                </li>
-                        <%end%>
-                    <%end%>
+                                <%=render partial: 'messages/form', locals: {x:x}%><%end%>
                           </ul>
-                        </div>
+                                </div> <!--all message replies-->
                         <!-- /.panel-body -->
                         <div class="panel-footer">
-                                <%=form_for @reply, url: message_replies_path(message_id:@message.id), :html=>{class: "form-group"}, method: :post do |x|%>
-                                <%=x.hidden_field :user_id%>
-                                <%=x.text_field :name, class: "form-control", id: "btn-input", placeholder: "Type your message here..."%>
-                                <%=x.submit "Send", class: "btn btn-warning btn-sm", id: "btn-chat"%>
+                            <%=form_for @reply, url: message_replies_path(message_id:@message.id), :html=>{class: "form-group",}, method: :post, remote: true do |x|%>
+                                    <%=x.hidden_field :user_id%>
+                                    <%=x.text_field :name, class: "form-control", id: "btn-input", placeholder: "Type your message here..."%>
+                                    <%=x.submit "Send", class: "btn btn-warning btn-sm", id: "btn-chat"%>
 
-                                <%end%>
+                            <%end%>
 
                                
                         </div>

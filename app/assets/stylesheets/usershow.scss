@@ -1,0 +1,60 @@
+.squarecorners{
+  border-radius: 0px !important;
+  background-color: #F8F8F8;
+  overflow: scroll;
+  position:relative;
+}
+.squarecorners:hover{
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.profilepagefooter{
+min-height:25px;
+font-size:15px;
+padding-left:2px;
+padding-right:2px;
+padding-top:0px;
+padding-bottom:0px;
+// position:absolute;
+// bottom:0px;
+// width:97%;
+// margin-left: -10px;
+}
+
+.profilepagefooter:hover{
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.profilepageheader{
+    background-color: #F8F8F8;
+    // border: 1px solid #BCE8F1;
+
+}
+
+#date{
+  position: absolute;
+  bottom:25px;
+  background-color: rgba(0,0,0,0.5);
+  color:white;
+}
+#time{
+  position: absolute;
+  bottom:3px;
+  background-color: rgba(0,0,0,0.5);
+  color:white;
+}
+
+#likeonprofile{
+  position:absolute;
+  background-color: rgba(0,0,0,0.5);
+  right:3px;
+  bottom:3px;
+  // color:white !important;
+} 
+
+
+
