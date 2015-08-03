@@ -1,52 +1,23 @@
-<%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%#= devise_error_messages! %>
-
-  <!-- <div class="field"> -->
-    <%#= f.label :first_name %>
-    <%#= f.text_field :first_name, autofocus: true %>
-  <!-- </div> -->
-
-   <!-- <div class="field"> -->
-    <%#= f.label :last_name %>
-    <%#= f.text_field :last_name, autofocus: true %>
-  <!-- </div> -->
-
-   <!-- <div class="field"> -->
-    <!-- <%#= f.label :profile_picture %><br /> -->
-    <%#= f.text_field :profile_picture, autofocus: true %>
- <!-- </div> -->
-
-  <!-- <div class="field"> -->
-    <%#= f.label :email %>
-        <%#= f.email_field :email, autofocus: true %>
-  <!-- </div> -->
-
-  <!-- <div class="field"> -->
-    <%#= f.label :password %>
-    <%# if @minimum_password_length %>
-    <!-- <em>(<%#= @minimum_password_length %> characters minimum)</em> -->
-    <%# end %>
-    <%#= f.password_field :password, autocomplete: "off" %>
-  <!-- </div> -->
-
-  <!-- <div class="field"> -->
-    <%#= f.label :password_confirmation %>
-    <%#= f.password_field :password_confirmation, autocomplete: "off" %>
-  <!-- </div> -->
-
-  <!-- <div class="actions"> -->
-    <%#= f.submit "Sign up" %>
-  <!-- </div> -->
-<%# end %>
+<div class="navlogin">
+  pic10
+</div>
 
 
-        <div class="row">
-          <div class="col-md-8"></div>
+        <div class="row mainrow">
+          <div class="col-md-8">
+            <div class="mainheading">a picture is worth 10 words</div>
+            <div class="subheader">
+              <i class="fa fa-instagram fa-3x subheadericon"></i>
+<!--               <i class="fa fa-twitter fa-3x subheadericon"></i>
+ -->              <i class="fa fa-comments fa-3x subheadericon"></i>
+            </div>
+          </div>
+
             <div class="col-md-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading squarecorner">
+                <div class="login-panel panel panel-default" style="margin-bottom:10px;">
+                    <!-- <div class="panel-heading squarecorner">
                         <h3 class="panel-title">Sign Up</h3>
-                    </div>
+                    </div> -->
                     <div class="panel-body squarecorner">
                       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                         <%= devise_error_messages! %>
@@ -75,7 +46,7 @@
                         </div>
 
                           <div class: "actions">
-                            <%= f.submit "Sign Up!", class: "btn btn-lg btn-success btn-block landingpagebutton squarecorner" %>
+                            <%= f.submit "Sign Up", class: "btn btn-lg btn-success btn-block landingpagebutton squarecorner" %>
                           </div>
                       </fieldset>
                       <% end %>
