@@ -2,6 +2,42 @@
 @import "bootstrap";
 @import "jquery.ui.all";
 
+.mainrow{
+    height:90vh;
+    margin-top:60px;
+    width:100%;
+    margin:60px 0px 0px 0px;
+    background-image: url('worldmap.jpg');
+    background-size: 100% 100%;
+}
+.mainheading{
+    text-align: center;
+    font-size:55px;
+    font-family: Helvetica Neue;
+    // font-weight:bold;
+    color:white;
+    padding-top: 20%;
+}
+.login-panel{
+    background:rgba(255,255,255,0.5);
+    border-radius: 0px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.squarecorner{
+    border-radius: 0px;
+  }
+
+
+.landingpagebutton{
+    color:black;
+    background:rgba(255,255,255,0.5);
+}
+.landingpagebutton:hover{
+    background:rgba(0,0,0,0.5);
+}
+
 .messageemail{
     overflow:hidden;
     text-overflow: ellipsis;

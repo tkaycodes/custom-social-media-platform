@@ -22,7 +22,6 @@ class UsersController < ApplicationController
       @posts = [];
     end
     @comment = Comment.new
-
   end
 
   def edit

@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  $("#usersearchbox").click(function(){
+
+
   var ajaxcall = $.ajax({
       url: '/users.json',
       dataType: "json",
@@ -36,6 +39,8 @@ $(document).ready(function(){
    // $('#usersearchbox').on("autocompleteselect", function(event, ui){
    //  console.log("the" + ui.item + " was selected");
    // });
+
+});
 
 
 

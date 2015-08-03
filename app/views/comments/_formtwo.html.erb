@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-1">
+  <%=image_tag(x.user.profile_picture, width:'30px', height:'30px', 'padding-left':'10px')%>
+  </div>
+  <div class="col-md-11" style="margin-top: -5px;padding-left:30px">
+    <strong><%=x.user.email%></strong>
+        <!-- delete comment link -->
+        <%if x.user_id==current_user.id%>
+          <%=link_to comment_path(x), method: :delete, id:'comment_'+x.id.to_s, remote: true do %>
+           <i class = "fa fa-times"></i>
+          <%end%>
+          <!-- edit comment link -->
+        <%=link_to edit_comment_path(x), remote: true do%>
+           <i class = "fa fa-pencil"></i>
+          <%end%>
+      <%end%>
+    <br>
+    <!-- actual comment -->
+    <span class="usercomment" data-commentid=<%=x.id%>><%=x.comment%></span><br>
+  <span class="timeagoinwords" data-timestamp=<%=x.id%>>
+    <%if (x.created_at)==(x.updated_at)%>
+      <%=time_ago_in_words(x.created_at)%> ago</span>
+    <%else%>
+      edited:<%=time_ago_in_words(x.updated_at)%> ago</span>
+    <%end%>
+  </div>
+</div><br>

@@ -43,16 +43,26 @@
             <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>   
             <%#=link_to x.body, post_path(x)%>   
           <%end%>
-  <div id="date" class="dontshowme"><%=x.created_at.strftime("%b %d %Y")%> </div>  
-  <div id="time" class="dontshowme"><%=x.created_at.strftime("%l:%M%P")%></div>    
-<div id="likeonprofile" class="dontshowme">
-  <%=link_to "", style:"color:white" do%>
-  <i class="fa fa-thumbs-o-up fa-fw"></i>Like
-  <%end%>
+          <div class="hoverpicture dontshowme">
+            <div id="date" ><%=x.created_at.strftime("%b %d %Y")%> </div>  
+            <div id="time" ><%=x.created_at.strftime("%l:%M%P")%></div>  
+          
+          
+          <%if Like.exists?(post_id:x.id, user_id:current_user.id)%>
+                <i style="cursor:pointer" class="likeonprofile fa fa-thumbs-up fa-fw" onClick="toggleLikeButton()">Unlike</i>
+          <%else%>
+                <i style="cursor:pointer" class="likeonprofile fa fa-thumbs-o-up fa-fw" onClick="toggleLikeButton()">Like</i>
+
+          <%end%>
+          
+
+
+          </div> 
+
+           
 </div>
 
 
-        </div>   
         <div class="panel-footer profilepagefooter"> 
           <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%> 
           <i class="fa fa-thumbs-up fa-fw"></i><%=x.likes.all.count%>  
@@ -81,27 +91,58 @@
 
         </div>   
       </div>   
-    </div>   
+    </div> 
 <%end%>    
 
 
 
 
 <script>
+$(document).ready(function(){
   $('.profilepagefooter').click(function(){
     $(this).children('.commentsonindex').slideToggle();
   })
-</script>
-
-<script>
   $('.squarecorners').hover(function(){
     // alert('hi');
-    $(this).children('#date').toggle();
-    $(this).children('#time').toggle();
-    $(this).children('#likeonprofile').toggle();
+    $(this).children('.hoverpicture').toggle();
   });
+  $('#unlikeonprofile, #likeonprofile').click(function(){
+    $('#unlikeonprofile').toggle();
+    $('#likeonprofile').toggle();
+
+  });
+
+$('.likeonprofile').click(function(){
+
+  if ($(this).hasClass("fa-thumbs-up")){
+    $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
+  }
+  else if ($(this).hasClass("fa-thumbs-o-up")){
+    $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
+  }
+
+
+  });
+
+
+
+ 
+
+});
+
+  function toggleLikeButton(){
+      if ($(this).hasClass("fa-thumbs-up")){
+        $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
+      }
+      else if ($(this).hasClass("fa-thumbs-o-up")){
+        $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
+      }
+  };
+
+
 </script>
-   
+
+
 <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
 </div>   
    

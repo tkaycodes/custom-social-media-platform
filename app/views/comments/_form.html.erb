@@ -3,6 +3,7 @@
   <%=image_tag(x.user.profile_picture, width:'50px', height:'50px', 'padding-left':'10px')%>
   </div>
   <div class="col-md-11" style="margin-top: -5px;padding-left:30px">
+      <div class="col-md-12">
     <strong><%=x.user.email%></strong>
         <!-- delete comment link -->
         <%if x.user_id==current_user.id%>
@@ -14,14 +15,16 @@
            <i class = "fa fa-pencil"></i>
           <%end%>
       <%end%>
-    <br>
+    </div>
     <!-- actual comment -->
-    <span class="usercomment" data-commentid=<%=x.id%>><%=x.comment%></span><br>
-  <span class="timeagoinwords" data-timestamp=<%=x.id%>>
+    <div class="usercomment col-md-12" style="break-word;" data-commentid=<%=x.id%>><%=x.comment%>
+    </div>
+  <div class="timeagoinwords col-md-12" data-timestamp=<%=x.id%>>
     <%if (x.created_at)==(x.updated_at)%>
-      <%=time_ago_in_words(x.created_at)%> ago</span>
+      <%=time_ago_in_words(x.created_at)%>
     <%else%>
-      edited:<%=time_ago_in_words(x.updated_at)%> ago</span>
-    <%end%>
+      edited:<%=time_ago_in_words(x.updated_at)%> 
+    <%end%>ago
+  </div>
   </div>
 </div><br>

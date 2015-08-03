@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   #posttags.tag
   has_many :tags, through: :posttags 
   
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
 
 
