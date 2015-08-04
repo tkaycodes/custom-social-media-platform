@@ -1,14 +1,16 @@
-
 <div class="navlogin">
   pic10
 </div>
         <div class="row mainrow">
+         
+        
           <div class="col-md-8">
-            <div class="mainheading">a picture is worth 10 words</div>
-            <div class="subheader">
-              <i class="fa fa-instagram fa-3x subheadericon"></i>
-<!--               <i class="fa fa-twitter fa-3x subheadericon"></i>
- -->              <i class="fa fa-comments fa-3x subheadericon"></i>
+            <div class="mainheading" style="width:80%">A picture is worth<br> 10 words.</div><hr id="line" style="width:80%;">
+        
+            <div class="subheader2">
+          <i class="fa fa-instagram fa-3x subheader2icon"></i> 
+          <i class="fa fa-twitter fa-3x subheader2icon"></i>      
+          <i class="fa fa-comments fa-3x subheader2icon"></i>
             </div>
           </div>
 
@@ -41,3 +43,17 @@
         </div>
 
     </div>
+
+    <script>
+        $(document).ready(function(){
+          $('.subheader2icon').addClass('animated bounceInUp');
+          $('#line').addClass('animated bounceInUp');
+
+          $('.subheader2icon').hover(function(){
+            $(this).toggleClass('underlineme')
+          });
+            // console.log($(this));
+            // $(this)
+        
+        });
+        </script>

@@ -14,6 +14,7 @@ gem 'hirb'
 gem 'turbolinks'
 gem 'selectize-rails'
 gem "paperclip", "~> 4.3"
+gem "animate-rails"
 gem 'less', '~> 2.6.0'
 gem 'therubyracer'
 gem 'rack-mini-profiler'

@@ -19,7 +19,7 @@
 <body>
   <%=render 'layouts/header' unless @remove_header%>
 <div id="page-wrapper">
-  <%if notice || alert%>
+  <%if (notice || alert) && !@remove_header%>
   <div class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <%=notice%>

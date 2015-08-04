@@ -2,6 +2,9 @@
 @import "bootstrap";
 @import "jquery.ui.all";
 
+.underlineme{
+    text-decoration: underline;
+}
 
 .navlogin{
     position:absolute;
@@ -23,20 +26,29 @@
 }
 .mainheading{
     text-align: center;
-    font-size:55px;
-    font-family: Helvetica Neue;
-    // font-weight:bold;
+    font-size:60px;
+    font-family: "Trebuchet MS", "Helvetica", "sans-serif";
+    font-weight:900;
     color:white;
     padding-top: 20%;
+    width:500px;
+    margin-left: 60px;
 }
 
 .subheader{
     color:white;
     text-align: center;
     margin-top: 20px;
+    font-size: 20px;
+
 }
 
-.subheadericon{
+.subheader2{
+    color:white;
+    text-align: center;
+    margin-top: 20px;
+}
+.subheader2icon{
     padding-left: 10px;
     padding-right: 10px;
 }
