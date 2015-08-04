@@ -1,4 +1,5 @@
-### pic10 - 'a picture is worth 10 words'
+### pic10
+#### pic10 is a social media platform allowing users to connect and share information with their friends. 'A picture is worth 10 words' - Users can post statuses (10 word max limit), or images. 
 
 ###### Implemented Features(so far):
 
