@@ -4,14 +4,16 @@
       <%=image_tag(@user.profile_picture.url(:thumb), :width=>200, :height=>200, :style=>"margin-top:20px") %>   
     <%end%>    
   </div>   
+
+
+
+  <!-- profile header -->
   <div class="col-md-8">   
     <h3><%=@user.email%></h3>    
     <%if @friendship.empty?%>    
       <h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post unless @user.id==current_user.id%></h5><br>    
       <%elsif @friendship.first.state == "accepted"%>    
         <%=link_to "Remove Friend", friendship_path(@friendship.first.id), method: :DELETE%><br>   
-      <%#elsif @friendship.first.state == "pending" || @friendship.first.state == "declined" %>    
-        <!-- <h5><a onClick = "alert('to do')"> Cancel Request </a></h5><br> -->   
     <%end%>    
     <h5><%=link_to "Send Message", new_message_path(recipient_id: @user.id) unless @user.id==current_user.id%></h5><br>    
     Friend Count:<%=@user.friends.count%>    
@@ -19,50 +21,51 @@
 </div>   
 <br><hr>   
    
-<!-- @issue.created_at.strftime("%d %b. %Y")   
--# Hour:Min   
--@issue.created_at.strftime("%H:%M") -->    
+
+
+
+  <!-- profile posts -->
   
 <%@posts.each do |x|%>   
     <div class="col-lg-4" style="padding-left:0px;padding-right:0px;">   
-      <div class="panel panel-info">   
-        <!-- <div class="panel-heading"><%#=x.created_at.strftime("%b %d %Y")%>     -->
-          <!-- <span id="time"><%#=x.created_at.strftime("%l:%M%P")%></span></div>    -->
-        <div class="panel-body squarecorners" style="height:300px">    
+      <div class="panel panel-info" style="border-radius:0px;">   
+        <div class="panel-body squarecorners" style="height:300px"> 
+
+           <!--  image posts -->
           <%if x.type=="Image"%> 
-          <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'} do%>
-          <%=image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%;max-width:100%;")%>
-          <%end%> 
-         <%#=link_to image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%"), post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>    
-            <%#=link_to image_tag(x.body.url, :id=>"imageindex"), post_path(x)%>   
+            <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'} do%>
+              <%=image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%;max-width:100%;")%>
+            <%end%>  
           <%else%> 
-          <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' } do%>
-          <%=x.body%>
-
-          <%end%>  
-            <%#=link_to x.body, post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' }%>   
-            <%#=link_to x.body, post_path(x)%>   
+          <!-- status posts -->
+            <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' } do%>
+              <%=x.body%>
+            <%end%>  
           <%end%>
-          <div class="hoverpicture dontshowme">
-            <div id="date" ><%=x.created_at.strftime("%b %d %Y")%> </div>  
-            <div id="time" ><%=x.created_at.strftime("%l:%M%P")%></div>  
-          
-          
-          <%if Like.exists?(post_id:x.id, user_id:current_user.id)%>
-                <i style="cursor:pointer" class="likeonprofile fa fa-thumbs-up fa-fw" onClick="toggleLikeButton()">Unlike</i>
-          <%else%>
-                <i style="cursor:pointer" class="likeonprofile fa fa-thumbs-o-up fa-fw" onClick="toggleLikeButton()">Like</i>
-
-          <%end%>
-          
 
 
-          </div> 
+          <!-- date and time divs -->
+          <div class="dateandtime dontshowme">
+            <div id="date" ><%=x.created_at.strftime("%b %d %Y")%></div>  
+            <div id="time" ><%=x.created_at.strftime("%l:%M%P")%></div> 
+         </div> 
 
-           
-</div>
+         <!-- like and unlike button div -->
+         <div id="like_and_unlike_on_profile" class="dontshowme">
+          <div class="like_on_profile"<%if Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
+            <i class=" fa fa-thumbs-up fa-fw">Like</i>
+          </div>
+          <div class="unlike_on_profile"<%if !Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
+            <i class=" fa fa-thumbs-o-up fa-fw">Unlike</i>
+          </div>
+        </div>
+
+        <!-- end of panel body -->
+        </div>  
 
 
+
+        <!-- panel footer -->
         <div class="panel-footer profilepagefooter"> 
           <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%> 
           <i class="fa fa-thumbs-up fa-fw"></i><%=x.likes.all.count%>  
@@ -83,17 +86,16 @@
                   </div><hr>
                   <div class="commentlist" data-postid="<%=x.id%>">
                   <%x.comments.order(created_at: "DESC").each do |comment|%>
-                  <%=render partial: 'comments/form', locals: {x:comment}%>
+                  <%=render partial: 'comments/formtwo', locals: {x:comment}%>
                   <%end%>
                 </div>
               </div>
 
-
+        <!-- end of panel footer -->
         </div>   
       </div>   
     </div> 
 <%end%>    
-
 
 
 
@@ -104,40 +106,50 @@ $(document).ready(function(){
   })
   $('.squarecorners').hover(function(){
     // alert('hi');
-    $(this).children('.hoverpicture').toggle();
-  });
-  $('#unlikeonprofile, #likeonprofile').click(function(){
-    $('#unlikeonprofile').toggle();
-    $('#likeonprofile').toggle();
-
+    $(this).children('.dateandtime').toggle();
+    $(this).children('#like_and_unlike_on_profile').toggle();
   });
 
-$('.likeonprofile').click(function(){
-
-  if ($(this).hasClass("fa-thumbs-up")){
-    $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
-  }
-  else if ($(this).hasClass("fa-thumbs-o-up")){
-    $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
-  }
-
-
+  $('.like_on_profile').click(function(){
+    $(this).hide();
+    $(this).siblings('.unlike_on_profile').show();
   });
+   $('.unlike_on_profile').click(function(){
+    $(this).hide();
+    $(this).siblings('.like_on_profile').show();
+  });
+  // $('#unlikeonprofile, #likeonprofile').click(function(){
+  //   $('#unlikeonprofile').toggle();
+  //   $('#likeonprofile').toggle();
+
+  // });
+
+// $('.likeonprofile').click(function(){
+
+//   if ($(this).hasClass("fa-thumbs-up")){
+//     $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
+//   }
+//   else if ($(this).hasClass("fa-thumbs-o-up")){
+//     $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
+//   }
+
+
+//   });
 
 
 
  
 
-});
+ });
 
-  function toggleLikeButton(){
-      if ($(this).hasClass("fa-thumbs-up")){
-        $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
-      }
-      else if ($(this).hasClass("fa-thumbs-o-up")){
-        $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
-      }
-  };
+  // function toggleLikeButton(){
+  //     if ($(this).hasClass("fa-thumbs-up")){
+  //       $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
+  //     }
+  //     else if ($(this).hasClass("fa-thumbs-o-up")){
+  //       $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
+  //     }
+  // };
 
 
 </script>

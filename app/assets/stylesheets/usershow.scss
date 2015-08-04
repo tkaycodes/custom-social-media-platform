@@ -1,3 +1,30 @@
+.likeonprofile{
+    background-color: none !important;
+}
+
+#like_and_unlike_on_profile{
+  position:absolute;
+  bottom:3px; 
+  right:10px;
+  background-color: rgba(0,0,0,0.5);
+  color:white;
+  width:60px;
+  cursor:pointer;
+}
+#like_and_unlike_on_profile:hover{
+  -moz-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+// .unlike_on_profile{
+//   position:absolute;
+//   bottom:3px; 
+//   right:10px;
+//   background-color: rgba(0,0,0,0.5);
+//   color:white;
+//   width:60px;
+// }
+
 .squarecorners{
   border-radius: 0px !important;
   background-color: #F8F8F8;
