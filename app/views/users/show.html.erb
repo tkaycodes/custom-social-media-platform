@@ -52,10 +52,10 @@
 
          <!-- like and unlike button div -->
          <div id="like_and_unlike_on_profile" class="dontshowme">
-          <div class="like_on_profile"<%if Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
+          <div class="like_on_profile" data-postid=<%=x.id%><%if Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
             <i class=" fa fa-thumbs-up fa-fw">Like</i>
           </div>
-          <div class="unlike_on_profile"<%if !Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
+          <div class="unlike_on_profile" data-postid=<%=x.id%><%if !Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
             <i class=" fa fa-thumbs-o-up fa-fw">Unlike</i>
           </div>
         </div>
@@ -101,8 +101,13 @@
 
 <script>
 $(document).ready(function(){
-  $('.profilepagefooter').click(function(){
+  $('.profilepagefooter').click(function(event){
+    if $(event.target) = $('#comment_comment'){
+      return;
+    }
+    else{
     $(this).children('.commentsonindex').slideToggle();
+    }
   })
   $('.squarecorners').hover(function(){
     // alert('hi');
@@ -111,10 +116,35 @@ $(document).ready(function(){
   });
 
   $('.like_on_profile').click(function(){
+      var postid =$(this).data('postid');
+
+    $.ajax({
+      url: 'likes',
+      method: 'post',
+      data: {id: postid},
+      success: function(data){
+        console.log(data)
+      },
+      error: function(error){
+        console.log(error)
+      }
+    });
     $(this).hide();
     $(this).siblings('.unlike_on_profile').show();
   });
    $('.unlike_on_profile').click(function(){
+    var postid=$(this).data('postid');
+
+    $.ajax({
+      url: 'likes/'+postid,
+      method: 'delete',
+      success: function(data){
+        console.log(data)
+      },
+      error: function(error){
+        console.log(error)
+      }
+    });
     $(this).hide();
     $(this).siblings('.like_on_profile').show();
   });
