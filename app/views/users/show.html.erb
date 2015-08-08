@@ -19,19 +19,27 @@
     Friend Count:<%=@user.friends.count%>    
   </div>   
 </div>   
-<br><hr>   
+<br><hr>  
+
+<%=@user.posts.each do |x|%>
+  <%=x.inspect%>
+<%end%> 
    
 
 
 
   <!-- profile posts -->
+
+  <%#=debug @posts%>
+  <%#=@posts.inspect%>
+  <%#=simple_format @posts.to_yaml%>
   
 <%@posts.each do |x|%>   
     <div class="col-lg-4" style="padding-left:0px;padding-right:0px;">   
       <div class="panel panel-info" style="border-radius:0px;">   
         <div class="panel-body squarecorners" style="height:300px"> 
 
-           <!--  image posts -->
+            <!-- image posts -->
           <%if x.type=="Image"%> 
             <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'} do%>
               <%=image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%;max-width:100%;")%>
@@ -46,7 +54,7 @@
 
           <!-- date and time divs -->
           <div class="dateandtime dontshowme">
-            <div id="date" ><%=x.created_at.strftime("%b %d %Y")%></div>  
+             <div id="date" ><%=x.created_at.strftime("%b %d %Y")%></div>  
             <div id="time" ><%=x.created_at.strftime("%l:%M%P")%></div> 
          </div> 
 
@@ -55,7 +63,7 @@
           <div class="like_on_profile" data-postid=<%=x.id%><%if Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
             <i class=" fa fa-thumbs-up fa-fw">Like</i>
           </div>
-          <div class="unlike_on_profile" data-postid=<%=x.id%><%if !Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
+           <div class="unlike_on_profile" data-postid=<%=x.id%><%if !Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
             <i class=" fa fa-thumbs-o-up fa-fw">Unlike</i>
           </div>
         </div>
@@ -67,13 +75,13 @@
 
         <!-- panel footer -->
         <div class="panel-footer profilepagefooter"> 
-          <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%> 
-          <i class="fa fa-thumbs-up fa-fw"></i><%=x.likes.all.count%>  
+          <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%>  
+        <i class="fa fa-thumbs-up fa-fw"></i><%=x.likes.all.count%>   
 
 
-              <div class="commentsonindex dontshowme">
-                  <div class="row">
-                    <div class="col-md-1">
+            <div class="commentsonindex dontshowme"> 
+                  <div class="row"> 
+                    <div class="col-md-1"> 
                       <%=image_tag(current_user.profile_picture, width: '50px', height: '50px')%>
                     </div>
                     <div class="col-md-11 newcomment">
@@ -84,12 +92,12 @@
                       <%end%>
                     </div>
                   </div><hr>
-                  <div class="commentlist" data-postid="<%=x.id%>">
+                   <div class="commentlist" data-postid="<%=x.id%>">
                   <%x.comments.order(created_at: "DESC").each do |comment|%>
                   <%=render partial: 'comments/formtwo', locals: {x:comment}%>
                   <%end%>
-                </div>
-              </div>
+                 </div>
+              </div> 
 
         <!-- end of panel footer -->
         </div>   
@@ -148,23 +156,25 @@ $(document).ready(function(){
     $(this).hide();
     $(this).siblings('.like_on_profile').show();
   });
-  // $('#unlikeonprofile, #likeonprofile').click(function(){
-  //   $('#unlikeonprofile').toggle();
-  //   $('#likeonprofile').toggle();
-
-  // });
-
-// $('.likeonprofile').click(function(){
-
-//   if ($(this).hasClass("fa-thumbs-up")){
-//     $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
-//   }
-//   else if ($(this).hasClass("fa-thumbs-o-up")){
-//     $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
-//   }
 
 
-//   });
+  $('#unlikeonprofile, #likeonprofile').click(function(){
+    $('#unlikeonprofile').toggle();
+    $('#likeonprofile').toggle();
+
+  });
+
+$('.likeonprofile').click(function(){
+
+  if ($(this).hasClass("fa-thumbs-up")){
+    $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
+  }
+  else if ($(this).hasClass("fa-thumbs-o-up")){
+    $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
+  }
+
+
+  });
 
 
 
@@ -181,12 +191,17 @@ $(document).ready(function(){
   //     }
   // };
 
-
 </script>
 
 
-<div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
-</div>   
+<!-- modal -->
+
+ <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">   
+ </div>    
+
+
+
+ <!-- if user not friended/ or user has no posts: -->
    
 <%if @posts.empty? && !(@user.id==current_user.id)%>   
   <div class="alert alert-success alert-dismissable">    

@@ -42,6 +42,9 @@
                         <div class="form-group">
                           <%= f.email_field :email, autofocus: true, class: "form-control squarecorner", placeholder: "Email" %>
                         </div>
+                        <div class="form-group">
+                          <%= f.text_field :username, autofocus: true, class: "form-control squarecorner", placeholder: "Enter your desired username" %>
+                        </div>
 
                           <div class="form-group">
                                 <% if @minimum_password_length %>
