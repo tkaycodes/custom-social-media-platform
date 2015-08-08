@@ -3,6 +3,33 @@
 @import "jquery.ui.all";
 
 
+// @font-face {
+//   font-family: 'trench';
+//   src: url(/assets/trench.otf) format("truetype");
+//   src: url('webfont.eot'); /* IE9 Compat Modes */
+//   src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//        url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+//        url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+//        url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+//        url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+// }
+
+#tenonly{
+    color:#337AB7;
+}
+
+#usersearchbox{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    letter-spacing: 3px;
+}
+
+#searchbutton{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #337AB7;
+    color:white;
+}
 .vertical{
     height:20px;
     width:1px;
@@ -98,9 +125,12 @@
 }
 
 .navbar-brand{
-    font-size: 30px;
-    font-weight: bold;
-    color:#337AB7 !important;
+    // font-size: 40px;
+    // font-weight: bold;
+    // color:white !important;
+    margin-left:50px;
+    // text-shadow: -1px 0 #337AB7, 0 1px #337AB7, 1px 0 #337AB7, 0 -1px #337AB7;
+    // font-family: 'trench';
 }
 
 #friendshipid{

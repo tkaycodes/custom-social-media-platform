@@ -9,7 +9,8 @@
 
   <!-- profile header -->
   <div class="col-md-8">   
-    <h3><%=@user.email%></h3>    
+    <h3><%=@user.username%></h3>
+    <h6><%=@user.first_name%>&nbsp<%=@user.last_name%></h6>    
     <%if @friendship.empty?%>    
       <h5><%=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post unless @user.id==current_user.id%></h5><br>    
       <%elsif @friendship.first.state == "accepted"%>    

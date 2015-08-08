@@ -22,10 +22,10 @@ $(document).ready(function(){
      return {label: x.email, value: x.id};
   });
   console.log(mapped);
- // var availableTags = ["hi", "bye", "hippo"];
+ var availableTags = ["hi", "bye", "hippo"];
    $('#usersearchbox').autocomplete({
-     source: mapped,
-     // source: availableTags,
+     // source: mapped,
+     source: availableTags,
     select: function(event, ui){
       event.preventDefault();
       // console.log(User.all);

@@ -18,6 +18,11 @@
                   </li>
               </ul>
             <div class="tab-content">
+              <br>
+              <% if current_user.friends.empty?%>
+                Looks like you haven't added any friends.<br> Use the search bar on the left to search for friends, and start filling up this area with their posts!<br>
+                <%end%>
+              <%#end%>
               <!-- all posts -->
               <div class="tab-pane fade in active" id="allposts">
                 <%current_user.friends.each do |x|%>
