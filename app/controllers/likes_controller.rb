@@ -3,10 +3,11 @@ class LikesController < ApplicationController
     logger.warn " here are the params: #{params.inspect}"
     @like = Like.new(user_id: current_user.id, post_id: params[:id])
     if @like.save
+          logger.warn "post was like here it is: #{@like.inspect}"
+
       respond_to do |format|
         format.html{
           redirect_to :back, notice: 'liked'
-          logger.warn "post was like here it is: #{@like.inspect}"
         }
         format.json{
           render json: @like.to_json

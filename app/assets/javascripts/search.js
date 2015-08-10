@@ -19,13 +19,19 @@ $(document).ready(function(){
   var mapped = objects.map(function(x){
     // var userinfo = {};
     // return x.email;
-     return {label: x.email, value: x.id};
+     return {label: x.email, desc: x.first_name + " "+ x.last_name, value: x.id};
   });
   console.log(mapped);
- var availableTags = ["hi", "bye", "hippo"];
+ // var availableTags = ["hi", "bye", "hippo"];
    $('#usersearchbox').autocomplete({
-     // source: mapped,
-     source: availableTags,
+     source: mapped,
+// focus: function( event, ui ) {
+//         $( "#usersearchbox" ).val( ui.item.label );
+//         return false;
+//       },
+
+
+     // source: availableTags,
     select: function(event, ui){
       event.preventDefault();
       // console.log(User.all);

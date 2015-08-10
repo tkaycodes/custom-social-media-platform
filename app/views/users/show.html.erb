@@ -22,9 +22,9 @@
 </div>   
 <br><hr>  
 
-<%=@user.posts.each do |x|%>
-  <%=x.inspect%>
-<%end%> 
+<%#=@user.posts.each do |x|%>
+  <%#=x.inspect%>
+<%#end%> 
    
 
 
@@ -59,12 +59,13 @@
             <div id="time" ><%=x.created_at.strftime("%l:%M%P")%></div> 
          </div> 
 
+
          <!-- like and unlike button div -->
          <div id="like_and_unlike_on_profile" class="dontshowme">
           <div class="like_on_profile" data-postid=<%=x.id%><%if Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
             <i class=" fa fa-thumbs-up fa-fw">Like</i>
           </div>
-           <div class="unlike_on_profile" data-postid=<%=x.id%><%if !Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none" <%end%>>
+           <div class="unlike_on_profile" <%if !Like.exists?(post_id:x.id, user_id:current_user.id)%> style="display:none"<%else%> data-likeid=<%=Like.where(post_id:x.id,user_id:current_user.id).first.id%> <%end%>>
             <i class=" fa fa-thumbs-o-up fa-fw">Unlike</i>
           </div>
         </div>
@@ -76,8 +77,8 @@
 
         <!-- panel footer -->
         <div class="panel-footer profilepagefooter"> 
-          <i class="fa fa-comment fa-fw"></i><%=x.comments.all.count%>  
-        <i class="fa fa-thumbs-up fa-fw"></i><%=x.likes.all.count%>   
+          <i class="fa fa-comment fa-fw"><%=x.comments.all.count%></i>  
+        <i class="fa fa-thumbs-up fa-fw"><%=x.likes.all.count%> </i>  
 
 
             <div class="commentsonindex dontshowme"> 
@@ -111,12 +112,12 @@
 <script>
 $(document).ready(function(){
   $('.profilepagefooter').click(function(event){
-    if $(event.target) = $('#comment_comment'){
-      return;
-    }
-    else{
+    // if $(event.target) = $('#comment_comment'){
+      // return;
+    // }
+    // else{
     $(this).children('.commentsonindex').slideToggle();
-    }
+    // }
   })
   $('.squarecorners').hover(function(){
     // alert('hi');
@@ -126,13 +127,22 @@ $(document).ready(function(){
 
   $('.like_on_profile').click(function(){
       var postid =$(this).data('postid');
+      var likebutton=$(this)
+      console.log(postid)
 
     $.ajax({
-      url: 'likes',
+      url: '/likes',
       method: 'post',
+      dataType: 'json',
       data: {id: postid},
       success: function(data){
         console.log(data)
+        var likeid=data.id
+        console.log(likeid)
+        likebutton.siblings('.unlike_on_profile').data('likeid', likeid)
+        var oldlikecount = likebutton.closest('.squarecorners').siblings('.panel-footer').children('.fa-thumbs-up').html()
+        var newlikecount = parseInt(oldlikecount)+1
+        likebutton.closest('.squarecorners').siblings('.panel-footer').children('.fa-thumbs-up').html(newlikecount);
       },
       error: function(error){
         console.log(error)
@@ -140,15 +150,21 @@ $(document).ready(function(){
     });
     $(this).hide();
     $(this).siblings('.unlike_on_profile').show();
+    // $(this).siblings('.unlike_on_profile').data('likeid', ) 
   });
    $('.unlike_on_profile').click(function(){
-    var postid=$(this).data('postid');
+    var likeid=$(this).data('likeid');
+    var unlikebutton=$(this)
 
     $.ajax({
-      url: 'likes/'+postid,
+      url: '/likes/'+likeid,
       method: 'delete',
+      dataType: 'json',
       success: function(data){
         console.log(data)
+         var oldlikecount = unlikebutton.closest('.squarecorners').siblings('.panel-footer').children('.fa-thumbs-up').html()
+        var newlikecount = parseInt(oldlikecount)-1
+        unlikebutton.closest('.squarecorners').siblings('.panel-footer').children('.fa-thumbs-up').html(newlikecount);
       },
       error: function(error){
         console.log(error)
