@@ -112,12 +112,16 @@
 <script>
 $(document).ready(function(){
   $('.profilepagefooter').click(function(event){
-    // if $(event.target) = $('#comment_comment'){
-      // return;
-    // }
-    // else{
+    console.log(event.target)
+    if ($(event.target).is("input")||
+        ($(event.target).is("i.fa-times")) || 
+        ($(event.target).is("i.fa-pencil"))){
+      return;
+     }
+    else{
     $(this).children('.commentsonindex').slideToggle();
-    // }
+    // console.log($(this).children('.commentsonindex').children('#comment_comment'))
+     }
   })
   $('.squarecorners').hover(function(){
     // alert('hi');
@@ -125,6 +129,8 @@ $(document).ready(function(){
     $(this).children('#like_and_unlike_on_profile').toggle();
   });
 
+
+  // like button ajax 
   $('.like_on_profile').click(function(){
       var postid =$(this).data('postid');
       var likebutton=$(this)
@@ -152,6 +158,9 @@ $(document).ready(function(){
     $(this).siblings('.unlike_on_profile').show();
     // $(this).siblings('.unlike_on_profile').data('likeid', ) 
   });
+
+
+  // unlike button ajax
    $('.unlike_on_profile').click(function(){
     var likeid=$(this).data('likeid');
     var unlikebutton=$(this)
@@ -175,23 +184,26 @@ $(document).ready(function(){
   });
 
 
-  $('#unlikeonprofile, #likeonprofile').click(function(){
-    $('#unlikeonprofile').toggle();
-    $('#likeonprofile').toggle();
 
-  });
+  // // switching buttons on click
+  // $('#unlikeonprofile, #likeonprofile').click(function(){
+  //   $('#unlikeonprofile').toggle();
+  //   $('#likeonprofile').toggle();
 
-$('.likeonprofile').click(function(){
-
-  if ($(this).hasClass("fa-thumbs-up")){
-    $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
-  }
-  else if ($(this).hasClass("fa-thumbs-o-up")){
-    $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
-  }
+  // });
 
 
-  });
+// $('.likeonprofile').click(function(){
+
+//   if ($(this).hasClass("fa-thumbs-up")){
+//     $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
+//   }
+//   else if ($(this).hasClass("fa-thumbs-o-up")){
+//     $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
+//   }
+
+
+//   });
 
 
 
@@ -199,14 +211,7 @@ $('.likeonprofile').click(function(){
 
  });
 
-  // function toggleLikeButton(){
-  //     if ($(this).hasClass("fa-thumbs-up")){
-  //       $(this).removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up").text('Like');
-  //     }
-  //     else if ($(this).hasClass("fa-thumbs-o-up")){
-  //       $(this).removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up").text('Unlike');
-  //     }
-  // };
+
 
 </script>
 
