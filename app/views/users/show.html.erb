@@ -42,12 +42,12 @@
 
             <!-- image posts -->
           <%if x.type=="Image"%> 
-            <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window'} do%>
+            <%=link_to post_path(x), {remote: :true, :'data-toggle'=> "modal", :'data-target'=> '#modal-window'} do%>
               <%=image_tag(x.body.url, :id=>"imageindex", style:"max-height:100%;max-width:100%;")%>
             <%end%>  
           <%else%> 
           <!-- status posts -->
-            <%=link_to post_path(x), {remote: :true, 'data-toggle': "modal", 'data-target': '#modal-window' } do%>
+            <%=link_to post_path(x), {remote: :true, :'data-toggle'=> "modal", :'data-target'=> '#modal-window' } do%>
               <%=x.body%>
             <%end%>  
           <%end%>
