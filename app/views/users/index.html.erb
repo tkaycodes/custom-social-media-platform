@@ -47,12 +47,12 @@
                           <div class="col-md-9">
                             <%if y.type=="Image"%>
                               <!-- link_to can accept block, this will make whole picture containing div a link -->
-                              <%=link_to post_path(y), {remote:true, 'data-toggle': "modal", 'data-target': "#modal-window"} do%>
+                              <%=link_to post_path(y), {remote:true, :'data-toggle'=>"modal", :'data-target'=> "#modal-window"} do%>
                                   <%=image_tag(y.body.url, :style=>'max-width:100%;max-height:100%;')%>
                               <%end%><br>
                             <%else%>
                               <%=link_to post_path(y), {remote:true,
-                              'data-toggle':"modal", 'data-target': "#modal-window", class: "statuslink"} do%>
+                              'data-toggle':"modal", :'data-target'=> "#modal-window", class: "statuslink"} do%>
                                 <h2>
                                   <div class="status">
                                     <%=y.body%>
