@@ -8,7 +8,6 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '~> 5.0'
-gem 'sql_queries_count'
 gem 'simple_form'
 gem 'hirb'
 gem 'turbolinks'
@@ -17,7 +16,6 @@ gem "paperclip", "~> 4.3"
 gem "animate-rails"
 gem 'less', '~> 2.6.0'
 gem 'therubyracer'
-gem 'rack-mini-profiler'
 gem "font-awesome-rails"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -36,9 +34,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'factory_girl_rails'
-gem 'faker'
-gem 'rails_12factor'
+
 
 
 # Use ActiveModel has_secure_password
@@ -51,6 +47,11 @@ gem 'rails_12factor'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'sql_queries_count'
+  gem 'rack-mini-profiler'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'rails_12factor'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

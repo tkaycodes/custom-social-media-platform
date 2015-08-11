@@ -41,24 +41,23 @@
                             <%end%>
                           </div>
                           <div class="col-md-9">
-                            <%if y.type=="Image"%>
+                            <%#if y.type=="Image"%>
                               <!-- link_to can accept block, this will make whole picture containing div a link -->
-                              <%=link_to post_path(y), {remote:true, 
-                                'data-toggle':"modal", 'data-target': "#modal-window"} do  %>
-                                    <div class="picture">
-                                      <%=image_tag(y.body.url, :style=>'max-width:100%;max-height:100%;')%>
-                                    </div>
-                                  <%end%><br>
-                              <%else%>
-                            <%=link_to post_path(y), {remote:true,
+                              <%#=link_to post_path(y), {remote:true, 'data-toggle':"modal", 'data-target': "#modal-window"} do%>
+                                    <!-- <div class="picture"> -->
+                                      <%#=image_tag(y.body.url, :style=>'max-width:100%;max-height:100%;')%>
+                                    <!-- </div> -->
+                              <!-- <%#end%><br> -->
+                            <%#else%>
+                              <%=link_to post_path(y), {remote:true,
                               'data-toggle':"modal", 'data-target': "#modal-window", class: "statuslink"} do%>
-                              <h2>
-                                <div class="status">
-                                  <%=y.body%>
-                                </div>
-                              </h2>
-                            <%end%>
-                            <%end%>
+                                <h2>
+                                  <div class="status">
+                                    <%=y.body%>
+                                  </div>
+                                </h2>
+                              <%end%>
+                            <%#end%>
                           </div>
                         </div>
                         <!-- comments, likes, and tags -->
@@ -71,7 +70,7 @@
                                   <i class="fa fa-thumbs-o-up fa-fw">Like</i></div>
                                   <div class="unlikeonindex dontshowme" data-likeid="1">
                                   <i class="fa fa-thumbs-up fa-fw">Unlike</i></div>
-                                <%else%>
+                              <%else%>
                                 <div class="unlikeonindex" data-likeid="<%=Like.where(user_id:current_user.id, post_id: y.id).first.id%>">
                                 <i class="fa fa-thumbs-up fa-fw">Unlike</i></div>
                                 <div class="likeonindex dontshowme" data-postid="<%=y.id%>">
@@ -87,7 +86,7 @@
                                   </i>
                                   <span class="tags" style="margin-left:20px">
                                   <%y.tags.each do |x|%>
-                                      #<%=link_to x.tag, tag_path(x)%>
+                                      <%=link_to x.tag, tag_path(x)%>
                                   <%end%>
                                   </span>
                               <!-- actual hidden comments -->
@@ -116,8 +115,8 @@
                         </div>
                       </div>
                     </div>
+                  <%end%>
                 <%end%>
-              <%end%>
               </div>
 
 
@@ -150,7 +149,7 @@
                       <%=y.comments.count%>
                       <span style="float:right">
                         <%y.tags.each do |tag|%>
-                          #<%=link_to tag.tag, tag_path(tag)%>
+                          <%=link_to tag.tag, tag_path(tag)%>
                         <%end%>
                       </span>
                     </div>
@@ -187,7 +186,7 @@
                     <%=y.comments.count%>
                       <span style="float:right">
                         <%y.tags.each do |tag|%>
-                          #<%=link_to tag.tag, tag_path(tag)%>
+                          <%=link_to tag.tag, tag_path(tag)%>
                         <%end%>
                       </span>
                   </div>
