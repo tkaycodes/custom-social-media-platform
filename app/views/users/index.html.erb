@@ -176,7 +176,13 @@
                         <%=y.user.email%>
                       </div>
                       <div class="col-md-10">
-                        <%=link_to image_tag(y.body.url, :style=>'max-width:100%;'), image_path(y), {remote: true, :'data-toggle'=> "modal", :'data-target'=> '#modal-window'}%>
+
+<%=link_to post_path(y), {remote:true, :'data-toggle'=>"modal", :'data-target'=> "#modal-window"} do%>
+                                  <%=image_tag(y.body.url, :style=>'max-width:100%;max-height:100%;')%>
+                              <%end%>
+
+
+                       
                       </div>
                     </div>
                   </div>
