@@ -41,7 +41,7 @@
                         <li class="divider"></li>
                         <%current_user.recieved_messages.all.order(created_at: :desc).limit(4).each do |x|%>
                             <li <%if x.status=="Unread"%> class="unread"<%end%> >
-                                <%=link_to message_path(x), class:"messageemail", 'data-id':x.id, style:"padding: 3px 2px 3px 10px;" do %>
+                                <%=link_to message_path(x), class:"messageemail", :'data-id'=>x.id, style:"padding: 3px 2px 3px 10px;" do %>
                                     <!-- <div class="messageemail" data-id="<%#=x.id%>"> -->
 
                                       
