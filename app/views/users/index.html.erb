@@ -139,7 +139,7 @@
                           <%=y.user.email%>
                         </div>
                         <div class="col-md-10">
-                          <h2><%=link_to y.body, status_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%></h2><hr>
+                          <h2><%=link_to y.body, status_path(y), {remote: true, :'data-toggle'=> "modal", :'data-target'=> '#modal-window'}%></h2><hr>
                         </div>
                       </div>
                     </div>
@@ -176,7 +176,7 @@
                         <%=y.user.email%>
                       </div>
                       <div class="col-md-10">
-                        <%=link_to image_tag(y.body.url, :style=>'max-width:100%;'), image_path(y), {remote: true, 'data-toggle': "modal", 'data-target': '#modal-window'}%>
+                        <%=link_to image_tag(y.body.url, :style=>'max-width:100%;'), image_path(y), {remote: true, :'data-toggle'=> "modal", :'data-target'=> '#modal-window'}%>
                       </div>
                     </div>
                   </div>
