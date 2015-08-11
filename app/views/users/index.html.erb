@@ -19,7 +19,7 @@
               </ul>
             <div class="tab-content">
               <br>
-              <% if current_user.friends.empty?%>
+              <%if current_user.friends.empty?%>
                 Looks like you haven't added any friends.<br> Use the search bar on the left to search for friends, and start filling up this area with their posts!<br>
                 <%end%>
               <%#end%>
@@ -30,25 +30,27 @@
                     <div class="panel panel-info">
                       <div class="panel-heading">
                         <%=y.created_at.strftime("%b %d %Y")%>
-                        <span id="time"><%=y.created_at.strftime("%l:%M%P")%></span>
+                        <span id="time">
+                          <%=y.created_at.strftime("%l:%M%P")%>
+                        </span>
                       </div>
                       <div class="panel-body">
                         <div class="row">
                           <div class="col-md-3">
-                            <%=link_to user_profile_path(x)do%>
+                            <%=link_to user_profile_path(x) do%>
                             <%=image_tag(x.profile_picture.url, class: 'feedprofilepic')%><br>
-                            <span><%=y.user.email%></span>
+                            <span>
+                              <%=y.user.email%>
+                            </span>
                             <%end%>
                           </div>
                           <div class="col-md-9">
-                            <%#if y.type=="Image"%>
+                            <%if y.type=="Image"%>
                               <!-- link_to can accept block, this will make whole picture containing div a link -->
-                              <%#=link_to post_path(y), {remote:true, 'data-toggle':"modal", 'data-target': "#modal-window"} do%>
-                                    <!-- <div class="picture"> -->
-                                      <%#=image_tag(y.body.url, :style=>'max-width:100%;max-height:100%;')%>
-                                    <!-- </div> -->
-                              <!-- <%#end%><br> -->
-                            <%#else%>
+                              <%=link_to post_path(y), {remote:true, 'data-toggle': "modal", 'data-target': "#modal-window"} do%>
+                                  <%=image_tag(y.body.url, :style=>'max-width:100%;max-height:100%;')%>
+                              <%end%><br>
+                            <%else%>
                               <%=link_to post_path(y), {remote:true,
                               'data-toggle':"modal", 'data-target': "#modal-window", class: "statuslink"} do%>
                                 <h2>
@@ -57,7 +59,7 @@
                                   </div>
                                 </h2>
                               <%end%>
-                            <%#end%>
+                            <%end%>
                           </div>
                         </div>
                         <!-- comments, likes, and tags -->
@@ -85,9 +87,9 @@
                                   <i class="fa fa-comment fa-fw"><%=y.comments.count%>
                                   </i>
                                   <span class="tags" style="margin-left:20px">
-                                  <%y.tags.each do |x|%>
+                                    <%y.tags.each do |x|%>
                                       <%=link_to x.tag, tag_path(x)%>
-                                  <%end%>
+                                    <%end%>
                                   </span>
                               <!-- actual hidden comments -->
                               <div class="commentsonindex dontshowme">
@@ -97,15 +99,15 @@
                                   </div>
                                   <div class="col-md-11 newcomment">
                                     <%=simple_form_for @comment, {remote: true, controller: 'comments', action:'create'} do |x|%>
-                                    <%=x.hidden_field :user_id, value: current_user.id%>
-                                    <%=x.hidden_field :post_id, value: y.id%>
-                                    <%=x.text_field :comment, placeholder: "write a comment", class: "form-control commentinput", data: {postid: y.id}%>
+                                      <%=x.hidden_field :user_id, value: current_user.id%>
+                                      <%=x.hidden_field :post_id, value: y.id%>
+                                      <%=x.text_field :comment, placeholder: "write a comment", class: "form-control commentinput", data: {postid: y.id}%>
                                     <%end%>
                                   </div>
                                 </div><hr>
                                 <div class="commentlist" data-postid="<%=y.id%>">
                                 <%y.comments.order(created_at: "DESC").each do |x|%>
-                                <%=render partial: 'comments/form', locals: {x:x}%>
+                                  <%=render partial: 'comments/form', locals: {x:x}%>
                                 <%end%>
                               </div>
                               </div>
