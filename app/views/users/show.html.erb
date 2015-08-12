@@ -4,8 +4,24 @@
       <%=image_tag(@user.profile_picture.url, :class=>'img-circle profile-image',size:"200") %>   
     <%end%> <br>
     <span style="font-size:20px;color:white;font-weight:bold"><%=@user.username%></span><br>
-    <span style="font-size:12px;color:white"><%=@user.first_name%>&nbsp<%=@user.last_name%></span>   
+    <span style="font-size:12px;color:white"><%=@user.first_name%>&nbsp<%=@user.last_name%></span><br>
+
+    <span><%if @friendship.empty?%>    
+      <%=link_to "Add Friend", friendships_path(friend_id: @user.id),{ method: :post, style: "color:white;font-size:12px"} unless @user.id==current_user.id%>
+      <%elsif @friendship.first.state == "accepted"%>    
+         <%=link_to "Remove Friend", friendship_path(@friendship.first.id), {method: :DELETE, style: "color:white;font-size:12px"}%>
+      <%end%>| <%=link_to "Send Message", new_message_path(recipient_id: @user.id), {style: "color:white;font-size:12px;"} unless @user.id==current_user.id%>
+    </span>
+
+ <!--  -->
+
+    
+      <%#elsif @friendship.first.state == "accepted"%>    
+        <!-- <%#=link_to "Remove Friend", friendship_path(@friendship.first.id), method: :DELETE%><br>    -->
+    <%#end%>    
+    <!-- <h5><%#=link_to "Send Message", new_message_path(recipient_id: @user.id) unless @user.id==current_user.id%> -->
   </div> 
+
   <div class="col-md-12" id="profilepagesubheader">
     <div class="postandfriendcount">
       <%=@user.friends.count%><br>friends
@@ -16,20 +32,7 @@
     <!-- <div class="postandfriendcount small"><%#=@user.images.count%>images<br><%#=@user.statuses.count%>statuses -->
     <!-- </div> -->
   </div>  
-  <!-- profile header -->
- <!--  <div class="col-md-8">   
-    <h3><%#=@user.username%></h3>
-    <h6><%#=@user.first_name%>&nbsp<%#=@user.last_name%></h6>    
-    <%#if @friendship.empty?%>    
-      <h5><%#=link_to "Add Friend", friendships_path(friend_id: @user.id), method: :post unless @user.id==current_user.id%></h5><br>    
-      <%#elsif @friendship.first.state == "accepted"%>    
-        <%#=link_to "Remove Friend", friendship_path(@friendship.first.id), method: :DELETE%><br>   
-    <%#end%>    
-    <h5><%#=link_to "Send Message", new_message_path(recipient_id: @user.id) unless @user.id==current_user.id%></h5><br>    
-    Friend Count:<%#=@user.friends.count%>    
-  </div> --> 
-
-</div>  
+</div> 
 </div> 
  
 
