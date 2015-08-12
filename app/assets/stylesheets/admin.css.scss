@@ -2,7 +2,50 @@
 @import "bootstrap";
 @import "jquery.ui.all";
 
+.postandfriendcount{
+    border-left:1px solid #E7E7E7;
+    border-right:1px solid #E7E7E7;
+    height:40px;
+    display:inline-block;
+    width:60px;
+    color:#337AB7;
+}
+// .small{
+//     font-size:10px;
+// }
 
+#profilebody{
+    font-size:30px;
+    font-family: impact;
+}
+.profilepageheader{
+    background-color:#337AB7 !important;
+    margin-top: 15px;
+}
+
+#profilepagesubheader{
+    // border-right:1px solid #337AB7;
+    border: 1px solid #E7E7E7;
+    height:40px;
+    text-align: center;
+    background-color: #F8F8F8;
+    margin-bottom: 15px;
+}
+
+.profile-image{
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+#bannerlogo{
+    margin-top: -5px;
+    border-left: 1px solid #337AB7;
+}
+.navbar-default{
+    margin-bottom: 0px !important;
+}
+.sidebar{
+    border-right:1px solid #E7E7E7;
+}
 // @font-face {
 //   font-family: 'trench';
 //   src: url(/assets/trench.otf) format("truetype");
