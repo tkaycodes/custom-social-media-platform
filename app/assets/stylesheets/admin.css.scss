@@ -97,7 +97,7 @@
     margin-top:60px;
     width:100%;
     margin:60px 0px 0px 0px;
-    background-image: url('worldmap.jpg');
+    background-image: url('skyblue.jpg');
     background-size: 100% 100%;
 }
 .mainheading{
@@ -109,14 +109,16 @@
     padding-top: 15%;
     width:500px;
     margin-left: 60px;
+    letter-spacing: 5px;
+
 }
 
 .subheader{
     color:white;
     text-align: center;
     margin-top: 20px;
-    font-size: 20px;
-
+    font-size: 25px;
+    letter-spacing: 5px;
 }
 
 .subheader2{
@@ -127,6 +129,7 @@
 .subheader2icon{
     padding-left: 10px;
     padding-right: 10px;
+
 }
 .login-panel{
     background:rgba(255,255,255,0.5);
@@ -143,9 +146,12 @@
 .landingpagebutton{
     color:black;
     background:rgba(255,255,255,0.5);
+    border:1px solid #66AFE9;
 }
 .landingpagebutton:hover{
     background:rgba(0,0,0,0.5);
+    border:1px solid #66AFE9;
+
 }
 
 .messageemail{
