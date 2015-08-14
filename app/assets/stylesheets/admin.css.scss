@@ -14,20 +14,73 @@
 //     font-size:10px;
 // }
 
+
+// DEVISE PAGES ------------------
+
+
+// div 2 under main div 
+.screenshotheading{
+    font-family:Impact;
+    color:white;
+    margin-left:105px;
+    margin-top: 20px;
+    font-size: 50px;
+    float:left;
+    margin-bottom:60px;
+}
+
+// div containing 4 images
 #secondrow{
-    background-color: #377BB4;
+    background-color: #2E75B2;
     width:100%;
-    height:400px;
+    height:420px;
     text-align: center;
     padding-top:50px;
 }
 
+// div containing actual images
 .secondrowdiv{
-    height:200px;
-    width:300px;
+    height:205px;
+    width:400px;
     border: 1px solid white;
     display:inline-block;
+    margin:5px 5px;    
+
 }
+
+.secondrowdiv:hover{
+  -moz-box-shadow: 0 0 10px rgba(255,255,255,1);
+  -webkit-box-shadow: 0 0 10px rgba(255,255,255,1);
+  box-shadow: 0 0 10px rgba(255,255,255,1);
+  cursor:pointer;
+}
+
+
+// div for the black large images
+#largeimagediv{
+    width:100%;
+    background-color: #222222;
+    color:white;
+    // margin-top:-175px;
+    height:740px;
+    padding-top:50px;
+    padding-left:30px;
+    position:relative;
+}
+
+#closelargeimagediv{
+color:gray;
+position:absolute;
+top:0!important;
+right:5px!important;
+cursor:pointer;
+
+}
+
+// -------------------------------
+
+
+
 #profilebody{
     font-size:30px;
     font-family: impact;
