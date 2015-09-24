@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, :only=> [:index]
   def index
+    # @paramz=params[:check]
+    # render text: @paramz.inspect
     @users=User.all
     if user_signed_in?
       @usersminusself = User.where.not(email: current_user.email)
@@ -24,6 +26,23 @@ class UsersController < ApplicationController
     end
     # logger.warn " check this out: #{@user.posts.each do |x| x.inspect end}"
     @comment = Comment.new
+    
+  end
+
+  def find_user
+    @userid=params[:usersearch] 
+    # @id=params[:id] 
+    # render json: @userid.inspect + @id.inspect
+    if @userid
+    @returnedusers=User.where('username LIKE :prefix', prefix: "#{@userid}%")
+    render json: @returnedusers
+    # render json: @userid.inspect
+    else
+      render json: []
+    end
+
+
+
   end
 
   def edit

@@ -1,9 +1,11 @@
 $(document).ready(function(){
-  $("#usersearchbox").click(function(){
-
-
+  $("#usersearchbox").keyup(function(event){
+    // console.log(event);
+    console.log($(this).val());
+    var typedsearch = $(this).val();
   var ajaxcall = $.ajax({
-      url: '/users.json',
+      // url: '/users.json',
+      url: '/finduser/'+typedsearch,
       dataType: "json",
       method: 'get',
       async: false
@@ -19,7 +21,7 @@ $(document).ready(function(){
   var mapped = objects.map(function(x){
     // var userinfo = {};
     // return x.email;
-     return {label: x.email, desc: x.first_name + " "+ x.last_name, value: x.id};
+     return {label: x.username, desc: x.first_name + " "+ x.last_name, value: x.id};
   });
   console.log(mapped);
  // var availableTags = ["hi", "bye", "hippo"];
@@ -30,7 +32,6 @@ $(document).ready(function(){
 //         return false;
 //       },
 
-
      // source: availableTags,
     select: function(event, ui){
       event.preventDefault();
@@ -40,7 +41,27 @@ $(document).ready(function(){
       window.location = url;
 
     }
-  });
+
+  }).data("uiAutocomplete")._renderItem =  function( ul, item ) 
+       {
+
+         return $( "<li>" )
+         .append( "<a>" + "<strong>"+item.label+"</strong>" + "<br>" + "<em>"+item.desc+"</em>" + "</a>" )
+         .appendTo( ul );
+       };
+
+    // $("#Id").autocomplete().data("uiAutocomplete")._renderItem =  function( ul, item ) 
+    //    {
+    //      return $( "<li>" )
+    //      .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+    //      .appendTo( ul );
+    //    };
+
+   // .autocomplete("usersearchbox")._renderItem = function( ul, item ) {
+  //     return $( "<li>" )
+  //       .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+  //       .appendTo( ul );
+  //   };
 
    // $('#usersearchbox').on("autocompleteselect", function(event, ui){
    //  console.log("the" + ui.item + " was selected");

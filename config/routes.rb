@@ -26,6 +26,10 @@ Rails.application.routes.draw do
   put '/taggedpost/:id/edit' => 'taggedusers#update'
 
 
+  # get '/finduser/:usersearch/:id' => "users#find_user"
+  get '/finduser/:usersearch' => "users#find_user"
+
+
   # get '/admin'=> 'users#admin'
   # get '/panels'=> 'users#panels'
   # get '/notifications'=> 'users#notifications'

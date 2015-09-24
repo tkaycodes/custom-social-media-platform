@@ -40,8 +40,8 @@
 
 // div containing actual images
 .secondrowdiv{
-    height:205px;
-    width:400px;
+    height:190px;
+    width:300px;
     border: 1px solid white;
     display:inline-block;
     margin:5px 5px;    
@@ -65,6 +65,7 @@
     height:740px;
     padding-top:50px;
     padding-left:30px;
+    padding-right:30px;
     position:relative;
 }
 
@@ -75,6 +76,14 @@ top:0!important;
 right:5px!important;
 cursor:pointer;
 
+}
+
+.thumbnailx3{
+    border:1px solid white;
+    height:120px;
+    width:120px;
+    margin:0px 5px;
+    padding:0px 0px 0px 0px;
 }
 
 // -------------------------------
