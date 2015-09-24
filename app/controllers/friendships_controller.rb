@@ -27,6 +27,7 @@ class FriendshipsController < ApplicationController
     # @inverseid = @inverse.id
       if @friendship.save
         logger.warn "friendship saved and the status is now #{@friendship.state}"
+         FriendshipMailer.friendship_email(@friendship).deliver_now
         # logger.warn "the inverse relationship id is #{@inverseid}"
       redirect_to :back, notice: 'Friend Request sent.'
       else
